@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -107,7 +108,10 @@
       border-radius: 9999px;
       color: var(--text-muted);
     }
-    .pill b { color: var(--accent-blue); }
+
+    .pill b {
+      color: var(--accent-blue);
+    }
 
     /* Search & Filter Toolbar */
     .toolbar {
@@ -156,7 +160,10 @@
       padding-bottom: 4px;
       scrollbar-width: none;
     }
-    .tab-pills::-webkit-scrollbar { display: none; }
+
+    .tab-pills::-webkit-scrollbar {
+      display: none;
+    }
 
     .tab-btn {
       background: var(--bg-secondary);
@@ -266,9 +273,23 @@
       white-space: nowrap;
     }
 
-    .badge-core { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
-    .badge-exam { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .badge-hard { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-core {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .badge-exam {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .badge-hard {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
 
     .card-bullets {
       list-style: none;
@@ -349,7 +370,8 @@
       font-size: 0.84rem;
     }
 
-    th, td {
+    th,
+    td {
       padding: 10px 14px;
       border-bottom: 1px solid var(--border-color);
     }
@@ -371,6 +393,7 @@
       border-radius: 4px;
       font-weight: 600;
     }
+
     .no-pill {
       background: rgba(239, 68, 68, 0.2);
       color: #f87171;
@@ -499,9 +522,18 @@
       border-radius: 50%;
       display: inline-block;
     }
-    .dot-red { background: #ff5f56; }
-    .dot-yellow { background: #ffbd2e; }
-    .dot-green { background: #27c93f; }
+
+    .dot-red {
+      background: #ff5f56;
+    }
+
+    .dot-yellow {
+      background: #ffbd2e;
+    }
+
+    .dot-green {
+      background: #27c93f;
+    }
 
     .editor-filename {
       font-size: 0.78rem;
@@ -559,19 +591,65 @@
     }
 
     /* Standard Code Editor Syntax Tokens */
-    .hl-comment    { color: #6a9955; font-style: italic; }
-    .hl-string     { color: #ce9178; }
-    .hl-number     { color: #b5cea8; }
-    .hl-keyword    { color: #569cd6; font-weight: 600; }
-    .hl-flow       { color: #c586c0; font-weight: 600; }
-    .hl-primitive  { color: #569cd6; font-weight: 600; }
-    .hl-type       { color: #4ec9b0; font-weight: 600; }
-    .hl-method     { color: #dcdcaa; }
-    .hl-annotation { color: #dcdcaa; font-weight: 600; }
-    .hl-literal    { color: #569cd6; font-weight: 600; }
-    .hl-tag        { color: #808080; }
-    .hl-xml-elem   { color: #569cd6; font-weight: 600; }
-    .hl-xml-attr   { color: #9cdcfe; }
+    .hl-comment {
+      color: #6a9955;
+      font-style: italic;
+    }
+
+    .hl-string {
+      color: #ce9178;
+    }
+
+    .hl-number {
+      color: #b5cea8;
+    }
+
+    .hl-keyword {
+      color: #569cd6;
+      font-weight: 600;
+    }
+
+    .hl-flow {
+      color: #c586c0;
+      font-weight: 600;
+    }
+
+    .hl-primitive {
+      color: #569cd6;
+      font-weight: 600;
+    }
+
+    .hl-type {
+      color: #4ec9b0;
+      font-weight: 600;
+    }
+
+    .hl-method {
+      color: #dcdcaa;
+    }
+
+    .hl-annotation {
+      color: #dcdcaa;
+      font-weight: 600;
+    }
+
+    .hl-literal {
+      color: #569cd6;
+      font-weight: 600;
+    }
+
+    .hl-tag {
+      color: #808080;
+    }
+
+    .hl-xml-elem {
+      color: #569cd6;
+      font-weight: 600;
+    }
+
+    .hl-xml-attr {
+      color: #9cdcfe;
+    }
 
     .terminal-box {
       background: #141414;
@@ -816,17 +894,44 @@
 
     /* Media Queries for Mobile Responsiveness */
     @media (max-width: 768px) {
-      h1 { font-size: 1.3rem; }
-      .header-container { gap: 12px; }
-      .card-grid { grid-template-columns: 1fr; }
-      .modal { max-height: 94vh; margin: 8px; border-radius: var(--radius-md); }
-      .modal-body { padding: 14px; }
-      pre { font-size: 0.8rem; padding: 12px; }
-      .mobile-quick-nav { display: flex; }
-      body { padding-bottom: 80px; }
+      h1 {
+        font-size: 1.3rem;
+      }
+
+      .header-container {
+        gap: 12px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal {
+        max-height: 94vh;
+        margin: 8px;
+        border-radius: var(--radius-md);
+      }
+
+      .modal-body {
+        padding: 14px;
+      }
+
+      pre {
+        font-size: 0.8rem;
+        padding: 12px;
+      }
+
+      .mobile-quick-nav {
+        display: flex;
+      }
+
+      body {
+        padding-bottom: 80px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Header -->
@@ -847,7 +952,9 @@
       <div class="toolbar">
         <div class="search-box">
           <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" placeholder="Search keywords (e.g., overriding, maven, hashmap, throws, comparator)..." onkeyup="filterCards()">
+          <input type="text" id="searchInput"
+            placeholder="Search keywords (e.g., overriding, maven, hashmap, throws, comparator)..."
+            onkeyup="filterCards()">
         </div>
         <div class="tab-pills" id="filterPills">
           <button class="tab-btn active" onclick="switchTab('all', this)">All Topics</button>
@@ -874,7 +981,8 @@
       <div class="card-grid">
 
         <!-- Card 1: Method Overloading -->
-        <div class="card" data-topic="mod1" data-keywords="overloading method polymorphism compile time parameters automatic conversion">
+        <div class="card" data-topic="mod1"
+          data-keywords="overloading method polymorphism compile time parameters automatic conversion">
           <div class="card-top">
             <h3 class="card-title">Method Overloading</h3>
             <span class="badge badge-core">Polymorphism</span>
@@ -889,7 +997,8 @@
         </div>
 
         <!-- Card 2: Overload Resolution & Type Conversion -->
-        <div class="card" data-topic="mod1" data-keywords="automatic conversion overload resolution type promotion widening int double">
+        <div class="card" data-topic="mod1"
+          data-keywords="automatic conversion overload resolution type promotion widening int double">
           <div class="card-top">
             <h3 class="card-title">Automatic Type Conversion</h3>
             <span class="badge badge-exam">Exam Trap</span>
@@ -897,17 +1006,20 @@
           <ul class="card-bullets">
             <li>Java searches for an <b>exact parameter match</b> first.</li>
             <li>If missing, Java automatically <b>widens</b> types (e.g., <code>int → double</code>).</li>
-            <li>If you have <code>test(double)</code> and pass <code>int 88</code>, it executes <code>test(double)</code>.</li>
+            <li>If you have <code>test(double)</code> and pass <code>int 88</code>, it executes
+              <code>test(double)</code>.</li>
             <li>Java will <b>never automatically narrow</b> (e.g. <code>double → int</code>).</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> Exact match wins; otherwise primitives auto-widen upward to the next compatible overloaded method without error.
+            <b>💡 1-Liner:</b> Exact match wins; otherwise primitives auto-widen upward to the next compatible
+            overloaded method without error.
           </div>
           <button class="card-btn" onclick="openModal('overload_conversion')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 3: Constructor Overloading -->
-        <div class="card" data-topic="mod1" data-keywords="constructor overloading cube box default parameterized initialization">
+        <div class="card" data-topic="mod1"
+          data-keywords="constructor overloading cube box default parameterized initialization">
           <div class="card-top">
             <h3 class="card-title">Constructor Overloading</h3>
             <span class="badge badge-core">Initialization</span>
@@ -915,44 +1027,52 @@
           <ul class="card-bullets">
             <li>Multiple constructors with different parameters in the same class.</li>
             <li>Allows creating objects in various ways: default, cube (single param), or full dimensions.</li>
-            <li>Common pattern: <code>Box()</code> indicates uninitialized (e.g. <code>-1</code>), <code>Box(len)</code> for cube.</li>
+            <li>Common pattern: <code>Box()</code> indicates uninitialized (e.g. <code>-1</code>), <code>Box(len)</code>
+              for cube.</li>
           </ul>
           <button class="card-btn" onclick="openModal('constructor_overload')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 4: Passing Variables (Value vs Reference) -->
-        <div class="card" data-topic="mod1" data-keywords="call by value call by reference primitive object modification address heap stack">
+        <div class="card" data-topic="mod1"
+          data-keywords="call by value call by reference primitive object modification address heap stack">
           <div class="card-top">
             <h3 class="card-title">Call by Value vs Reference</h3>
             <span class="badge badge-hard">High Yield</span>
           </div>
           <ul class="card-bullets">
-            <li><b>Primitives:</b> Passed strictly by <b>value</b>. Changes inside method have <b>no effect</b> outside.</li>
-            <li><b>Objects:</b> The <b>reference is passed by value</b>. Both caller and method point to same heap object!</li>
+            <li><b>Primitives:</b> Passed strictly by <b>value</b>. Changes inside method have <b>no effect</b> outside.
+            </li>
+            <li><b>Objects:</b> The <b>reference is passed by value</b>. Both caller and method point to same heap
+              object!</li>
             <li>Mutating object fields inside a method <b>directly alters</b> the caller's object.</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> Java is 100% pass-by-value; but for objects, the "value" being copied is the memory memory reference itself!
+            <b>💡 1-Liner:</b> Java is 100% pass-by-value; but for objects, the "value" being copied is the memory
+            memory reference itself!
           </div>
           <button class="card-btn" onclick="openModal('pass_by_val_ref')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 5: Objects as Parameters & Returning Objects -->
-        <div class="card" data-topic="mod1" data-keywords="object parameter return object copy constructor equalto clone">
+        <div class="card" data-topic="mod1"
+          data-keywords="object parameter return object copy constructor equalto clone">
           <div class="card-top">
             <h3 class="card-title">Objects as Parameters & Returns</h3>
             <span class="badge badge-core">OOP Patterns</span>
           </div>
           <ul class="card-bullets">
             <li>Methods can take class types: e.g., <code>boolean equalTo(Test o)</code>.</li>
-            <li><b>Copy Constructor:</b> <code>Box(Box ob)</code> creates a clone initially identical to an existing object.</li>
+            <li><b>Copy Constructor:</b> <code>Box(Box ob)</code> creates a clone initially identical to an existing
+              object.</li>
             <li>Methods can instantiate and return new objects (e.g., <code>Test incrByTen()</code>).</li>
           </ul>
           <button class="card-btn" onclick="openModal('obj_param_return')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 6: Access Modifiers & Encapsulation -->
-        <div class="card" data-topic="mod1" data-keywords="access modifier private default protected public encapsulation stack">
+        <div class="card" data-topic="mod1"
+          data-keywords="access modifier private default protected public encapsulation stack">
           <div class="card-top">
             <h3 class="card-title">Access Modifiers & Matrix</h3>
             <span class="badge badge-exam">Must Know</span>
@@ -960,13 +1080,43 @@
           <div class="table-container">
             <table>
               <thead>
-                <tr><th>Modifier</th><th>Class</th><th>Pkg</th><th>Subclass</th><th>World</th></tr>
+                <tr>
+                  <th>Modifier</th>
+                  <th>Class</th>
+                  <th>Pkg</th>
+                  <th>Subclass</th>
+                  <th>World</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td><code>private</code></td><td><span class="yes-pill">Yes</span></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td></tr>
-                <tr><td><code>default</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td></tr>
-                <tr><td><code>protected</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="no-pill">No</span></td></tr>
-                <tr><td><code>public</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td></tr>
+                <tr>
+                  <td><code>private</code></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="no-pill">No</span></td>
+                  <td><span class="no-pill">No</span></td>
+                  <td><span class="no-pill">No</span></td>
+                </tr>
+                <tr>
+                  <td><code>default</code></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="no-pill">No</span></td>
+                  <td><span class="no-pill">No</span></td>
+                </tr>
+                <tr>
+                  <td><code>protected</code></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="no-pill">No</span></td>
+                </tr>
+                <tr>
+                  <td><code>public</code></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -978,7 +1128,8 @@
         </div>
 
         <!-- Card 7: Static Members & Static Blocks -->
-        <div class="card" data-topic="mod1" data-keywords="static variable static method static block this super restrictions main">
+        <div class="card" data-topic="mod1"
+          data-keywords="static variable static method static block this super restrictions main">
           <div class="card-top">
             <h3 class="card-title">Static Members & Blocks</h3>
             <span class="badge badge-hard">Tricky</span>
@@ -989,10 +1140,12 @@
             <li><b>3 Strict Restrictions on static methods:</b>
               <br>1. Can only directly call other static methods.
               <br>2. Can only directly access static data.
-              <br>3. Cannot refer to <code>this</code> or <code>super</code>!</li>
+              <br>3. Cannot refer to <code>this</code> or <code>super</code>!
+            </li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> Static code has no "this" instance pointer because it runs before and independently of any object instantiation.
+            <b>💡 1-Liner:</b> Static code has no "this" instance pointer because it runs before and independently of
+            any object instantiation.
           </div>
           <button class="card-btn" onclick="openModal('static_demo')">🚀 View Code & Output</button>
         </div>
@@ -1007,34 +1160,40 @@
             <li>Prevents modification; turns a variable into a constant.</li>
             <li>Must be initialized in one of two places:
               <br>• Directly at declaration: <code>final int FILE_NEW = 1;</code>
-              <br>• Inside a constructor (blank final).</li>
+              <br>• Inside a constructor (blank final).
+            </li>
           </ul>
           <button class="card-btn" onclick="openModal('final_field_demo')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 9: Programming Problem - BankAccount -->
-        <div class="card" data-topic="mod1" data-keywords="programming problem bankaccount transferin transferout money sender receiver">
+        <div class="card" data-topic="mod1"
+          data-keywords="programming problem bankaccount transferin transferout money sender receiver">
           <div class="card-top">
             <h3 class="card-title">Slide Problem: BankAccount</h3>
             <span class="badge badge-exam">Slide Coding Problem</span>
           </div>
           <ul class="card-bullets">
             <li>Fields: <code>accountNumber</code>, <code>balance</code>, <code>username</code>.</li>
-            <li><code>transferIn(BankAccount sender, double amt)</code>: adds to self, deducts from sender, returns updated sender.</li>
-            <li><code>transferOut(BankAccount receiver, double amt)</code>: deducts from self, adds to receiver, returns updated receiver.</li>
+            <li><code>transferIn(BankAccount sender, double amt)</code>: adds to self, deducts from sender, returns
+              updated sender.</li>
+            <li><code>transferOut(BankAccount receiver, double amt)</code>: deducts from self, adds to receiver, returns
+              updated receiver.</li>
           </ul>
           <button class="card-btn" onclick="openModal('bank_account_problem')">🚀 View Solution & Test</button>
         </div>
 
         <!-- Card 10: Programming Problem - Shape Overloading -->
-        <div class="card" data-topic="mod1" data-keywords="programming problem shape constructor overloading method overloading area square rectangle circle">
+        <div class="card" data-topic="mod1"
+          data-keywords="programming problem shape constructor overloading method overloading area square rectangle circle">
           <div class="card-top">
             <h3 class="card-title">Slide Problem: Shape Overloading</h3>
             <span class="badge badge-exam">Slide Coding Problem</span>
           </div>
           <ul class="card-bullets">
             <li><b>Constructor Overloading:</b> Square(side), Rectangle(l, b), Circle(radius).</li>
-            <li><b>Method Overloading:</b> <code>area(int side)</code>, <code>area(int l, int b)</code>, <code>area(double r)</code>.</li>
+            <li><b>Method Overloading:</b> <code>area(int side)</code>, <code>area(int l, int b)</code>,
+              <code>area(double r)</code>.</li>
             <li>Method to check if two Shape objects are of identical type/dimensions.</li>
             <li>Uses private fields and public getters (Encapsulation).</li>
           </ul>
@@ -1060,9 +1219,11 @@
             <span class="badge badge-core">Class Design</span>
           </div>
           <ul class="card-bullets">
-            <li><b>Inner Class (non-static):</b> Has direct access to all outer class variables/methods (even private).</li>
+            <li><b>Inner Class (non-static):</b> Has direct access to all outer class variables/methods (even private).
+            </li>
             <li><b>Static Nested Class:</b> Must access outer members through an object instance.</li>
-            <li>Can define inner classes within any block scope (e.g. inside a method or even a <code>for</code> loop).</li>
+            <li>Can define inner classes within any block scope (e.g. inside a method or even a <code>for</code> loop).
+            </li>
           </ul>
           <button class="card-btn" onclick="openModal('inner_class_demo')">🚀 View Code & Output</button>
         </div>
@@ -1074,14 +1235,17 @@
             <span class="badge badge-core">Syntax</span>
           </div>
           <ul class="card-bullets">
-            <li><code>main(String args[])</code>: Arguments stored as string array (<code>args[0]</code>, <code>args[1]</code>).</li>
-            <li><b>Varargs:</b> <code>void test(int... v)</code> takes variable number of arguments (treated internally as array).</li>
+            <li><code>main(String args[])</code>: Arguments stored as string array (<code>args[0]</code>,
+              <code>args[1]</code>).</li>
+            <li><b>Varargs:</b> <code>void test(int... v)</code> takes variable number of arguments (treated internally
+              as array).</li>
           </ul>
           <button class="card-btn" onclick="openModal('varargs_cli_demo')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 3: Inheritance Basics & super() Order -->
-        <div class="card" data-topic="mod2" data-keywords="inheritance extends superclass subclass super constructor order private">
+        <div class="card" data-topic="mod2"
+          data-keywords="inheritance extends superclass subclass super constructor order private">
           <div class="card-top">
             <h3 class="card-title">Inheritance & Constructor Order</h3>
             <span class="badge badge-exam">High Yield</span>
@@ -1089,27 +1253,33 @@
           <ul class="card-bullets">
             <li>Uses <code>extends</code>. Java supports <b>single inheritance only</b> for classes.</li>
             <li>Subclass cannot access <code>private</code> members of superclass.</li>
-            <li><b>Constructor Execution Order:</b> Parent constructor executes <b>first</b>, followed by child! Java calls <code>super()</code> automatically.</li>
+            <li><b>Constructor Execution Order:</b> Parent constructor executes <b>first</b>, followed by child! Java
+              calls <code>super()</code> automatically.</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> Base class must be fully constructed in memory before derived extensions can be safely layered onto it.
+            <b>💡 1-Liner:</b> Base class must be fully constructed in memory before derived extensions can be safely
+            layered onto it.
           </div>
           <button class="card-btn" onclick="openModal('inheritance_order')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 4: Reference Variables & Upcasting vs Downcasting -->
-        <div class="card" data-topic="mod2" data-keywords="reference variable upcasting downcasting animal dog unsafe compile time error">
+        <div class="card" data-topic="mod2"
+          data-keywords="reference variable upcasting downcasting animal dog unsafe compile time error">
           <div class="card-top">
             <h3 class="card-title">Upcasting vs Downcasting</h3>
             <span class="badge badge-hard">Exam Trap</span>
           </div>
           <ul class="card-bullets">
-            <li><b>Upcasting (Allowed):</b> Superclass reference can hold subclass object: <code>Figure f = new Rectangle();</code></li>
-            <li><b>Downcasting (Illegal without cast/object):</b> <code>Dog d = new Animal();</code> fails with <b>Compilation Error</b>!</li>
+            <li><b>Upcasting (Allowed):</b> Superclass reference can hold subclass object:
+              <code>Figure f = new Rectangle();</code></li>
+            <li><b>Downcasting (Illegal without cast/object):</b> <code>Dog d = new Animal();</code> fails with
+              <b>Compilation Error</b>!</li>
             <li>Why error? A pure Animal object doesn't have the specialized fields/methods required by Dog.</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> Reference type determines which members are accessible at compile time; runtime object type determines which method body executes.
+            <b>💡 1-Liner:</b> Reference type determines which members are accessible at compile time; runtime object
+            type determines which method body executes.
           </div>
           <button class="card-btn" onclick="openModal('upcasting_downcasting')">🚀 View Code & Output</button>
         </div>
@@ -1123,13 +1293,15 @@
           <ul class="card-bullets">
             <li><b>1. Access parent variables:</b> <code>super.x</code> (when shadowed by child <code>x</code>).</li>
             <li><b>2. Call parent method:</b> <code>super.show()</code> (when overridden in child).</li>
-            <li><b>3. Call parent constructor:</b> <code>super(a, b)</code> (must be 1st statement in child constructor).</li>
+            <li><b>3. Call parent constructor:</b> <code>super(a, b)</code> (must be 1st statement in child
+              constructor).</li>
           </ul>
           <button class="card-btn" onclick="openModal('super_three_uses')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 6: Method Overriding & DMD -->
-        <div class="card" data-topic="mod2" data-keywords="method overriding runtime polymorphism dynamic method dispatch dmd figure rectangle triangle">
+        <div class="card" data-topic="mod2"
+          data-keywords="method overriding runtime polymorphism dynamic method dispatch dmd figure rectangle triangle">
           <div class="card-top">
             <h3 class="card-title">Overriding & Dynamic Method Dispatch</h3>
             <span class="badge badge-hard">Polymorphism</span>
@@ -1138,17 +1310,21 @@
             <li>Subclass provides its own implementation with <b>same name, params, and return type</b>.</li>
             <li>Enables <b>Runtime Polymorphism</b> via Dynamic Method Dispatch (DMD).</li>
             <li><b>Cannot override:</b> <code>static</code>, <code>final</code>, or <code>private</code> methods!</li>
-            <li><b>Covariant return:</b> Subclass can return a narrower subtype (e.g. <code>Dog</code> instead of <code>Animal</code>).</li>
-            <li><b>Visibility rule:</b> Subclass can <b>increase</b> visibility (<code>protected → public</code>), but cannot reduce it!</li>
+            <li><b>Covariant return:</b> Subclass can return a narrower subtype (e.g. <code>Dog</code> instead of
+              <code>Animal</code>).</li>
+            <li><b>Visibility rule:</b> Subclass can <b>increase</b> visibility (<code>protected → public</code>), but
+              cannot reduce it!</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> DMD resolves the method call at runtime by checking the actual heap object type, not the reference type.
+            <b>💡 1-Liner:</b> DMD resolves the method call at runtime by checking the actual heap object type, not the
+            reference type.
           </div>
           <button class="card-btn" onclick="openModal('dmd_overriding')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 7: Abstract Classes & Rules -->
-        <div class="card" data-topic="mod2" data-keywords="abstract class abstract method rules instantiate new figure shape">
+        <div class="card" data-topic="mod2"
+          data-keywords="abstract class abstract method rules instantiate new figure shape">
           <div class="card-top">
             <h3 class="card-title">Abstract Classes & Rules</h3>
             <span class="badge badge-core">Abstraction</span>
@@ -1157,13 +1333,15 @@
             <li>Class with one or more <code>abstract</code> methods must be declared <code>abstract</code>.</li>
             <li><b>CANNOT be instantiated directly:</b> <code>new AbstractClass()</code> is illegal.</li>
             <li>Subclasses must either implement all abstract methods or also be declared abstract.</li>
-            <li><b>CANNOT have:</b> <code>abstract static</code> methods or <code>abstract constructors</code>! Concrete methods are allowed.</li>
+            <li><b>CANNOT have:</b> <code>abstract static</code> methods or <code>abstract constructors</code>! Concrete
+              methods are allowed.</li>
           </ul>
           <button class="card-btn" onclick="openModal('abstract_class_demo')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 8: Interfaces & Modern Features (Java 8/9) -->
-        <div class="card" data-topic="mod2" data-keywords="interface default static private conflict resolution multiple inheritance implements">
+        <div class="card" data-topic="mod2"
+          data-keywords="interface default static private conflict resolution multiple inheritance implements">
           <div class="card-top">
             <h3 class="card-title">Interfaces & Java 8/9 Features</h3>
             <span class="badge badge-hard">Modern Java</span>
@@ -1177,27 +1355,33 @@
             <li><b>Default Method Clash Resolution:</b> <code>InterfaceName.super.methodName()</code>.</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> Default methods allow interface enhancement without breaking existing classes; clashes are resolved using InterfaceName.super.method().
+            <b>💡 1-Liner:</b> Default methods allow interface enhancement without breaking existing classes; clashes
+            are resolved using InterfaceName.super.method().
           </div>
           <button class="card-btn" onclick="openModal('interface_modern')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 9: Nested Interfaces & Extending Interfaces -->
-        <div class="card" data-topic="mod2" data-keywords="nested interface smartprinter partial implementation extends interface">
+        <div class="card" data-topic="mod2"
+          data-keywords="nested interface smartprinter partial implementation extends interface">
           <div class="card-top">
             <h3 class="card-title">Nested Interfaces & Partial Impl</h3>
             <span class="badge badge-exam">Slide Coding</span>
           </div>
           <ul class="card-bullets">
-            <li><b>Nested Interface:</b> Declared inside a class/interface (e.g. <code>Computer.USBDevice</code>). Can be public, protected, private.</li>
-            <li><b>Extending:</b> An interface can inherit another using <code>extends</code> (e.g. <code>interface B extends A</code>).</li>
-            <li><b>Partial Implementation:</b> If a class implements an interface but omits some methods, the class <b>must be declared abstract</b>!</li>
+            <li><b>Nested Interface:</b> Declared inside a class/interface (e.g. <code>Computer.USBDevice</code>). Can
+              be public, protected, private.</li>
+            <li><b>Extending:</b> An interface can inherit another using <code>extends</code> (e.g.
+              <code>interface B extends A</code>).</li>
+            <li><b>Partial Implementation:</b> If a class implements an interface but omits some methods, the class
+              <b>must be declared abstract</b>!</li>
           </ul>
           <button class="card-btn" onclick="openModal('nested_interface_smartprinter')">🚀 View Solution & Test</button>
         </div>
 
         <!-- Card 10: Programming Problem - Employee & Manager -->
-        <div class="card" data-topic="mod2" data-keywords="programming problem employee manager inheritance super override displaydetails department salary">
+        <div class="card" data-topic="mod2"
+          data-keywords="programming problem employee manager inheritance super override displaydetails department salary">
           <div class="card-top">
             <h3 class="card-title">Slide Problem: Employee & Manager</h3>
             <span class="badge badge-exam">Slide Coding Problem</span>
@@ -1212,13 +1396,15 @@
         </div>
 
         <!-- Card 11: Programming Problem - Abstract Employee -->
-        <div class="card" data-topic="mod2" data-keywords="programming problem abstract employee fulltime parttime calculatesalary polymorphic reference">
+        <div class="card" data-topic="mod2"
+          data-keywords="programming problem abstract employee fulltime parttime calculatesalary polymorphic reference">
           <div class="card-top">
             <h3 class="card-title">Slide Problem: Abstract Employee</h3>
             <span class="badge badge-exam">Slide Coding Problem</span>
           </div>
           <ul class="card-bullets">
-            <li>Abstract <code>Employee(name, id)</code> with abstract <code>calculateSalary()</code> and concrete <code>displayDetails()</code>.</li>
+            <li>Abstract <code>Employee(name, id)</code> with abstract <code>calculateSalary()</code> and concrete
+              <code>displayDetails()</code>.</li>
             <li><code>FullTimeEmployee</code>: monthlySalary.</li>
             <li><code>PartTimeEmployee</code>: hoursWorked × hourlyRate.</li>
             <li>Dynamic method dispatch in <code>main()</code> using base <code>Employee</code> references.</li>
@@ -1227,15 +1413,18 @@
         </div>
 
         <!-- Card 12: Variables in Interfaces - Decision Maker -->
-        <div class="card" data-topic="mod2" data-keywords="variables in interfaces sharedconstants automated decision maker question askme switch">
+        <div class="card" data-topic="mod2"
+          data-keywords="variables in interfaces sharedconstants automated decision maker question askme switch">
           <div class="card-top">
             <h3 class="card-title">Slide Problem: SharedConstants</h3>
             <span class="badge badge-core">Interface Constants</span>
           </div>
           <ul class="card-bullets">
-            <li><code>interface SharedConstants</code>: <code>NO=0, YES=1, MAYBE=2, LATER=3, SOON=4, NEVER=5</code>.</li>
+            <li><code>interface SharedConstants</code>: <code>NO=0, YES=1, MAYBE=2, LATER=3, SOON=4, NEVER=5</code>.
+            </li>
             <li>All variables are implicitly <code>public static final</code>.</li>
-            <li><code>Question</code> and <code>AskMe</code> classes implement the interface to share standard decision flags.</li>
+            <li><code>Question</code> and <code>AskMe</code> classes implement the interface to share standard decision
+              flags.</li>
           </ul>
           <button class="card-btn" onclick="openModal('shared_constants_interface')">🚀 View Solution & Test</button>
         </div>
@@ -1253,55 +1442,71 @@
       <div class="card-grid">
 
         <!-- Card 1: Coding Conventions -->
-        <div class="card" data-topic="mod3" data-keywords="coding conventions naming pascalcase camelcase snakecase indentation braces 4 spaces">
+        <div class="card" data-topic="mod3"
+          data-keywords="coding conventions naming pascalcase camelcase snakecase indentation braces 4 spaces">
           <div class="card-top">
             <h3 class="card-title">Coding Conventions & Naming</h3>
             <span class="badge badge-core">Best Practices</span>
           </div>
           <ul class="card-bullets">
-            <li><b>Classes & Interfaces:</b> <code>PascalCase</code> (e.g. <code>StudentRecord</code>, <code>PaymentProcessor</code>).</li>
-            <li><b>Methods & Variables:</b> <code>camelCase</code> (e.g. <code>calculateSalary()</code>, <code>totalMarks</code>). Prefer verbs for methods.</li>
-            <li><b>Constants:</b> <code>UPPER_SNAKE_CASE</code> with <code>final</code> (e.g. <code>MAX_MARKS</code>).</li>
+            <li><b>Classes & Interfaces:</b> <code>PascalCase</code> (e.g. <code>StudentRecord</code>,
+              <code>PaymentProcessor</code>).</li>
+            <li><b>Methods & Variables:</b> <code>camelCase</code> (e.g. <code>calculateSalary()</code>,
+              <code>totalMarks</code>). Prefer verbs for methods.</li>
+            <li><b>Constants:</b> <code>UPPER_SNAKE_CASE</code> with <code>final</code> (e.g. <code>MAX_MARKS</code>).
+            </li>
             <li><b>Packages:</b> All <code>lowercase</code> (e.g. <code>com.example.student</code>).</li>
-            <li><b>Formatting:</b> 4 spaces indentation, opening brace <code>{</code> on same line, spaces around operators (<code>a + b</code>).</li>
+            <li><b>Formatting:</b> 4 spaces indentation, opening brace <code>{</code> on same line, spaces around
+              operators (<code>a + b</code>).</li>
             <li><b>Class Order:</b> 1. Constants → 2. Instance Variables → 3. Constructors → 4. Methods.</li>
           </ul>
           <button class="card-btn" onclick="openModal('conventions_demo')">🚀 View Standard Class Template</button>
         </div>
 
         <!-- Card 2: Why Build Tools & Dependency Transitivity -->
-        <div class="card" data-topic="mod3" data-keywords="build tools maven gradle dependencies transitive repository m2 central">
+        <div class="card" data-topic="mod3"
+          data-keywords="build tools maven gradle dependencies transitive repository m2 central">
           <div class="card-top">
             <h3 class="card-title">Why Build Tools & Repositories</h3>
             <span class="badge badge-exam">Architecture</span>
           </div>
           <ul class="card-bullets">
-            <li><b>Without build tools:</b> Manual compilation, manually downloading dozens of JARs, classpath hell.</li>
-            <li><b>Automates:</b> Compilation, dependency resolution, testing, packaging (JAR/WAR), plugin management, CI/CD.</li>
-            <li><b>Transitive Dependency:</b> If App depends on Library A, and Library A depends on B, the build tool automatically resolves and downloads B!</li>
-            <li><b>Repositories:</b> Remote (Maven Central) → downloaded once to Local Cache (<code>~/.m2/repository</code> for Maven).</li>
+            <li><b>Without build tools:</b> Manual compilation, manually downloading dozens of JARs, classpath hell.
+            </li>
+            <li><b>Automates:</b> Compilation, dependency resolution, testing, packaging (JAR/WAR), plugin management,
+              CI/CD.</li>
+            <li><b>Transitive Dependency:</b> If App depends on Library A, and Library A depends on B, the build tool
+              automatically resolves and downloads B!</li>
+            <li><b>Repositories:</b> Remote (Maven Central) → downloaded once to Local Cache
+              (<code>~/.m2/repository</code> for Maven).</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> Transitive dependency management prevents developers from manually hunting down and resolving nested third-party library dependencies.
+            <b>💡 1-Liner:</b> Transitive dependency management prevents developers from manually hunting down and
+            resolving nested third-party library dependencies.
           </div>
           <button class="card-btn" onclick="openModal('build_tools_flow')">🚀 View Dependency Flow Diagram</button>
         </div>
 
         <!-- Card 3: Maven Architecture & pom.xml -->
-        <div class="card" data-topic="mod3" data-keywords="maven pom.xml groupid artifactid version lifecycle compile package clean install">
+        <div class="card" data-topic="mod3"
+          data-keywords="maven pom.xml groupid artifactid version lifecycle compile package clean install">
           <div class="card-top">
             <h3 class="card-title">Maven: POM & Lifecycles</h3>
             <span class="badge badge-core">Maven Core</span>
           </div>
           <ul class="card-bullets">
-            <li><b>Philosophy:</b> <i>"Convention over configuration"</i> (Standard paths: <code>src/main/java</code>, <code>src/test/java</code>, <code>target/</code>).</li>
+            <li><b>Philosophy:</b> <i>"Convention over configuration"</i> (Standard paths: <code>src/main/java</code>,
+              <code>src/test/java</code>, <code>target/</code>).</li>
             <li><b>pom.xml (GAV Coordinates):</b>
               <br>• <code>groupId</code>: organization/package (e.g. <code>com.example</code>)
               <br>• <code>artifactId</code>: project/module name (e.g. <code>student-app</code>)
-              <br>• <code>version</code>: project release version (e.g. <code>1.0</code>).</li>
-            <li><b>Default Lifecycle:</b> <code>validate → compile → test → package → verify → install → deploy</code>.</li>
+              <br>• <code>version</code>: project release version (e.g. <code>1.0</code>).
+            </li>
+            <li><b>Default Lifecycle:</b> <code>validate → compile → test → package → verify → install → deploy</code>.
+            </li>
             <li>Running <code>mvn package</code> automatically runs earlier phases (compile, test) first!</li>
-            <li><b>Key Commands:</b> <code>mvn clean</code>, <code>mvn compile</code>, <code>mvn test</code>, <code>mvn package</code>, <code>mvn clean package</code>.</li>
+            <li><b>Key Commands:</b> <code>mvn clean</code>, <code>mvn compile</code>, <code>mvn test</code>,
+              <code>mvn package</code>, <code>mvn clean package</code>.</li>
           </ul>
           <button class="card-btn" onclick="openModal('maven_pom_demo')">🚀 View pom.xml & Lifecycle</button>
         </div>
@@ -1313,16 +1518,20 @@
             <span class="badge badge-exam">Gradle Core</span>
           </div>
           <ul class="card-bullets">
-            <li>Uses flexible Groovy or Kotlin DSL (<code>build.gradle</code> or <code>build.gradle.kts</code>) instead of XML.</li>
-            <li><b>Task-based:</b> Units of work like <code>compileJava</code>, <code>test</code>, <code>jar</code>, <code>build</code>.</li>
-            <li><b>Gradle Wrapper (gradlew / gradlew.bat):</b> Bundled scripts so any developer or CI runner executes <code>./gradlew build</code> without manually installing Gradle!</li>
+            <li>Uses flexible Groovy or Kotlin DSL (<code>build.gradle</code> or <code>build.gradle.kts</code>) instead
+              of XML.</li>
+            <li><b>Task-based:</b> Units of work like <code>compileJava</code>, <code>test</code>, <code>jar</code>,
+              <code>build</code>.</li>
+            <li><b>Gradle Wrapper (gradlew / gradlew.bat):</b> Bundled scripts so any developer or CI runner executes
+              <code>./gradlew build</code> without manually installing Gradle!</li>
             <li>Ensures exact, consistent Gradle version across whole team.</li>
           </ul>
           <button class="card-btn" onclick="openModal('gradle_demo')">🚀 View build.gradle & Wrapper</button>
         </div>
 
         <!-- Card 5: Maven vs Gradle Comparison -->
-        <div class="card" data-topic="mod3" data-keywords="maven vs gradle comparison xml dsl groovy speed performance android enterprise">
+        <div class="card" data-topic="mod3"
+          data-keywords="maven vs gradle comparison xml dsl groovy speed performance android enterprise">
           <div class="card-top">
             <h3 class="card-title">Maven vs Gradle Comparison</h3>
             <span class="badge badge-core">Exam Table</span>
@@ -1330,14 +1539,38 @@
           <div class="table-container">
             <table>
               <thead>
-                <tr><th>Feature</th><th>Maven</th><th>Gradle</th></tr>
+                <tr>
+                  <th>Feature</th>
+                  <th>Maven</th>
+                  <th>Gradle</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td>Config File</td><td><code>pom.xml</code> (XML)</td><td><code>build.gradle</code> (Groovy/Kotlin)</td></tr>
-                <tr><td>Philosophy</td><td>Convention over Config</td><td>Flexibility & Custom Tasks</td></tr>
-                <tr><td>Build Speed</td><td>Standard</td><td>Faster (Incremental & Daemon)</td></tr>
-                <tr><td>Dominance</td><td>Enterprise Java / Spring</td><td>Android / Modern Polyglot</td></tr>
-                <tr><td>Learning Curve</td><td>Easier, highly rigid</td><td>Steeper, scriptable</td></tr>
+                <tr>
+                  <td>Config File</td>
+                  <td><code>pom.xml</code> (XML)</td>
+                  <td><code>build.gradle</code> (Groovy/Kotlin)</td>
+                </tr>
+                <tr>
+                  <td>Philosophy</td>
+                  <td>Convention over Config</td>
+                  <td>Flexibility & Custom Tasks</td>
+                </tr>
+                <tr>
+                  <td>Build Speed</td>
+                  <td>Standard</td>
+                  <td>Faster (Incremental & Daemon)</td>
+                </tr>
+                <tr>
+                  <td>Dominance</td>
+                  <td>Enterprise Java / Spring</td>
+                  <td>Android / Modern Polyglot</td>
+                </tr>
+                <tr>
+                  <td>Learning Curve</td>
+                  <td>Easier, highly rigid</td>
+                  <td>Steeper, scriptable</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -1369,151 +1602,186 @@
         </div>
 
         <p style="font-size:0.88rem; color:#c7d2fe; margin:0;">
-          A complete visual map of every interface (<span style="color:#5ab0ff; font-weight:bold;">blue</span>) and implementing class (<span style="color:#6fd39a; font-weight:bold;">green</span>) in the Java Collections Framework. Solid lines indicate <code>extends</code>, dashed lines indicate <code>implements</code>.
+          A complete visual map of every interface (<span style="color:#5ab0ff; font-weight:bold;">blue</span>) and
+          implementing class (<span style="color:#6fd39a; font-weight:bold;">green</span>) in the Java Collections
+          Framework. Solid lines indicate <code>extends</code>, dashed lines indicate <code>implements</code>.
         </p>
 
         <!-- Embedded Interactive SVG Hierarchy -->
         <div class="flowchart-diagram-wrap">
           <svg id="hier" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
             <g stroke="#5b5f78" stroke-width="1.6" fill="none">
-              <path d="M170 65 L170 95" marker-end="url(#arr)"/>
-              <path d="M170 135 L170 165" marker-end="url(#arr)"/>
-              <path d="M170 200 L170 215 L90 215 L90 245" marker-end="url(#arr)"/>
-              <path d="M170 200 L170 215 L400 215 L400 245" marker-end="url(#arr)"/>
-              <path d="M170 200 L170 215 L720 215 L720 245" marker-end="url(#arr)"/>
+              <path d="M170 65 L170 95" marker-end="url(#arr)" />
+              <path d="M170 135 L170 165" marker-end="url(#arr)" />
+              <path d="M170 200 L170 215 L90 215 L90 245" marker-end="url(#arr)" />
+              <path d="M170 200 L170 215 L400 215 L400 245" marker-end="url(#arr)" />
+              <path d="M170 200 L170 215 L720 215 L720 245" marker-end="url(#arr)" />
               <!-- List branch -->
-              <path d="M90 280 L90 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
-              <path d="M90 335 L90 360" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
-              <path d="M90 390 L90 415" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
-              <path d="M90 445 L90 460" marker-end="url(#arr)"/>
+              <path d="M90 280 L90 305" stroke-dasharray="4 3" marker-end="url(#arrD)" />
+              <path d="M90 335 L90 360" stroke-dasharray="4 3" marker-end="url(#arrD)" />
+              <path d="M90 390 L90 415" stroke-dasharray="4 3" marker-end="url(#arrD)" />
+              <path d="M90 445 L90 460" marker-end="url(#arr)" />
               <!-- Queue branch -->
-              <path d="M330 260 L295 260 L295 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
-              <path d="M400 280 L400 305" marker-end="url(#arr)"/>
-              <path d="M400 335 L400 360" marker-end="url(#arr)"/>
-              <path d="M400 390 L400 415" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+              <path d="M330 260 L295 260 L295 305" stroke-dasharray="4 3" marker-end="url(#arrD)" />
+              <path d="M400 280 L400 305" marker-end="url(#arr)" />
+              <path d="M400 335 L400 360" marker-end="url(#arr)" />
+              <path d="M400 390 L400 415" stroke-dasharray="4 3" marker-end="url(#arrD)" />
               <!-- Set branch -->
-              <path d="M655 260 L620 260 L620 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
-              <path d="M775 260 L810 260 L810 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
-              <path d="M720 280 L720 360" marker-end="url(#arr)"/>
-              <path d="M720 390 L720 415" marker-end="url(#arr)"/>
+              <path d="M655 260 L620 260 L620 305" stroke-dasharray="4 3" marker-end="url(#arrD)" />
+              <path d="M775 260 L810 260 L810 305" stroke-dasharray="4 3" marker-end="url(#arrD)" />
+              <path d="M720 280 L720 360" marker-end="url(#arr)" />
+              <path d="M720 390 L720 415" marker-end="url(#arr)" />
             </g>
             <defs>
-              <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5b5f78"/></marker>
-              <marker id="arrD" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6fd39a"/></marker>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 z" fill="#5b5f78" />
+              </marker>
+              <marker id="arrD" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 z" fill="#6fd39a" />
+              </marker>
             </defs>
             <!-- Iterable / Collection -->
             <g>
-              <rect x="110" y="30" width="120" height="34" rx="7" fill="#5ab0ff"/>
+              <rect x="110" y="30" width="120" height="34" rx="7" fill="#5ab0ff" />
               <text x="170" y="52" text-anchor="middle" class="hlabel">Iterable</text>
-              <rect x="110" y="100" width="120" height="34" rx="7" fill="#5ab0ff"/>
+              <rect x="110" y="100" width="120" height="34" rx="7" fill="#5ab0ff" />
               <text x="170" y="122" text-anchor="middle" class="hlabel">Collection</text>
             </g>
             <!-- List / Queue / Set -->
-            <rect x="30" y="165" width="120" height="34" rx="7" fill="#5ab0ff"/>
+            <rect x="30" y="165" width="120" height="34" rx="7" fill="#5ab0ff" />
             <text x="90" y="187" text-anchor="middle" class="hlabel">List</text>
-            <rect x="340" y="165" width="120" height="34" rx="7" fill="#5ab0ff"/>
+            <rect x="340" y="165" width="120" height="34" rx="7" fill="#5ab0ff" />
             <text x="400" y="187" text-anchor="middle" class="hlabel">Queue</text>
-            <rect x="660" y="165" width="120" height="34" rx="7" fill="#5ab0ff"/>
+            <rect x="660" y="165" width="120" height="34" rx="7" fill="#5ab0ff" />
             <text x="720" y="187" text-anchor="middle" class="hlabel">Set</text>
             <!-- List branch -->
-            <rect x="30" y="245" width="120" height="32" rx="7" fill="#6fd39a"/>
+            <rect x="30" y="245" width="120" height="32" rx="7" fill="#6fd39a" />
             <text x="90" y="266" text-anchor="middle" class="hlabel">ArrayList</text>
-            <rect x="30" y="305" width="120" height="32" rx="7" fill="#6fd39a"/>
+            <rect x="30" y="305" width="120" height="32" rx="7" fill="#6fd39a" />
             <text x="90" y="326" text-anchor="middle" class="hlabel">LinkedList</text>
-            <rect x="30" y="360" width="120" height="32" rx="7" fill="#6fd39a"/>
+            <rect x="30" y="360" width="120" height="32" rx="7" fill="#6fd39a" />
             <text x="90" y="381" text-anchor="middle" class="hlabel">Vector</text>
-            <rect x="30" y="415" width="120" height="32" rx="7" fill="#6fd39a"/>
+            <rect x="30" y="415" width="120" height="32" rx="7" fill="#6fd39a" />
             <text x="90" y="436" text-anchor="middle" class="hlabel">Stack</text>
             <!-- Queue branch -->
-            <rect x="330" y="245" width="140" height="32" rx="7" fill="#6fd39a"/>
+            <rect x="330" y="245" width="140" height="32" rx="7" fill="#6fd39a" />
             <text x="400" y="266" text-anchor="middle" class="hlabel">PriorityQueue</text>
-            <rect x="330" y="305" width="140" height="32" rx="7" fill="#5ab0ff"/>
+            <rect x="330" y="305" width="140" height="32" rx="7" fill="#5ab0ff" />
             <text x="400" y="326" text-anchor="middle" class="hlabel">Deque</text>
-            <rect x="330" y="360" width="140" height="32" rx="7" fill="#6fd39a"/>
+            <rect x="330" y="360" width="140" height="32" rx="7" fill="#6fd39a" />
             <text x="400" y="381" text-anchor="middle" class="hlabel">ArrayDeque</text>
             <!-- Set branch -->
-            <rect x="655" y="245" width="130" height="32" rx="7" fill="#6fd39a"/>
+            <rect x="655" y="245" width="130" height="32" rx="7" fill="#6fd39a" />
             <text x="720" y="266" text-anchor="middle" class="hlabel">HashSet</text>
-            <rect x="545" y="305" width="150" height="32" rx="7" fill="#6fd39a"/>
+            <rect x="545" y="305" width="150" height="32" rx="7" fill="#6fd39a" />
             <text x="620" y="326" text-anchor="middle" class="hlabel">LinkedHashSet</text>
-            <rect x="745" y="305" width="140" height="32" rx="7" fill="#5ab0ff"/>
+            <rect x="745" y="305" width="140" height="32" rx="7" fill="#5ab0ff" />
             <text x="815" y="326" text-anchor="middle" class="hlabel">SortedSet</text>
-            <rect x="655" y="415" width="130" height="32" rx="7" fill="#6fd39a"/>
+            <rect x="655" y="415" width="130" height="32" rx="7" fill="#6fd39a" />
             <text x="720" y="436" text-anchor="middle" class="hlabel">TreeSet</text>
           </svg>
         </div>
 
         <div class="flowchart-legend">
-          <span class="legend-item"><span class="legend-box" style="background:#5ab0ff"></span><b>Interface</b> (Contract)</span>
-          <span class="legend-item"><span class="legend-box" style="background:#6fd39a"></span><b>Class</b> (Implementation)</span>
+          <span class="legend-item"><span class="legend-box" style="background:#5ab0ff"></span><b>Interface</b>
+            (Contract)</span>
+          <span class="legend-item"><span class="legend-box" style="background:#6fd39a"></span><b>Class</b>
+            (Implementation)</span>
           <span class="legend-item"><span style="color:#6fd39a; font-weight:bold;">- - - ▶</span> Implements</span>
           <span class="legend-item"><span style="color:#5b5f78; font-weight:bold;">─── ▶</span> Extends</span>
-          <span class="legend-item" style="margin-left:auto; color:#a5b4fc;">💡 <b>Note:</b> <code>Map</code> has its own separate hierarchy because it stores Key-Value pairs!</span>
+          <span class="legend-item" style="margin-left:auto; color:#a5b4fc;">💡 <b>Note:</b> <code>Map</code> has its
+            own separate hierarchy because it stores Key-Value pairs!</span>
         </div>
       </div>
 
       <div class="card-grid">
 
         <!-- Card 1: What is a Framework & Collection? -->
-        <div class="card" data-topic="mod4" data-keywords="what is framework collection architecture group iterable list set queue map data structures algorithms">
+        <div class="card" data-topic="mod4"
+          data-keywords="what is framework collection architecture group iterable list set queue map data structures algorithms">
           <div class="card-top">
             <h3 class="card-title">What is a Framework & Collection?</h3>
             <span class="badge badge-core">Core Definition</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> A framework is like a pre-built house frame with plumbing and electrical wires already in place — you don't rebuild the foundation, you just furnish it!
+            <b>🌱 Everyday Analogy:</b> A framework is like a pre-built house frame with plumbing and electrical wires
+            already in place — you don't rebuild the foundation, you just furnish it!
           </div>
           <ul class="card-bullets">
-            <li><b>Framework:</b> A set of classes and interfaces providing a ready-made architecture. An optimal object-oriented design groups classes performing similar tasks into a framework.</li>
-            <li><b>Java Collections Framework:</b> Provides interfaces and classes to implement standard data structures and algorithms.</li>
+            <li><b>Framework:</b> A set of classes and interfaces providing a ready-made architecture. An optimal
+              object-oriented design groups classes performing similar tasks into a framework.</li>
+            <li><b>Java Collections Framework:</b> Provides interfaces and classes to implement standard data structures
+              and algorithms.</li>
             <li><b>Java Collection:</b> A single unit of objects (i.e., a group).</li>
             <li><b>Supported Operations:</b> Searching, Sorting, Insertion, Manipulation, and Deletion.</li>
-            <li><b>Core Interfaces:</b> <code>Set</code>, <code>List</code>, <code>Queue</code>, <code>Deque</code>.</li>
-            <li><b>Core Classes:</b> <code>ArrayList</code>, <code>Vector</code>, <code>LinkedList</code>, <code>PriorityQueue</code>, <code>HashSet</code>, <code>LinkedHashSet</code>, <code>TreeSet</code>.</li>
+            <li><b>Core Interfaces:</b> <code>Set</code>, <code>List</code>, <code>Queue</code>, <code>Deque</code>.
+            </li>
+            <li><b>Core Classes:</b> <code>ArrayList</code>, <code>Vector</code>, <code>LinkedList</code>,
+              <code>PriorityQueue</code>, <code>HashSet</code>, <code>LinkedHashSet</code>, <code>TreeSet</code>.</li>
           </ul>
           <button class="card-btn" onclick="openModal('collection_hierarchy_demo')">🚀 View Architecture Code</button>
         </div>
 
         <!-- Card 2: ArrayList Deep Dive & Methods -->
-        <div class="card" data-topic="mod4" data-keywords="arraylist resizable dynamic array get set add remove contains toarray foreach sort indexof lastindexof addall removeall retainall">
+        <div class="card" data-topic="mod4"
+          data-keywords="arraylist resizable dynamic array get set add remove contains toarray foreach sort indexof lastindexof addall removeall retainall">
           <div class="card-top">
             <h3 class="card-title">ArrayList (Dynamic Resizable Array)</h3>
             <span class="badge badge-core">List Interface</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like an elastic notebook with numbered lines. Looking up line #5 is instant, but erasing line #2 requires you to slide lines 3, 4, 5 up by hand.
+            <b>🌱 Everyday Analogy:</b> Like an elastic notebook with numbered lines. Looking up line #5 is instant, but
+            erasing line #2 requires you to slide lines 3, 4, 5 up by hand.
           </div>
           <ul class="card-bullets">
             <li>Belongs to <code>java.util.ArrayList</code>.</li>
-            <li><b>Why use ArrayList over normal array?</b> A normal array has fixed size (<code>String[] arr = new String[3]</code>), whereas <code>ArrayList&lt;String&gt;</code> grows and shrinks dynamically!</li>
-            <li><b>Characteristics:</b> Dynamic size, maintains <b>insertion order</b>, allows <b>duplicate elements</b>, fast random access, allows <code>null</code> values, slower insertion/deletion in middle.</li>
-            <li><b>Core Index Operations:</b> <code>add(e)</code>, <code>add(index, e)</code>, <code>get(index)</code>, <code>set(index, e)</code>, <code>remove(obj)</code>, <code>remove(index)</code>, <code>size()</code>, <code>contains(e)</code>, <code>isEmpty()</code>, <code>clear()</code>.</li>
-            <li><b>Search & Bulk Methods:</b> <code>indexOf(e)</code>, <code>lastIndexOf(e)</code>, <code>toArray(new String[0])</code>, <code>addAll(b)</code>, <code>removeAll(b)</code>, <code>retainAll(b)</code>, <code>forEach(...)</code>, <code>numbers.sort(null)</code>.</li>
+            <li><b>Why use ArrayList over normal array?</b> A normal array has fixed size
+              (<code>String[] arr = new String[3]</code>), whereas <code>ArrayList&lt;String&gt;</code> grows and
+              shrinks dynamically!</li>
+            <li><b>Characteristics:</b> Dynamic size, maintains <b>insertion order</b>, allows <b>duplicate
+                elements</b>, fast random access, allows <code>null</code> values, slower insertion/deletion in middle.
+            </li>
+            <li><b>Core Index Operations:</b> <code>add(e)</code>, <code>add(index, e)</code>, <code>get(index)</code>,
+              <code>set(index, e)</code>, <code>remove(obj)</code>, <code>remove(index)</code>, <code>size()</code>,
+              <code>contains(e)</code>, <code>isEmpty()</code>, <code>clear()</code>.</li>
+            <li><b>Search & Bulk Methods:</b> <code>indexOf(e)</code>, <code>lastIndexOf(e)</code>,
+              <code>toArray(new String[0])</code>, <code>addAll(b)</code>, <code>removeAll(b)</code>,
+              <code>retainAll(b)</code>, <code>forEach(...)</code>, <code>numbers.sort(null)</code>.</li>
           </ul>
           <button class="card-btn" onclick="openModal('arraylist_methods')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 3: LinkedList as List, Queue & Stack -->
-        <div class="card" data-topic="mod4" data-keywords="linkedlist queue stack doubly linked node offer poll peek push pop fifo lifo addfirst addlast removefirst removelast">
+        <div class="card" data-topic="mod4"
+          data-keywords="linkedlist queue stack doubly linked node offer poll peek push pop fifo lifo addfirst addlast removefirst removelast">
           <div class="card-top">
             <h3 class="card-title">LinkedList (List, Queue & Stack)</h3>
             <span class="badge badge-hard">High Yield</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a train of coaches hooked together. Hooking a new train car at the front or back is instant ($O(1)$), but finding coach #40 requires walking through every coach one by one.
+            <b>🌱 Everyday Analogy:</b> Like a train of coaches hooked together. Hooking a new train car at the front or
+            back is instant ($O(1)$), but finding coach #40 requires walking through every coach one by one.
           </div>
           <ul class="card-bullets">
-            <li>Stores elements as <b>nodes connected through links</b>; uses a <b>doubly linked list internally</b>.</li>
-            <li>Implements both <code>List</code> and <code>Deque</code> interfaces; belongs to <code>java.util.LinkedList</code>.</li>
-            <li>Dynamic memory allocation; fast insertion/deletion at ends; slower $O(n)$ random access compared to ArrayList.</li>
-            <li><b>Head & Tail Methods:</b> <code>addFirst(e)</code>, <code>addLast(e)</code>, <code>removeFirst()</code>, <code>removeLast()</code>.</li>
+            <li>Stores elements as <b>nodes connected through links</b>; uses a <b>doubly linked list internally</b>.
+            </li>
+            <li>Implements both <code>List</code> and <code>Deque</code> interfaces; belongs to
+              <code>java.util.LinkedList</code>.</li>
+            <li>Dynamic memory allocation; fast insertion/deletion at ends; slower $O(n)$ random access compared to
+              ArrayList.</li>
+            <li><b>Head & Tail Methods:</b> <code>addFirst(e)</code>, <code>addLast(e)</code>,
+              <code>removeFirst()</code>, <code>removeLast()</code>.</li>
             <li><b>As a FIFO Queue (First In, First Out):</b>
-              <br>• <code>offer(e)</code>: adds element | <code>peek()</code>: views first | <code>poll()</code>: removes first.</li>
+              <br>• <code>offer(e)</code>: adds element | <code>peek()</code>: views first | <code>poll()</code>:
+              removes first.
+            </li>
             <li><b>As a LIFO Stack (Last In, First Out):</b>
-              <br>• <code>push(e)</code>: adds at beginning | <code>pop()</code>: removes from beginning.</li>
+              <br>• <code>push(e)</code>: adds at beginning | <code>pop()</code>: removes from beginning.
+            </li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> LinkedList implements Deque, allowing it to seamlessly act as a List, a FIFO Queue (offer/poll), or a LIFO Stack (push/pop).
+            <b>💡 1-Liner:</b> LinkedList implements Deque, allowing it to seamlessly act as a List, a FIFO Queue
+            (offer/poll), or a LIFO Stack (push/pop).
           </div>
           <button class="card-btn" onclick="openModal('linkedlist_queue_stack')">🚀 View Code & Output</button>
         </div>
@@ -1525,34 +1793,42 @@
             <span class="badge badge-core">Thread-Safe</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Vector is like an ArrayList with a security turnstile on every method (synchronized). Stack is a stack of dinner plates (top plate comes off first).
+            <b>🌱 Everyday Analogy:</b> Vector is like an ArrayList with a security turnstile on every method
+            (synchronized). Stack is a stack of dinner plates (top plate comes off first).
           </div>
           <ul class="card-bullets">
-            <li><b>Vector:</b> Similar to ArrayList, but all methods are <code>synchronized</code> (thread-safe, but slower due to lock overhead).</li>
-            <li><b>Stack:</b> Extends Vector to provide LIFO operations: <code>push(e)</code>, <code>pop()</code>, <code>peek()</code>, <code>empty()</code>.</li>
+            <li><b>Vector:</b> Similar to ArrayList, but all methods are <code>synchronized</code> (thread-safe, but
+              slower due to lock overhead).</li>
+            <li><b>Stack:</b> Extends Vector to provide LIFO operations: <code>push(e)</code>, <code>pop()</code>,
+              <code>peek()</code>, <code>empty()</code>.</li>
             <li>Modern Java replaces Stack with <code>ArrayDeque</code> for single-threaded speed.</li>
           </ul>
           <button class="card-btn" onclick="openModal('vector_stack_demo')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 5: PriorityQueue & ArrayDeque -->
-        <div class="card" data-topic="mod4" data-keywords="priorityqueue arraydeque queue deque heap natural order fifo">
+        <div class="card" data-topic="mod4"
+          data-keywords="priorityqueue arraydeque queue deque heap natural order fifo">
           <div class="card-top">
             <h3 class="card-title">PriorityQueue & ArrayDeque</h3>
             <span class="badge badge-core">Queue & Deque</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> PriorityQueue is like an emergency triage room: highest priority patient is treated first regardless of arrival time. ArrayDeque is a fast 2-way tunnel.
+            <b>🌱 Everyday Analogy:</b> PriorityQueue is like an emergency triage room: highest priority patient is
+            treated first regardless of arrival time. ArrayDeque is a fast 2-way tunnel.
           </div>
           <ul class="card-bullets">
-            <li><b>PriorityQueue:</b> Elements ordered by natural priority (min-heap) or custom Comparator. <code>poll()</code> always retrieves smallest/highest-priority item.</li>
-            <li><b>ArrayDeque:</b> Resizable circular array implementing Deque. Faster than Stack and LinkedList when used as stack/queue.</li>
+            <li><b>PriorityQueue:</b> Elements ordered by natural priority (min-heap) or custom Comparator.
+              <code>poll()</code> always retrieves smallest/highest-priority item.</li>
+            <li><b>ArrayDeque:</b> Resizable circular array implementing Deque. Faster than Stack and LinkedList when
+              used as stack/queue.</li>
           </ul>
           <button class="card-btn" onclick="openModal('queue_deque_demo')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 6: ArrayList vs LinkedList Table -->
-        <div class="card" data-topic="mod4" data-keywords="arraylist vs linkedlist difference table speed memory storage contiguous scattered">
+        <div class="card" data-topic="mod4"
+          data-keywords="arraylist vs linkedlist difference table speed memory storage contiguous scattered">
           <div class="card-top">
             <h3 class="card-title">Difference: ArrayList vs LinkedList</h3>
             <span class="badge badge-exam">PDF Table p.42</span>
@@ -1560,14 +1836,38 @@
           <div class="table-container">
             <table>
               <thead>
-                <tr><th>Feature</th><th>ArrayList</th><th>LinkedList</th></tr>
+                <tr>
+                  <th>Feature</th>
+                  <th>ArrayList</th>
+                  <th>LinkedList</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td><b>Data Structure</b></td><td>Dynamic Resizable Array</td><td>Doubly Linked List</td></tr>
-                <tr><td><b>Memory Allocation</b></td><td>Contiguous memory blocks</td><td>Scattered memory blocks (nodes linked via pointers)</td></tr>
-                <tr><td><b>Element Access (<code>get</code>)</b></td><td>Fast: $O(1)$ time (index-based lookups)</td><td>Slow: $O(n)$ time (must traverse from head/tail)</td></tr>
-                <tr><td><b>Data Insertion/Removal</b></td><td>Slow: $O(n)$ time (requires shifting elements)</td><td>Fast: $O(1)$ time (only pointers change if position is known)</td></tr>
-                <tr><td><b>Memory Overhead</b></td><td>Low (stores data & structural capacity)</td><td>High (stores data plus two pointer references per node)</td></tr>
+                <tr>
+                  <td><b>Data Structure</b></td>
+                  <td>Dynamic Resizable Array</td>
+                  <td>Doubly Linked List</td>
+                </tr>
+                <tr>
+                  <td><b>Memory Allocation</b></td>
+                  <td>Contiguous memory blocks</td>
+                  <td>Scattered memory blocks (nodes linked via pointers)</td>
+                </tr>
+                <tr>
+                  <td><b>Element Access (<code>get</code>)</b></td>
+                  <td>Fast: $O(1)$ time (index-based lookups)</td>
+                  <td>Slow: $O(n)$ time (must traverse from head/tail)</td>
+                </tr>
+                <tr>
+                  <td><b>Data Insertion/Removal</b></td>
+                  <td>Slow: $O(n)$ time (requires shifting elements)</td>
+                  <td>Fast: $O(1)$ time (only pointers change if position is known)</td>
+                </tr>
+                <tr>
+                  <td><b>Memory Overhead</b></td>
+                  <td>Low (stores data & structural capacity)</td>
+                  <td>High (stores data plus two pointer references per node)</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -1575,37 +1875,44 @@
         </div>
 
         <!-- Card 7: HashSet & Set Algebra -->
-        <div class="card" data-topic="mod4" data-keywords="hashset set union intersection difference addall retainall removeall containsall removeif clone hashcode bucket">
+        <div class="card" data-topic="mod4"
+          data-keywords="hashset set union intersection difference addall retainall removeall containsall removeif clone hashcode bucket">
           <div class="card-top">
             <h3 class="card-title">HashSet & Set Algebra</h3>
             <span class="badge badge-core">Unique Elements</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a bag of unique collectible marbles: if you drop in a marble you already own, the bag silently ignores it. No order is promised.
+            <b>🌱 Everyday Analogy:</b> Like a bag of unique collectible marbles: if you drop in a marble you already
+            own, the bag silently ignores it. No order is promised.
           </div>
           <ul class="card-bullets">
             <li>Stores <b>unique elements only</b> (package: <code>java.util.HashSet</code>).</li>
-            <li><b>Internal Mechanism:</b> When you add an object, Java calls <code>hashCode()</code> to compute an index in an internal hash bucket array. Time complexity is <b>$O(1)$ (Constant Time) on average</b>!</li>
-            <li><b>Characteristics:</b> No duplicate values, no insertion order, allows <b>one null value</b>, fast searching.</li>
+            <li><b>Internal Mechanism:</b> When you add an object, Java calls <code>hashCode()</code> to compute an
+              index in an internal hash bucket array. Time complexity is <b>$O(1)$ (Constant Time) on average</b>!</li>
+            <li><b>Characteristics:</b> No duplicate values, no insertion order, allows <b>one null value</b>, fast
+              searching.</li>
             <li><b>Set Algebra & Methods:</b>
               <br>• <b>Union:</b> <code>A.addAll(B)</code>
               <br>• <b>Intersection:</b> <code>A.retainAll(B)</code>
               <br>• <b>Difference:</b> <code>A.removeAll(B)</code>
               <br>• <b>Check Subset:</b> <code>A.containsAll(B)</code>
               <br>• <b>Conditional Remove:</b> <code>set.removeIf(n -> n > 20)</code>
-              <br>• <b>Copy Set:</b> <code>(HashSet&lt;String&gt;) set.clone()</code>.</li>
+              <br>• <b>Copy Set:</b> <code>(HashSet&lt;String&gt;) set.clone()</code>.
+            </li>
           </ul>
           <button class="card-btn" onclick="openModal('hashset_operations')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 8: SortedSet & TreeSet -->
-        <div class="card" data-topic="mod4" data-keywords="sortedset treeset red black tree sorted unique elements comparable comparator">
+        <div class="card" data-topic="mod4"
+          data-keywords="sortedset treeset red black tree sorted unique elements comparable comparator">
           <div class="card-top">
             <h3 class="card-title">SortedSet & TreeSet</h3>
             <span class="badge badge-core">Sorted Set</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like an automated alphabetical bookshelf: any book you place in is automatically slotted into sorted alphabetical order.
+            <b>🌱 Everyday Analogy:</b> Like an automated alphabetical bookshelf: any book you place in is automatically
+            slotted into sorted alphabetical order.
           </div>
           <ul class="card-bullets">
             <li>Stores unique elements in <b>ascending natural sorted order</b> (or custom Comparator).</li>
@@ -1617,30 +1924,38 @@
         </div>
 
         <!-- Card 9: HashMap Key-Value Operations -->
-        <div class="card" data-topic="mod4" data-keywords="hashmap map key value put get remove containskey containsvalue keyset entryset getordefault putifabsent replace">
+        <div class="card" data-topic="mod4"
+          data-keywords="hashmap map key value put get remove containskey containsvalue keyset entryset getordefault putifabsent replace">
           <div class="card-top">
             <h3 class="card-title">HashMap (Key-Value Storage)</h3>
             <span class="badge badge-core">Map Interface</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a hotel key-card rack: key #204 opens Room 204 instantly. Keys must be unique, but two different rooms can have identical TVs inside!
+            <b>🌱 Everyday Analogy:</b> Like a hotel key-card rack: key #204 opens Room 204 instantly. Keys must be
+            unique, but two different rooms can have identical TVs inside!
           </div>
           <ul class="card-bullets">
             <li>Stores data as <b>Key-Value pairs</b> (package: <code>java.util.HashMap</code>).</li>
-            <li><b>Characteristics:</b> Stores key-value pairs, <b>Keys must be unique</b>, Values may be duplicate, fast $O(1)$ retrieval.</li>
+            <li><b>Characteristics:</b> Stores key-value pairs, <b>Keys must be unique</b>, Values may be duplicate,
+              fast $O(1)$ retrieval.</li>
             <li>Allows one <code>null</code> key and multiple <code>null</code> values.</li>
-            <li><b>Core Operations:</b> <code>put(k, v)</code>, <code>get(k)</code>, <code>remove(k)</code>, <code>containsKey(k)</code>, <code>containsValue(v)</code>, <code>size()</code>.</li>
+            <li><b>Core Operations:</b> <code>put(k, v)</code>, <code>get(k)</code>, <code>remove(k)</code>,
+              <code>containsKey(k)</code>, <code>containsValue(v)</code>, <code>size()</code>.</li>
             <li><b>Modern Utilities:</b>
               <br>• <code>putIfAbsent(k, v)</code>: adds only if key does not exist.
               <br>• <code>getOrDefault(k, defaultVal)</code>: returns value or fallback default.
-              <br>• <code>replace(k, newVal)</code>: updates existing key.</li>
-            <li><b>Map Views:</b> <code>keySet()</code> returns <code>Set&lt;K&gt;</code>, <code>values()</code> returns <code>Collection&lt;V&gt;</code>, <code>entrySet()</code> returns <code>Set&lt;Map.Entry&lt;K,V&gt;&gt;</code>.</li>
+              <br>• <code>replace(k, newVal)</code>: updates existing key.
+            </li>
+            <li><b>Map Views:</b> <code>keySet()</code> returns <code>Set&lt;K&gt;</code>, <code>values()</code> returns
+              <code>Collection&lt;V&gt;</code>, <code>entrySet()</code> returns
+              <code>Set&lt;Map.Entry&lt;K,V&gt;&gt;</code>.</li>
           </ul>
           <button class="card-btn" onclick="openModal('hashmap_methods')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 10: HashSet vs HashMap -->
-        <div class="card" data-topic="mod4" data-keywords="hashset vs hashmap comparison table keys values add put pdf p71">
+        <div class="card" data-topic="mod4"
+          data-keywords="hashset vs hashmap comparison table keys values add put pdf p71">
           <div class="card-top">
             <h3 class="card-title">Difference: HashSet vs HashMap</h3>
             <span class="badge badge-exam">PDF Table p.71</span>
@@ -1648,14 +1963,32 @@
           <div class="table-container">
             <table>
               <thead>
-                <tr><th>HashSet</th><th>HashMap</th></tr>
+                <tr>
+                  <th>HashSet</th>
+                  <th>HashMap</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td>Stores values only</td><td>Stores key-value pairs</td></tr>
-                <tr><td>Duplicate values not allowed</td><td>Duplicate keys not allowed (values can duplicate)</td></tr>
-                <tr><td>Uses <code>add()</code></td><td>Uses <code>put()</code></td></tr>
-                <tr><td>Retrieve by value existence</td><td>Retrieve by key</td></tr>
-                <tr><td>Allows 1 null value</td><td>Allows 1 null key & multiple null values</td></tr>
+                <tr>
+                  <td>Stores values only</td>
+                  <td>Stores key-value pairs</td>
+                </tr>
+                <tr>
+                  <td>Duplicate values not allowed</td>
+                  <td>Duplicate keys not allowed (values can duplicate)</td>
+                </tr>
+                <tr>
+                  <td>Uses <code>add()</code></td>
+                  <td>Uses <code>put()</code></td>
+                </tr>
+                <tr>
+                  <td>Retrieve by value existence</td>
+                  <td>Retrieve by key</td>
+                </tr>
+                <tr>
+                  <td>Allows 1 null value</td>
+                  <td>Allows 1 null key & multiple null values</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -1663,79 +1996,125 @@
         </div>
 
         <!-- Card 11: Iterator Across Lists, Sets & Maps -->
-        <div class="card" data-topic="mod4" data-keywords="iterator hasnext next remove concurrentmodificationexception traverse arraylist hashset linkedlist hashmap keyset values">
+        <div class="card" data-topic="mod4"
+          data-keywords="iterator hasnext next remove concurrentmodificationexception traverse arraylist hashset linkedlist hashmap keyset values">
           <div class="card-top">
             <h3 class="card-title">Iterator & Safe Deletion</h3>
             <span class="badge badge-hard">Exam Trap</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a laser pointer guiding you through a checklist one by one. Calling it.remove() crosses off an item safely without causing you to lose your spot.
+            <b>🌱 Everyday Analogy:</b> Like a laser pointer guiding you through a checklist one by one. Calling
+            it.remove() crosses off an item safely without causing you to lose your spot.
           </div>
           <ul class="card-bullets">
-            <li>An <code>Iterator</code> is used to traverse (visit) elements of a collection one by one (package: <code>java.util.Iterator</code>).</li>
-            <li><b>Core Methods:</b> <code>hasNext()</code> (checks next), <code>next()</code> (returns next), <code>remove()</code> (removes current).</li>
+            <li>An <code>Iterator</code> is used to traverse (visit) elements of a collection one by one (package:
+              <code>java.util.Iterator</code>).</li>
+            <li><b>Core Methods:</b> <code>hasNext()</code> (checks next), <code>next()</code> (returns next),
+              <code>remove()</code> (removes current).</li>
             <li><b>Universal Traversal:</b>
               <br>• With <b>ArrayList / LinkedList:</b> <code>Iterator&lt;String&gt; it = list.iterator();</code>
               <br>• With <b>HashSet:</b> <code>Iterator&lt;String&gt; it = set.iterator();</code>
-              <br>• With <b>HashMap:</b> <code>Iterator&lt;Integer&gt; it = map.keySet().iterator();</code> & <code>map.values().iterator();</code></li>
-            <li><b>Safe Removal:</b> Modifying a collection inside a regular for-each loop throws <code>ConcurrentModificationException</code>! <code>it.remove()</code> is the <b>only safe way</b> to remove elements while actively iterating.</li>
+              <br>• With <b>HashMap:</b> <code>Iterator&lt;Integer&gt; it = map.keySet().iterator();</code> &
+              <code>map.values().iterator();</code>
+            </li>
+            <li><b>Safe Removal:</b> Modifying a collection inside a regular for-each loop throws
+              <code>ConcurrentModificationException</code>! <code>it.remove()</code> is the <b>only safe way</b> to
+              remove elements while actively iterating.</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> Always use it.remove() during iteration to avoid ConcurrentModificationException caused by modifying the backing collection during loop execution.
+            <b>💡 1-Liner:</b> Always use it.remove() during iteration to avoid ConcurrentModificationException caused
+            by modifying the backing collection during loop execution.
           </div>
-          <button class="card-btn" onclick="openModal('iterator_comprehensive_demo')">🚀 View Code Across Collections</button>
+          <button class="card-btn" onclick="openModal('iterator_comprehensive_demo')">🚀 View Code Across
+            Collections</button>
         </div>
 
         <!-- Card 12: Comparator & Custom Sorting Rules -->
-        <div class="card" data-topic="mod4" data-keywords="comparator compare lambda naturalorder reverseorder reversed nullsfirst nullslast collections sort student marks">
+        <div class="card" data-topic="mod4"
+          data-keywords="comparator compare lambda naturalorder reverseorder reversed nullsfirst nullslast collections sort student marks">
           <div class="card-top">
             <h3 class="card-title">Comparator & Custom Sorting</h3>
             <span class="badge badge-core">java.util.Comparator</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> A custom referee with a rulebook: you can tell the referee to rank students by marks, rank them by age, or send all missing scores (nulls) to the very back!
+            <b>🌱 Everyday Analogy:</b> A custom referee with a rulebook: you can tell the referee to rank students by
+            marks, rank them by age, or send all missing scores (nulls) to the very back!
           </div>
           <ul class="card-bullets">
-            <li>A <code>Comparator</code> is an interface in Java used to define custom sorting rules for objects (package: <code>java.util.Comparator</code>).</li>
+            <li>A <code>Comparator</code> is an interface in Java used to define custom sorting rules for objects
+              (package: <code>java.util.Comparator</code>).</li>
             <li><b>Built-in Factory Functions (PDF p.81):</b>
-              <br>• <code>compare(a, b)</code>: compare two objects | <code>naturalOrder()</code>: Ascending | <code>reverseOrder()</code>: Descending
-              <br>• <code>c.reversed()</code>: Reverse existing comparator | <code>nullsFirst()</code> / <code>nullsLast()</code>: Handle nulls safely
-              <br>• <code>comparing()</code> / <code>comparingInt()</code> / <code>thenComparing()</code>: Property extractors and chained secondary sorting.</li>
+              <br>• <code>compare(a, b)</code>: compare two objects | <code>naturalOrder()</code>: Ascending |
+              <code>reverseOrder()</code>: Descending
+              <br>• <code>c.reversed()</code>: Reverse existing comparator | <code>nullsFirst()</code> /
+              <code>nullsLast()</code>: Handle nulls safely
+              <br>• <code>comparing()</code> / <code>comparingInt()</code> / <code>thenComparing()</code>: Property
+              extractors and chained secondary sorting.
+            </li>
             <li><b>Sorting User-Defined Classes (e.g. <code>Student</code> by marks):</b>
               <br>1. <b>Class:</b> <code>class MarksComparator implements Comparator&lt;Student&gt; { ... }</code>
               <br>2. <b>Lambda:</b> <code>(s1, s2) -&gt; Double.compare(s1.marks, s2.marks)</code>
-              <br>3. <b>Method Ref:</b> <code>Comparator.comparing(Student::getMarks)</code>.</li>
+              <br>3. <b>Method Ref:</b> <code>Comparator.comparing(Student::getMarks)</code>.
+            </li>
             <li>List interface default method: <code>default void sort(Comparator&lt;? super E&gt; c)</code>.</li>
           </ul>
           <button class="card-btn" onclick="openModal('comparator_student_demo')">🚀 View Student Sorting Code</button>
         </div>
 
         <!-- Card 13: Generics Foundation & Type Safety -->
-        <div class="card" data-topic="mod4" data-keywords="generics type safety classcastexception compile time type checking raw types before vs after generics">
+        <div class="card" data-topic="mod4"
+          data-keywords="generics type safety classcastexception compile time type checking raw types before vs after generics">
           <div class="card-top">
             <h3 class="card-title">What are Generics? & Type Safety</h3>
             <span class="badge badge-core">Type Safety</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a labeled medicine bottle: 'Aspirin Only'. The pharmacist stops you from accidentally putting in cough syrup before you even leave the pharmacy!
+            <b>🌱 Everyday Analogy:</b> Like a labeled medicine bottle: 'Aspirin Only'. The pharmacist stops you from
+            accidentally putting in cough syrup before you even leave the pharmacy!
           </div>
           <ul class="card-bullets">
-            <li><b>Definition:</b> At its core, generics means <b>parameterized types</b>. Enables classes, interfaces, and methods to operate on specified data types.</li>
-            <li><b>Why do we need Generics?</b> Without Generics (Raw Type): <code>ArrayList list = new ArrayList();</code> can store String, Integer, etc. Calling <code>(String) list.get(2)</code> throws runtime <code>ClassCastException</code>!</li>
+            <li><b>Definition:</b> At its core, generics means <b>parameterized types</b>. Enables classes, interfaces,
+              and methods to operate on specified data types.</li>
+            <li><b>Why do we need Generics?</b> Without Generics (Raw Type):
+              <code>ArrayList list = new ArrayList();</code> can store String, Integer, etc. Calling
+              <code>(String) list.get(2)</code> throws runtime <code>ClassCastException</code>!</li>
             <li><b>Three Main Benefits:</b>
-              <br>1. <b>Type Safety:</b> Wrong types detected at compile time (e.g. <code>names.add(100)</code> gives compile error).
-              <br>2. <b>No Unnecessary Type Casting:</b> With generics, <code>String name = names.get(0);</code> requires no explicit cast!
-              <br>3. <b>Code Reusability:</b> One generic class works with different types without duplicating code.</li>
+              <br>1. <b>Type Safety:</b> Wrong types detected at compile time (e.g. <code>names.add(100)</code> gives
+              compile error).
+              <br>2. <b>No Unnecessary Type Casting:</b> With generics, <code>String name = names.get(0);</code>
+              requires no explicit cast!
+              <br>3. <b>Code Reusability:</b> One generic class works with different types without duplicating code.
+            </li>
           </ul>
           <div class="table-container">
             <table>
-              <thead><tr><th>Without Generics</th><th>With Generics</th></tr></thead>
+              <thead>
+                <tr>
+                  <th>Without Generics</th>
+                  <th>With Generics</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td><code>ArrayList list</code></td><td><code>ArrayList&lt;String&gt; names</code></td></tr>
-                <tr><td>Can store different types</td><td>Stores specified type</td></tr>
-                <tr><td>Type safety is weak</td><td>Type safety is strong</td></tr>
-                <tr><td>Type casting may be required</td><td>Usually no casting required</td></tr>
-                <tr><td>Errors may appear at runtime</td><td>Wrong types detected at compile time</td></tr>
+                <tr>
+                  <td><code>ArrayList list</code></td>
+                  <td><code>ArrayList&lt;String&gt; names</code></td>
+                </tr>
+                <tr>
+                  <td>Can store different types</td>
+                  <td>Stores specified type</td>
+                </tr>
+                <tr>
+                  <td>Type safety is weak</td>
+                  <td>Type safety is strong</td>
+                </tr>
+                <tr>
+                  <td>Type casting may be required</td>
+                  <td>Usually no casting required</td>
+                </tr>
+                <tr>
+                  <td>Errors may appear at runtime</td>
+                  <td>Wrong types detected at compile time</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -1743,29 +2122,54 @@
         </div>
 
         <!-- Card 14: Generic Class & Two Type Parameters -->
-        <div class="card" data-topic="mod4" data-keywords="generic class type parameters box pair k v t e n normal class vs generic class">
+        <div class="card" data-topic="mod4"
+          data-keywords="generic class type parameters box pair k v t e n normal class vs generic class">
           <div class="card-top">
             <h3 class="card-title">Generic Class & Type Parameters</h3>
             <span class="badge badge-core">Generic Architecture</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a universal shipping crate: the shipping company doesn't build a separate truck for apples and a separate truck for computers; they build a generic container that adapts to any cargo type!
+            <b>🌱 Everyday Analogy:</b> Like a universal shipping crate: the shipping company doesn't build a separate
+            truck for apples and a separate truck for computers; they build a generic container that adapts to any cargo
+            type!
           </div>
           <ul class="card-bullets">
-            <li>A <b>Generic Class</b> is a class that uses a type parameter to work with different data types without duplicating code (avoids separate <code>Box</code> for int and <code>StringBox</code> for String).</li>
-            <li><b>Single Type Parameter:</b> <code>class Box&lt;T&gt; { T value; Box(T value) { this.value = value; } }</code></li>
-            <li><b>Two Type Parameters:</b> <code>class Pair&lt;K, V&gt; { K key; V value; Pair(K k, V v) { ... } }</code></li>
+            <li>A <b>Generic Class</b> is a class that uses a type parameter to work with different data types without
+              duplicating code (avoids separate <code>Box</code> for int and <code>StringBox</code> for String).</li>
+            <li><b>Single Type Parameter:</b>
+              <code>class Box&lt;T&gt; { T value; Box(T value) { this.value = value; } }</code></li>
+            <li><b>Two Type Parameters:</b>
+              <code>class Pair&lt;K, V&gt; { K key; V value; Pair(K k, V v) { ... } }</code></li>
             <li><b>Common Type Parameter Names (PDF p.106):</b>
-              <br>• <code>T</code>: Type | <code>E</code>: Element (Collections) | <code>K</code>: Key | <code>V</code>: Value | <code>N</code>: Number.</li>
+              <br>• <code>T</code>: Type | <code>E</code>: Element (Collections) | <code>K</code>: Key | <code>V</code>:
+              Value | <code>N</code>: Number.
+            </li>
           </ul>
           <div class="table-container">
             <table>
-              <thead><tr><th>Normal Class</th><th>Generic Class</th></tr></thead>
+              <thead>
+                <tr>
+                  <th>Normal Class</th>
+                  <th>Generic Class</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td>Works with a specific type</td><td>Can work with different types</td></tr>
-                <tr><td>Less reusable</td><td>Highly reusable</td></tr>
-                <tr><td>May require casting</td><td>Reduces type casting</td></tr>
-                <tr><td>Less type-safe in some designs</td><td>Provides compile-time type safety</td></tr>
+                <tr>
+                  <td>Works with a specific type</td>
+                  <td>Can work with different types</td>
+                </tr>
+                <tr>
+                  <td>Less reusable</td>
+                  <td>Highly reusable</td>
+                </tr>
+                <tr>
+                  <td>May require casting</td>
+                  <td>Reduces type casting</td>
+                </tr>
+                <tr>
+                  <td>Less type-safe in some designs</td>
+                  <td>Provides compile-time type safety</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -1773,40 +2177,75 @@
         </div>
 
         <!-- Card 15: Generic Method & Generic Interface -->
-        <div class="card" data-topic="mod4" data-keywords="generic method generic interface printer pair comparison table return type methodName">
+        <div class="card" data-topic="mod4"
+          data-keywords="generic method generic interface printer pair comparison table return type methodName">
           <div class="card-top">
             <h3 class="card-title">Generic Methods & Interfaces</h3>
             <span class="badge badge-hard">High Yield</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> A generic method is like a vending machine slot: it doesn't care whether you insert a $1 coin, a $2 coin, or a token — it inspects and accepts any type on demand.
+            <b>🌱 Everyday Analogy:</b> A generic method is like a vending machine slot: it doesn't care whether you
+            insert a $1 coin, a $2 coin, or a token — it inspects and accepts any type on demand.
           </div>
           <ul class="card-bullets">
             <li><b>Generic Method:</b> Has its own type parameter independent of the class!
               <br>• Syntax: <code>&lt;T&gt; returnType methodName(T value) { ... }</code>
               <br>• Returning value: <code>public static &lt;T&gt; T getValue(T value) { return value; }</code>
-              <br>• Two parameters: <code>public static &lt;T, U&gt; void display(T first, U second)</code></li>
+              <br>• Two parameters: <code>public static &lt;T, U&gt; void display(T first, U second)</code>
+            </li>
             <li><b>Generic Interface:</b> An interface defined with a type parameter:
               <br>• <code>interface Printer&lt;T&gt; { void print(T value); }</code>
-              <br>• Implemented as: <code>class Demo implements Printer&lt;String&gt;</code> or <code>IntegerPrinter implements Printer&lt;Integer&gt;</code>.
-              <br>• With two parameters: <code>interface Pair&lt;K, V&gt;</code> implemented by <code>Student implements Pair&lt;Integer, String&gt;</code>.</li>
+              <br>• Implemented as: <code>class Demo implements Printer&lt;String&gt;</code> or
+              <code>IntegerPrinter implements Printer&lt;Integer&gt;</code>.
+              <br>• With two parameters: <code>interface Pair&lt;K, V&gt;</code> implemented by
+              <code>Student implements Pair&lt;Integer, String&gt;</code>.
+            </li>
           </ul>
           <div class="table-container">
             <table>
-              <thead><tr><th>Feature</th><th>Generic Class</th><th>Generic Method</th><th>Generic Interface</th></tr></thead>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Generic Class</th>
+                  <th>Generic Method</th>
+                  <th>Generic Interface</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td><b>Parameter belongs to</b></td><td>Class</td><td>Method</td><td>Interface</td></tr>
-                <tr><td><b>Example</b></td><td><code>class Box&lt;T&gt;</code></td><td><code>&lt;T&gt; void display(T x)</code></td><td><code>interface Printer&lt;T&gt;</code></td></tr>
-                <tr><td><b>Scope of T</b></td><td>Entire class</td><td>Only method</td><td>Interface</td></tr>
-                <tr><td><b>Purpose</b></td><td>Store/process different types</td><td>Perform operation on different types</td><td>Define common behavior for different types</td></tr>
+                <tr>
+                  <td><b>Parameter belongs to</b></td>
+                  <td>Class</td>
+                  <td>Method</td>
+                  <td>Interface</td>
+                </tr>
+                <tr>
+                  <td><b>Example</b></td>
+                  <td><code>class Box&lt;T&gt;</code></td>
+                  <td><code>&lt;T&gt; void display(T x)</code></td>
+                  <td><code>interface Printer&lt;T&gt;</code></td>
+                </tr>
+                <tr>
+                  <td><b>Scope of T</b></td>
+                  <td>Entire class</td>
+                  <td>Only method</td>
+                  <td>Interface</td>
+                </tr>
+                <tr>
+                  <td><b>Purpose</b></td>
+                  <td>Store/process different types</td>
+                  <td>Perform operation on different types</td>
+                  <td>Define common behavior for different types</td>
+                </tr>
               </tbody>
             </table>
           </div>
-          <button class="card-btn" onclick="openModal('generic_methods_interfaces_demo')">🚀 View Method & Interface Code</button>
+          <button class="card-btn" onclick="openModal('generic_methods_interfaces_demo')">🚀 View Method & Interface
+            Code</button>
         </div>
 
         <!-- Card 16: Master Collections Selection Matrix -->
-        <div class="card" data-topic="mod4" data-keywords="full comparison table collections arraylist linkedlist hashset hashmap treeset selection guide">
+        <div class="card" data-topic="mod4"
+          data-keywords="full comparison table collections arraylist linkedlist hashset hashmap treeset selection guide">
           <div class="card-top">
             <h3 class="card-title">Full Collections Master Table</h3>
             <span class="badge badge-exam">Quick Cheat Sheet</span>
@@ -1814,14 +2253,56 @@
           <div class="table-container">
             <table>
               <thead>
-                <tr><th>Collection</th><th>Ordered</th><th>Duplicate</th><th>Null</th><th>Access Speed</th><th>Best Use</th></tr>
+                <tr>
+                  <th>Collection</th>
+                  <th>Ordered</th>
+                  <th>Duplicate</th>
+                  <th>Null</th>
+                  <th>Access Speed</th>
+                  <th>Best Use</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td><code>ArrayList</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td>Fast $O(1)$</td><td>Searching & random access</td></tr>
-                <tr><td><code>LinkedList</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td>Moderate $O(n)$</td><td>Frequent insert/delete at ends</td></tr>
-                <tr><td><code>HashSet</code></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td><td>One null</td><td>Fast $O(1)$</td><td>Unique elements (Hash bucket)</td></tr>
-                <tr><td><code>TreeSet</code></td><td><span class="yes-pill">Sorted</span></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td><td>$O(\log n)$</td><td>Unique sorted elements (Red-Black)</td></tr>
-                <tr><td><code>HashMap</code></td><td><span class="no-pill">No</span></td><td>Keys: No, Vals: Yes</td><td>1 null key</td><td>Fast $O(1)$</td><td>Key-value association</td></tr>
+                <tr>
+                  <td><code>ArrayList</code></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td>Fast $O(1)$</td>
+                  <td>Searching & random access</td>
+                </tr>
+                <tr>
+                  <td><code>LinkedList</code></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td><span class="yes-pill">Yes</span></td>
+                  <td>Moderate $O(n)$</td>
+                  <td>Frequent insert/delete at ends</td>
+                </tr>
+                <tr>
+                  <td><code>HashSet</code></td>
+                  <td><span class="no-pill">No</span></td>
+                  <td><span class="no-pill">No</span></td>
+                  <td>One null</td>
+                  <td>Fast $O(1)$</td>
+                  <td>Unique elements (Hash bucket)</td>
+                </tr>
+                <tr>
+                  <td><code>TreeSet</code></td>
+                  <td><span class="yes-pill">Sorted</span></td>
+                  <td><span class="no-pill">No</span></td>
+                  <td><span class="no-pill">No</span></td>
+                  <td>$O(\log n)$</td>
+                  <td>Unique sorted elements (Red-Black)</td>
+                </tr>
+                <tr>
+                  <td><code>HashMap</code></td>
+                  <td><span class="no-pill">No</span></td>
+                  <td>Keys: No, Vals: Yes</td>
+                  <td>1 null key</td>
+                  <td>Fast $O(1)$</td>
+                  <td>Key-value association</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -1829,39 +2310,48 @@
         </div>
 
         <!-- Card 17: Objects Class -->
-        <div class="card" data-topic="mod4" data-keywords="objects utility class java.util.objects equals isnull nonnull hash tostring requirenonnull nullpointerexception">
+        <div class="card" data-topic="mod4"
+          data-keywords="objects utility class java.util.objects equals isnull nonnull hash tostring requirenonnull nullpointerexception">
           <div class="card-top">
             <h3 class="card-title">Objects Class (java.util.Objects)</h3>
             <span class="badge badge-core">Null-Safety</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Objects is your personal security guard checking every package before it enters the building, preventing unexpected null surprises!
+            <b>🌱 Everyday Analogy:</b> Objects is your personal security guard checking every package before it enters
+            the building, preventing unexpected null surprises!
           </div>
           <ul class="card-bullets">
-            <li>Provides static utility methods to perform operations on objects safely (checking null, comparing, hashing, string conversion).</li>
+            <li>Provides static utility methods to perform operations on objects safely (checking null, comparing,
+              hashing, string conversion).</li>
             <li><b>Common Methods (PDF p.124):</b>
               <br>• <code>Objects.equals(a, b)</code>: Safely compares two objects (no NPE if a or b is null).
               <br>• <code>Objects.isNull(obj)</code>: Checks if object is null.
               <br>• <code>Objects.nonNull(obj)</code>: Checks if object is not null.
               <br>• <code>Objects.hash(...)</code>: Generates multi-variable hash code.
               <br>• <code>Objects.toString(obj, defaultVal)</code>: Converts object to string safely.
-              <br>• <code>Objects.requireNonNull(obj)</code>: Checks null; if not null, program continues; if null, throws <code>NullPointerException</code> immediately!</li>
-            <li><b>Advantages:</b> Prevents NullPointerException, safe object comparison, cleaner code, useful in object validation.</li>
+              <br>• <code>Objects.requireNonNull(obj)</code>: Checks null; if not null, program continues; if null,
+              throws <code>NullPointerException</code> immediately!
+            </li>
+            <li><b>Advantages:</b> Prevents NullPointerException, safe object comparison, cleaner code, useful in object
+              validation.</li>
           </ul>
           <button class="card-btn" onclick="openModal('objects_utility_demo')">🚀 View Objects Code & NPE</button>
         </div>
 
         <!-- Card 18: Optional Class -->
-        <div class="card" data-topic="mod4" data-keywords="optional java.util.optional of ofnullable empty ispresent get orelse ifpresent missing values">
+        <div class="card" data-topic="mod4"
+          data-keywords="optional java.util.optional of ofnullable empty ispresent get orelse ifpresent missing values">
           <div class="card-top">
             <h3 class="card-title">Optional Class (java.util.Optional)</h3>
             <span class="badge badge-core">NPE Prevention</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> An Optional is like an Amazon delivery box: you can shake the box and check <code>isPresent()</code> to see if the item arrived before opening it with <code>get()</code>.
+            <b>🌱 Everyday Analogy:</b> An Optional is like an Amazon delivery box: you can shake the box and check
+            <code>isPresent()</code> to see if the item arrived before opening it with <code>get()</code>.
           </div>
           <ul class="card-bullets">
-            <li>A container object that may or may not contain a value. Helps avoid <code>NullPointerException</code> by explicitly handling missing values.</li>
+            <li>A container object that may or may not contain a value. Helps avoid <code>NullPointerException</code> by
+              explicitly handling missing values.</li>
             <li><b>Common Methods (PDF p.134):</b>
               <br>• <code>Optional.of(val)</code>: Creates Optional with non-null value (throws NPE if val is null).
               <br>• <code>Optional.ofNullable(val)</code>: Safe for null; returns empty Optional if null.
@@ -1869,23 +2359,28 @@
               <br>• <code>isPresent()</code>: Checks if value exists.
               <br>• <code>get()</code>: Returns stored value (throws exception if empty).
               <br>• <code>orElse(default)</code>: Returns value if present, else returns fallback default.
-              <br>• <code>ifPresent(consumer)</code>: Executes code only when value is present (no output if empty!).</li>
-            <li><b>Advantages:</b> Avoids NullPointerException, improves readability, encourages safe coding practices.</li>
+              <br>• <code>ifPresent(consumer)</code>: Executes code only when value is present (no output if empty!).
+            </li>
+            <li><b>Advantages:</b> Avoids NullPointerException, improves readability, encourages safe coding practices.
+            </li>
           </ul>
           <button class="card-btn" onclick="openModal('optional_deep_dive')">🚀 View Optional Code & Output</button>
         </div>
 
         <!-- Card 19: Math Class -->
-        <div class="card" data-topic="mod4" data-keywords="math class java.lang.math max min sqrt pow abs random ceil floor round static">
+        <div class="card" data-topic="mod4"
+          data-keywords="math class java.lang.math max min sqrt pow abs random ceil floor round static">
           <div class="card-top">
             <h3 class="card-title">Math Class (java.lang.Math)</h3>
             <span class="badge badge-core">Static Utilities</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a scientific calculator on your desk: you don't build a new calculator every time you calculate a square root; you just tap the static buttons!
+            <b>🌱 Everyday Analogy:</b> Like a scientific calculator on your desk: you don't build a new calculator
+            every time you calculate a square root; you just tap the static buttons!
           </div>
           <ul class="card-bullets">
-            <li>Provides methods for performing mathematical calculations. <b>No object creation is required</b> because all methods are <b>static</b> (package: <code>java.lang.Math</code>).</li>
+            <li>Provides methods for performing mathematical calculations. <b>No object creation is required</b> because
+              all methods are <b>static</b> (package: <code>java.lang.Math</code>).</li>
             <li><b>Common Methods (PDF p.145):</b>
               <br>• <code>Math.max(a, b)</code> & <code>Math.min(a, b)</code>: Returns maximum / minimum.
               <br>• <code>Math.sqrt(x)</code>: Square root (e.g. <code>Math.sqrt(49) -&gt; 7.0</code>).
@@ -1894,38 +2389,46 @@
               <br>• <code>Math.random()</code>: Random double between 0.0 and 1.0.
               <br>• <code>Math.ceil(x)</code>: Rounds up (e.g. <code>5.2 -&gt; 6.0</code>).
               <br>• <code>Math.floor(x)</code>: Rounds down (e.g. <code>5.9 -&gt; 5.0</code>).
-              <br>• <code>Math.round(x)</code>: Rounds to nearest integer (e.g. <code>5.6 -&gt; 6</code>).</li>
+              <br>• <code>Math.round(x)</code>: Rounds to nearest integer (e.g. <code>5.6 -&gt; 6</code>).
+            </li>
             <li><b>Advantages:</b> Built-in mathematical functions, faster than manual implementation, easy to use.</li>
           </ul>
           <button class="card-btn" onclick="openModal('math_datetime_demo')">🚀 View Math Code & Output</button>
         </div>
 
         <!-- Card 20: Modern Date & Time API -->
-        <div class="card" data-topic="mod4" data-keywords="localdate localtime localdatetime java.time now plusdays plushours getyear immutable">
+        <div class="card" data-topic="mod4"
+          data-keywords="localdate localtime localdatetime java.time now plusdays plushours getyear immutable">
           <div class="card-top">
             <h3 class="card-title">Date & Time API (java.time)</h3>
             <span class="badge badge-core">Modern Java 8+</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a tamper-proof digital timestamp: once created, it cannot be mutated or changed accidentally by another thread!
+            <b>🌱 Everyday Analogy:</b> Like a tamper-proof digital timestamp: once created, it cannot be mutated or
+            changed accidentally by another thread!
           </div>
           <ul class="card-bullets">
             <li>Modern, immutable, and thread-safe replacement for legacy <code>java.util.Date</code>:</li>
             <li><b><code>LocalDate</code> (java.time.LocalDate):</b>
               <br>• Represents a <b>date only</b> (Year-Month-Day) without time.
-              <br>• Methods: <code>LocalDate.now()</code>, <code>plusDays(7)</code>, <code>minusDays(3)</code>, <code>getYear()</code>, <code>getMonth()</code>, <code>getDayOfMonth()</code>.</li>
+              <br>• Methods: <code>LocalDate.now()</code>, <code>plusDays(7)</code>, <code>minusDays(3)</code>,
+              <code>getYear()</code>, <code>getMonth()</code>, <code>getDayOfMonth()</code>.
+            </li>
             <li><b><code>LocalTime</code> (java.time.LocalTime):</b>
               <br>• Represents <b>time only</b> (Hour-Minute-Second) without date.
-              <br>• Methods: <code>LocalTime.now()</code>, <code>plusHours(2)</code>.</li>
+              <br>• Methods: <code>LocalTime.now()</code>, <code>plusHours(2)</code>.
+            </li>
             <li><b><code>LocalDateTime</code> (java.time.LocalDateTime):</b>
               <br>• Represents <b>both date and time together</b>.
-              <br>• Methods: <code>LocalDateTime.now()</code>, <code>plusDays(1)</code>, <code>plusHours(1)</code>.</li>
+              <br>• Methods: <code>LocalDateTime.now()</code>, <code>plusDays(1)</code>, <code>plusHours(1)</code>.
+            </li>
           </ul>
           <button class="card-btn" onclick="openModal('math_datetime_demo')">🚀 View Date-Time Code</button>
         </div>
 
         <!-- Card 21: Master Utility Classes Comparison Table -->
-        <div class="card" data-topic="mod4" data-keywords="utility classes table objects optional math localdate localtime localdatetime comparison pdf p162">
+        <div class="card" data-topic="mod4"
+          data-keywords="utility classes table objects optional math localdate localtime localdatetime comparison pdf p162">
           <div class="card-top">
             <h3 class="card-title">Utility Classes Comparison Table</h3>
             <span class="badge badge-exam">PDF Table p.162</span>
@@ -1933,15 +2436,50 @@
           <div class="table-container">
             <table>
               <thead>
-                <tr><th>Utility Class</th><th>Package</th><th>Purpose</th><th>Example Method</th></tr>
+                <tr>
+                  <th>Utility Class</th>
+                  <th>Package</th>
+                  <th>Purpose</th>
+                  <th>Example Method</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td><code>Objects</code></td><td><code>java.util</code></td><td>Object utilities & null safety</td><td><code>Objects.equals(a, b)</code></td></tr>
-                <tr><td><code>Optional</code></td><td><code>java.util</code></td><td>Handle null values safely</td><td><code>opt.orElse("Guest")</code></td></tr>
-                <tr><td><code>Math</code></td><td><code>java.lang</code></td><td>Mathematical calculations (all static)</td><td><code>Math.sqrt(49)</code></td></tr>
-                <tr><td><code>LocalDate</code></td><td><code>java.time</code></td><td>Date only (Year-Month-Day)</td><td><code>LocalDate.now()</code></td></tr>
-                <tr><td><code>LocalTime</code></td><td><code>java.time</code></td><td>Time only (Hour-Minute-Second)</td><td><code>LocalTime.now()</code></td></tr>
-                <tr><td><code>LocalDateTime</code></td><td><code>java.time</code></td><td>Date and Time together</td><td><code>LocalDateTime.now()</code></td></tr>
+                <tr>
+                  <td><code>Objects</code></td>
+                  <td><code>java.util</code></td>
+                  <td>Object utilities & null safety</td>
+                  <td><code>Objects.equals(a, b)</code></td>
+                </tr>
+                <tr>
+                  <td><code>Optional</code></td>
+                  <td><code>java.util</code></td>
+                  <td>Handle null values safely</td>
+                  <td><code>opt.orElse("Guest")</code></td>
+                </tr>
+                <tr>
+                  <td><code>Math</code></td>
+                  <td><code>java.lang</code></td>
+                  <td>Mathematical calculations (all static)</td>
+                  <td><code>Math.sqrt(49)</code></td>
+                </tr>
+                <tr>
+                  <td><code>LocalDate</code></td>
+                  <td><code>java.time</code></td>
+                  <td>Date only (Year-Month-Day)</td>
+                  <td><code>LocalDate.now()</code></td>
+                </tr>
+                <tr>
+                  <td><code>LocalTime</code></td>
+                  <td><code>java.time</code></td>
+                  <td>Time only (Hour-Minute-Second)</td>
+                  <td><code>LocalTime.now()</code></td>
+                </tr>
+                <tr>
+                  <td><code>LocalDateTime</code></td>
+                  <td><code>java.time</code></td>
+                  <td>Date and Time together</td>
+                  <td><code>LocalDateTime.now()</code></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -1961,58 +2499,74 @@
       <div class="card-grid">
 
         <!-- Card 1: Exceptions vs Errors & Hierarchy -->
-        <div class="card" data-topic="mod5" data-keywords="exception error throwable checked unchecked runtimeexception virtualmachineerror hierarchy">
+        <div class="card" data-topic="mod5"
+          data-keywords="exception error throwable checked unchecked runtimeexception virtualmachineerror hierarchy">
           <div class="card-top">
             <h3 class="card-title">Exception vs Error & Hierarchy</h3>
             <span class="badge badge-core">Hierarchy</span>
           </div>
           <ul class="card-bullets">
             <li>Root class: <b><code>Throwable</code></b> splits into:
-              <br>• <b><code>Error</code>:</b> Irrecoverable system failures (e.g. <code>OutOfMemoryError</code>, <code>StackOverflowError</code>). Do not catch!
-              <br>• <b><code>Exception</code>:</b> Abnormal conditions that applications should catch and handle.</li>
-            <li><b>Checked Exceptions:</b> Verified at compile time (e.g. <code>IOException</code>, <code>SQLException</code>). Must handle with try-catch or declare with <code>throws</code>!</li>
-            <li><b>Unchecked Exceptions:</b> Subclasses of <code>RuntimeException</code> (e.g. <code>NullPointerException</code>, <code>ArithmeticException</code>). Not checked at compile time.</li>
+              <br>• <b><code>Error</code>:</b> Irrecoverable system failures (e.g. <code>OutOfMemoryError</code>,
+              <code>StackOverflowError</code>). Do not catch!
+              <br>• <b><code>Exception</code>:</b> Abnormal conditions that applications should catch and handle.
+            </li>
+            <li><b>Checked Exceptions:</b> Verified at compile time (e.g. <code>IOException</code>,
+              <code>SQLException</code>). Must handle with try-catch or declare with <code>throws</code>!</li>
+            <li><b>Unchecked Exceptions:</b> Subclasses of <code>RuntimeException</code> (e.g.
+              <code>NullPointerException</code>, <code>ArithmeticException</code>). Not checked at compile time.</li>
           </ul>
           <button class="card-btn" onclick="openModal('exception_hierarchy_demo')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 2: Try, Catch, Finally & Catch Ordering -->
-        <div class="card" data-topic="mod5" data-keywords="try catch finally ordering unreachable code multi catch pipe">
+        <div class="card" data-topic="mod5"
+          data-keywords="try catch finally ordering unreachable code multi catch pipe">
           <div class="card-top">
             <h3 class="card-title">Try-Catch-Finally & Ordering</h3>
             <span class="badge badge-hard">Exam Trap</span>
           </div>
           <ul class="card-bullets">
-            <li><b>Catch Ordering Rule:</b> Specific exceptions must come <b>FIRST</b>, superclass <code>Exception</code> must come <b>LAST</b>!</li>
-            <li>Placing general <code>catch(Exception e)</code> first causes a <b>Compile Error: unreachable code</b>!</li>
-            <li><b>Finally block:</b> Guaranteed to execute whether exception occurred or not (used for cleanup like closing files/DB).</li>
-            <li><b>Multi-catch (Java 7+):</b> Combine handlers using pipe symbol: <code>catch (ArithmeticException | ArrayIndexOutOfBoundsException e)</code>.</li>
+            <li><b>Catch Ordering Rule:</b> Specific exceptions must come <b>FIRST</b>, superclass
+              <code>Exception</code> must come <b>LAST</b>!</li>
+            <li>Placing general <code>catch(Exception e)</code> first causes a <b>Compile Error: unreachable code</b>!
+            </li>
+            <li><b>Finally block:</b> Guaranteed to execute whether exception occurred or not (used for cleanup like
+              closing files/DB).</li>
+            <li><b>Multi-catch (Java 7+):</b> Combine handlers using pipe symbol:
+              <code>catch (ArithmeticException | ArrayIndexOutOfBoundsException e)</code>.</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> Catch clauses evaluate top-to-bottom; placing a superclass handler above a subclass handler shadows it and triggers a compiler error.
+            <b>💡 1-Liner:</b> Catch clauses evaluate top-to-bottom; placing a superclass handler above a subclass
+            handler shadows it and triggers a compiler error.
           </div>
           <button class="card-btn" onclick="openModal('try_catch_ordering')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 3: Exception Propagation (Call Stack) -->
-        <div class="card" data-topic="mod5" data-keywords="exception propagation call stack method3 method2 method1 unhandled terminates">
+        <div class="card" data-topic="mod5"
+          data-keywords="exception propagation call stack method3 method2 method1 unhandled terminates">
           <div class="card-top">
             <h3 class="card-title">Exception Propagation</h3>
             <span class="badge badge-hard">Call Stack</span>
           </div>
           <ul class="card-bullets">
-            <li>When an exception is thrown inside a method and not caught, it drops off the call stack to the caller method.</li>
+            <li>When an exception is thrown inside a method and not caught, it drops off the call stack to the caller
+              method.</li>
             <li>JVM unrolls the stack searching outwards until an appropriate enclosing catch block is found.</li>
-            <li>If unhandled all the way to <code>main()</code>, the JVM prints a stack trace and abruptly terminates the program!</li>
+            <li>If unhandled all the way to <code>main()</code>, the JVM prints a stack trace and abruptly terminates
+              the program!</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> Uncaught exceptions propagate backward up the method invocation stack until an enclosing catch block intercepts them or JVM terminates.
+            <b>💡 1-Liner:</b> Uncaught exceptions propagate backward up the method invocation stack until an enclosing
+            catch block intercepts them or JVM terminates.
           </div>
           <button class="card-btn" onclick="openModal('exception_propagation')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 4: 'throw' vs 'throws' -->
-        <div class="card" data-topic="mod5" data-keywords="throw vs throws keyword difference signature trigger checked">
+        <div class="card" data-topic="mod5"
+          data-keywords="throw vs throws keyword difference signature trigger checked">
           <div class="card-top">
             <h3 class="card-title">throw vs throws</h3>
             <span class="badge badge-exam">High Yield</span>
@@ -2020,13 +2574,33 @@
           <div class="table-container">
             <table>
               <thead>
-                <tr><th>Aspect</th><th><code>throw</code></th><th><code>throws</code></th></tr>
+                <tr>
+                  <th>Aspect</th>
+                  <th><code>throw</code></th>
+                  <th><code>throws</code></th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td>Location</td><td>Inside method body</td><td>In method signature</td></tr>
-                <tr><td>Purpose</td><td>Actually triggers an exception instance</td><td>Declares that method might propagate checked exception</td></tr>
-                <tr><td>Syntax</td><td><code>throw new MyException();</code></td><td><code>void test() throws IOException</code></td></tr>
-                <tr><td>Count</td><td>Followed by 1 exception object</td><td>Can list multiple classes separated by comma</td></tr>
+                <tr>
+                  <td>Location</td>
+                  <td>Inside method body</td>
+                  <td>In method signature</td>
+                </tr>
+                <tr>
+                  <td>Purpose</td>
+                  <td>Actually triggers an exception instance</td>
+                  <td>Declares that method might propagate checked exception</td>
+                </tr>
+                <tr>
+                  <td>Syntax</td>
+                  <td><code>throw new MyException();</code></td>
+                  <td><code>void test() throws IOException</code></td>
+                </tr>
+                <tr>
+                  <td>Count</td>
+                  <td>Followed by 1 exception object</td>
+                  <td>Can list multiple classes separated by comma</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -2034,15 +2608,18 @@
         </div>
 
         <!-- Card 5: Custom Exceptions & Slide Problem -->
-        <div class="card" data-topic="mod5" data-keywords="custom exception creating user defined missingdata nullpointerexception string length">
+        <div class="card" data-topic="mod5"
+          data-keywords="custom exception creating user defined missingdata nullpointerexception string length">
           <div class="card-top">
             <h3 class="card-title">Custom Exceptions & Null Demo</h3>
             <span class="badge badge-exam">Slide Coding Problem</span>
           </div>
           <ul class="card-bullets">
-            <li><b>Custom Exception:</b> Create by extending <code>Exception</code> (checked) or <code>RuntimeException</code> (unchecked).</li>
+            <li><b>Custom Exception:</b> Create by extending <code>Exception</code> (checked) or
+              <code>RuntimeException</code> (unchecked).</li>
             <li>Provide standard constructors calling <code>super()</code> and <code>super(message)</code>.</li>
-            <li><b>Slide Problem:</b> Create String variable set to <code>null</code>, call <code>length()</code>, catch <code>NullPointerException</code>, print custom error message.</li>
+            <li><b>Slide Problem:</b> Create String variable set to <code>null</code>, call <code>length()</code>, catch
+              <code>NullPointerException</code>, print custom error message.</li>
           </ul>
           <button class="card-btn" onclick="openModal('custom_exception_null')">🚀 View Solution & Test</button>
         </div>
@@ -4450,7 +5027,7 @@ Caught Custom Exception: User is under-age: 15`,
     function highlightJava(code) {
       const parts = [];
       let lastIndex = 0;
-      
+
       const tokenRegex = /(\/\*[\s\S]*?\*\/)|(\/\/[^\r\n]*)|("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')|(@[a-zA-Z_]\w*)|(\b(?:return|if|else|try|catch|finally|throw|throws|new|super|this|for|while|switch|case|break|default|continue|do)\b)|(\b(?:public|protected|private|static|final|abstract|class|interface|extends|implements|package|import|void|synchronized|volatile|transient|native|strictfp)\b)|(\b(?:int|double|boolean|char|float|long|short|byte|var)\b)|(\b(?:true|false|null)\b)|(\b\d+(?:\.\d+)?(?:[fFdDlL])?\b)|(\b[A-Z][a-zA-Z0-9_$]*\b)|(\b[a-zA-Z_$][a-zA-Z0-9_$]*\b)(?=\s*\()/g;
 
       let match;
@@ -4458,9 +5035,9 @@ Caught Custom Exception: User is under-age: 15`,
         if (match.index > lastIndex) {
           parts.push(escapeHtml(code.substring(lastIndex, match.index)));
         }
-        
+
         const [fullMatch, commentBlock, commentLine, stringLit, annotation, flowKw, declKw, primType, litBoolNull, numberLit, typeName, methodName] = match;
-        
+
         if (commentBlock || commentLine) {
           parts.push('<span class="hl-comment">' + escapeHtml(fullMatch) + '</span>');
         } else if (stringLit) {
@@ -4484,14 +5061,14 @@ Caught Custom Exception: User is under-age: 15`,
         } else {
           parts.push(escapeHtml(fullMatch));
         }
-        
+
         lastIndex = tokenRegex.lastIndex;
       }
-      
+
       if (lastIndex < code.length) {
         parts.push(escapeHtml(code.substring(lastIndex)));
       }
-      
+
       return parts.join('');
     }
 
@@ -4600,7 +5177,8 @@ Caught Custom Exception: User is under-age: 15`,
           Complete visual hierarchy with interactive node inspection, time complexities &amp; method explorer.
         </div>
         <div style="flex:1; min-height:72vh; width:100%; border-radius:8px; overflow:hidden; border:1px solid #334155; margin-top:8px;">
-          <iframe src="./Java%20Collections%20Framework%20%E2%80%94%20Flowchart.html" style="width:100%; height:100%; min-height:72vh; border:none; background:#0f1117;" title="Java Collections Framework Flowchart"></iframe>
+         
+          <iframe src="https://htmlpreview.github.io/?https://raw.githubusercontent.com/arpitsharma2028/JavaBasics/master/Java%20Collections%20Framework%20%E2%80%94%20Flowchart.html" style="width:100%; height:100%; min-height:72vh; border:none; background:#0f1117;" title="Java Collections Framework Flowchart"></iframe>
         </div>
       `;
 
@@ -4624,7 +5202,7 @@ Caught Custom Exception: User is under-age: 15`,
     }
 
     // Keyboard support: Escape closes modal
-    document.addEventListener("keydown", function(e) {
+    document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
         closeModal();
       }
@@ -4697,4 +5275,5 @@ Caught Custom Exception: User is under-age: 15`,
     }
   </script>
 </body>
+
 </html>
