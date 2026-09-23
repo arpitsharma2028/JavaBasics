@@ -395,12 +395,14 @@
       padding: 16px;
       opacity: 0;
       visibility: hidden;
+      pointer-events: none;
       transition: opacity 0.2s ease, visibility 0.2s ease;
     }
 
     .modal-overlay.active {
       opacity: 1;
       visibility: visible;
+      pointer-events: auto;
     }
 
     .modal {
@@ -622,6 +624,126 @@
       margin-bottom: 4px;
     }
 
+    /* Flowchart & Analogy Enhancements */
+    .flowchart-banner {
+      background: linear-gradient(135deg, rgba(30, 27, 75, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid #4f46e5;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .flowchart-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .flowchart-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #e0e7ff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .external-flowchart-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #4f46e5;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      border: 1px solid #6366f1;
+    }
+
+    .external-flowchart-btn:hover {
+      background: #4338ca;
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .flowchart-diagram-wrap {
+      overflow-x: auto;
+      background: #10121a;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 18px 8px;
+    }
+
+    svg#hier {
+      display: block;
+      margin: 0 auto;
+      min-width: 760px;
+    }
+
+    .hlabel {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 13px;
+      font-weight: 600;
+      fill: #0b0c12;
+    }
+
+    .hcap {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px;
+      fill: #94a3b8;
+    }
+
+    .flowchart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      align-items: center;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-box {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    /* Simple Everyday Analogy Box */
+    .simple-analogy {
+      background: rgba(34, 197, 94, 0.08);
+      border-left: 3px solid #22c55e;
+      padding: 8px 12px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.82rem;
+      color: #bbf7d0;
+      margin-top: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.45;
+    }
+
+    .simple-analogy b {
+      color: #4ade80;
+      white-space: nowrap;
+    }
+
     /* Footer Navigation for Mobile */
     .mobile-quick-nav {
       display: none;
@@ -676,7 +798,7 @@
         </div>
         <div class="stats-pills">
           <span class="pill">Modules: <b>5</b></span>
-          <span class="pill">Interactive Examples: <b>42</b></span>
+          <span class="pill">Interactive Examples: <b>47</b></span>
           <span class="pill">Mode: <b>Exam Prep</b></span>
         </div>
       </div>
@@ -1187,38 +1309,140 @@
     <!-- ==================== MODULE 4 ==================== -->
     <section class="module-section" id="mod4">
       <div class="section-header">
-        <span class="section-tag">PDF 4</span>
+        <span class="section-tag">PDF 4 + Flowchart Hub</span>
         <h2 class="section-title">Collections Framework, Generics & Utility Classes</h2>
+      </div>
+
+      <!-- Flowchart Hub Banner with Direct Interactive Flowchart & External GitHub Link -->
+      <div class="flowchart-banner">
+        <div class="flowchart-top">
+          <div class="flowchart-title">
+            <span>🗺️ Java Collections Framework Flowchart & Architecture Hub</span>
+            <span class="badge badge-core">Visual Architecture</span>
+          </div>
+          <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/arpitsharma2028/JavaBasics/master/Java%20Collections%20Framework%20%E2%80%94%20Flowchart.html" target="_blank" rel="noopener noreferrer" class="external-flowchart-btn">
+            🌐 Open Interactive Flowchart (GitHub Live Preview) ↗
+          </a>
+        </div>
+
+        <p style="font-size:0.88rem; color:#c7d2fe; margin:0;">
+          A complete visual map of every interface (<span style="color:#5ab0ff; font-weight:bold;">blue</span>) and implementing class (<span style="color:#6fd39a; font-weight:bold;">green</span>) in the Java Collections Framework. Solid lines indicate <code>extends</code>, dashed lines indicate <code>implements</code>.
+        </p>
+
+        <!-- Embedded Interactive SVG Hierarchy -->
+        <div class="flowchart-diagram-wrap">
+          <svg id="hier" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#5b5f78" stroke-width="1.6" fill="none">
+              <path d="M170 65 L170 95" marker-end="url(#arr)"/>
+              <path d="M170 135 L170 165" marker-end="url(#arr)"/>
+              <path d="M170 200 L170 215 L90 215 L90 245" marker-end="url(#arr)"/>
+              <path d="M170 200 L170 215 L400 215 L400 245" marker-end="url(#arr)"/>
+              <path d="M170 200 L170 215 L720 215 L720 245" marker-end="url(#arr)"/>
+              <!-- List branch -->
+              <path d="M90 280 L90 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+              <path d="M90 335 L90 360" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+              <path d="M90 390 L90 415" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+              <path d="M90 445 L90 460" marker-end="url(#arr)"/>
+              <!-- Queue branch -->
+              <path d="M330 260 L295 260 L295 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+              <path d="M400 280 L400 305" marker-end="url(#arr)"/>
+              <path d="M400 335 L400 360" marker-end="url(#arr)"/>
+              <path d="M400 390 L400 415" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+              <!-- Set branch -->
+              <path d="M655 260 L620 260 L620 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+              <path d="M775 260 L810 260 L810 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+              <path d="M720 280 L720 360" marker-end="url(#arr)"/>
+              <path d="M720 390 L720 415" marker-end="url(#arr)"/>
+            </g>
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5b5f78"/></marker>
+              <marker id="arrD" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6fd39a"/></marker>
+            </defs>
+            <!-- Iterable / Collection -->
+            <g>
+              <rect x="110" y="30" width="120" height="34" rx="7" fill="#5ab0ff"/>
+              <text x="170" y="52" text-anchor="middle" class="hlabel">Iterable</text>
+              <rect x="110" y="100" width="120" height="34" rx="7" fill="#5ab0ff"/>
+              <text x="170" y="122" text-anchor="middle" class="hlabel">Collection</text>
+            </g>
+            <!-- List / Queue / Set -->
+            <rect x="30" y="165" width="120" height="34" rx="7" fill="#5ab0ff"/>
+            <text x="90" y="187" text-anchor="middle" class="hlabel">List</text>
+            <rect x="340" y="165" width="120" height="34" rx="7" fill="#5ab0ff"/>
+            <text x="400" y="187" text-anchor="middle" class="hlabel">Queue</text>
+            <rect x="660" y="165" width="120" height="34" rx="7" fill="#5ab0ff"/>
+            <text x="720" y="187" text-anchor="middle" class="hlabel">Set</text>
+            <!-- List branch -->
+            <rect x="30" y="245" width="120" height="32" rx="7" fill="#6fd39a"/>
+            <text x="90" y="266" text-anchor="middle" class="hlabel">ArrayList</text>
+            <rect x="30" y="305" width="120" height="32" rx="7" fill="#6fd39a"/>
+            <text x="90" y="326" text-anchor="middle" class="hlabel">LinkedList</text>
+            <rect x="30" y="360" width="120" height="32" rx="7" fill="#6fd39a"/>
+            <text x="90" y="381" text-anchor="middle" class="hlabel">Vector</text>
+            <rect x="30" y="415" width="120" height="32" rx="7" fill="#6fd39a"/>
+            <text x="90" y="436" text-anchor="middle" class="hlabel">Stack</text>
+            <!-- Queue branch -->
+            <rect x="330" y="245" width="140" height="32" rx="7" fill="#6fd39a"/>
+            <text x="400" y="266" text-anchor="middle" class="hlabel">PriorityQueue</text>
+            <rect x="330" y="305" width="140" height="32" rx="7" fill="#5ab0ff"/>
+            <text x="400" y="326" text-anchor="middle" class="hlabel">Deque</text>
+            <rect x="330" y="360" width="140" height="32" rx="7" fill="#6fd39a"/>
+            <text x="400" y="381" text-anchor="middle" class="hlabel">ArrayDeque</text>
+            <!-- Set branch -->
+            <rect x="655" y="245" width="130" height="32" rx="7" fill="#6fd39a"/>
+            <text x="720" y="266" text-anchor="middle" class="hlabel">HashSet</text>
+            <rect x="545" y="305" width="150" height="32" rx="7" fill="#6fd39a"/>
+            <text x="620" y="326" text-anchor="middle" class="hlabel">LinkedHashSet</text>
+            <rect x="745" y="305" width="140" height="32" rx="7" fill="#5ab0ff"/>
+            <text x="815" y="326" text-anchor="middle" class="hlabel">SortedSet</text>
+            <rect x="655" y="415" width="130" height="32" rx="7" fill="#6fd39a"/>
+            <text x="720" y="436" text-anchor="middle" class="hlabel">TreeSet</text>
+          </svg>
+        </div>
+
+        <div class="flowchart-legend">
+          <span class="legend-item"><span class="legend-box" style="background:#5ab0ff"></span><b>Interface</b> (Contract)</span>
+          <span class="legend-item"><span class="legend-box" style="background:#6fd39a"></span><b>Class</b> (Implementation)</span>
+          <span class="legend-item"><span style="color:#6fd39a; font-weight:bold;">- - - ▶</span> Implements</span>
+          <span class="legend-item"><span style="color:#5b5f78; font-weight:bold;">─── ▶</span> Extends</span>
+          <span class="legend-item" style="margin-left:auto; color:#a5b4fc;">💡 <b>Note:</b> <code>Map</code> has its own separate hierarchy because it stores Key-Value pairs!</span>
+        </div>
       </div>
 
       <div class="card-grid">
 
-        <!-- Card 1: Collection Framework Hierarchy -->
-        <div class="card" data-topic="mod4" data-keywords="collections framework hierarchy list set queue deque map arraylist linkedlist hashset hashmap">
+        <!-- Card 1: What is a Framework & Collection? -->
+        <div class="card" data-topic="mod4" data-keywords="what is framework collection architecture group iterable list set queue map">
           <div class="card-top">
-            <h3 class="card-title">Collection Hierarchy & Types</h3>
-            <span class="badge badge-core">Architecture</span>
+            <h3 class="card-title">What is a Framework & Collection?</h3>
+            <span class="badge badge-core">Core Definition</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> A framework is like a pre-built house frame with plumbing and electrical wires already in place — you don't rebuild the foundation, you just furnish it!
           </div>
           <ul class="card-bullets">
-            <li><b>Hierarchy:</b> <code>Iterable → Collection → (List, Queue, Set)</code>. Map is a separate hierarchy!</li>
-            <li><b>List:</b> Ordered, allows duplicates, index-based access (<code>ArrayList</code>, <code>LinkedList</code>, <code>Vector</code>, <code>Stack</code>).</li>
-            <li><b>Set:</b> Unordered, <b>unique elements only</b> (<code>HashSet</code>, <code>TreeSet</code>).</li>
-            <li><b>Map:</b> Key-Value pairs, <b>unique keys</b>, duplicate values allowed (<code>HashMap</code>, <code>TreeMap</code>).</li>
+            <li><b>Framework:</b> Ready-made architecture of classes & interfaces performing standardized tasks.</li>
+            <li><b>Java Collection:</b> A single unit that groups multiple objects together.</li>
+            <li>Handles all basic data operations: Searching, Sorting, Insertion, Manipulation, Deletion.</li>
           </ul>
-          <button class="card-btn" onclick="openModal('collection_hierarchy_demo')">🚀 View Hierarchy Chart</button>
+          <button class="card-btn" onclick="openModal('collection_hierarchy_demo')">🚀 View Architecture Code</button>
         </div>
 
         <!-- Card 2: ArrayList Deep Dive -->
         <div class="card" data-topic="mod4" data-keywords="arraylist resizable dynamic array get set add remove contains toarray foreach sort">
           <div class="card-top">
-            <h3 class="card-title">ArrayList (Dynamic Array)</h3>
+            <h3 class="card-title">ArrayList (Dynamic Resizable Array)</h3>
             <span class="badge badge-core">List Interface</span>
           </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Like a paper notepad with numbered lines. Looking up line #5 is instant, but erasing line #2 requires you to erase and slide lines 3, 4, 5 up by hand.
+          </div>
           <ul class="card-bullets">
-            <li>Dynamic resizable array; fast $O(1)$ random access by index via <code>get(i)</code>.</li>
-            <li>Slower $O(n)$ insertion/deletion in the middle (requires shifting elements).</li>
-            <li><b>Key Methods:</b> <code>add(e)</code>, <code>add(index, e)</code>, <code>get(i)</code>, <code>set(i, val)</code>, <code>remove(i)</code>, <code>size()</code>, <code>contains(e)</code>, <code>isEmpty()</code>, <code>clear()</code>, <code>indexOf()</code>, <code>toArray()</code>, <code>sort(null)</code>.</li>
-            <li>Bulk ops: <code>addAll()</code>, <code>removeAll()</code>, <code>retainAll()</code>.</li>
+            <li>Grows and shrinks dynamically (unlike fixed-size arrays).</li>
+            <li>Maintains <b>insertion order</b>, allows <b>duplicates</b>, allows <code>null</code>.</li>
+            <li><b>Super Fast $O(1)$ random access</b> by index: <code>list.get(i)</code>.</li>
+            <li>Slower $O(n)$ insertion/deletion in middle due to element shifting.</li>
+            <li><b>Common Methods:</b> <code>add()</code>, <code>get()</code>, <code>set()</code>, <code>remove()</code>, <code>size()</code>, <code>contains()</code>, <code>isEmpty()</code>, <code>clear()</code>, <code>toArray()</code>.</li>
           </ul>
           <button class="card-btn" onclick="openModal('arraylist_methods')">🚀 View Code & Output</button>
         </div>
@@ -1229,13 +1453,16 @@
             <h3 class="card-title">LinkedList (List, Queue & Stack)</h3>
             <span class="badge badge-hard">High Yield</span>
           </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Like a train of coaches hooked together. Adding a new train car at the front or back is instant, but finding car #40 requires walking through each car one by one.
+          </div>
           <ul class="card-bullets">
             <li>Doubly linked list of nodes; implements both <code>List</code> and <code>Deque</code>.</li>
-            <li>Fast $O(1)$ insertions/deletions at ends; slower $O(n)$ random index access.</li>
-            <li><b>As a Queue (FIFO - First In First Out):</b>
-              <br>• <code>offer(e)</code> (add to tail) | <code>peek()</code> (view head) | <code>poll()</code> (remove head).</li>
-            <li><b>As a Stack (LIFO - Last In First Out):</b>
-              <br>• <code>push(e)</code> (add to top) | <code>pop()</code> (remove from top).</li>
+            <li>Fast $O(1)$ insertion/deletion at heads/ends; slower $O(n)$ index search.</li>
+            <li><b>As a FIFO Queue (First In, First Out):</b>
+              <br>• <code>offer(e)</code>: add to end | <code>peek()</code>: view front | <code>poll()</code>: remove front.</li>
+            <li><b>As a LIFO Stack (Last In, First Out):</b>
+              <br>• <code>push(e)</code>: push onto top | <code>pop()</code>: pop off top.</li>
           </ul>
           <div class="hard-expl">
             <b>💡 1-Liner:</b> LinkedList implements Deque, allowing it to seamlessly act as either a FIFO Queue (offer/poll) or a LIFO Stack (push/pop).
@@ -1243,7 +1470,40 @@
           <button class="card-btn" onclick="openModal('linkedlist_queue_stack')">🚀 View Code & Output</button>
         </div>
 
-        <!-- Card 4: ArrayList vs LinkedList Table -->
+        <!-- Card 4: Vector & Stack (Legacy Synchronized Lists) -->
+        <div class="card" data-topic="mod4" data-keywords="vector stack synchronized thread safe lifo legacy list">
+          <div class="card-top">
+            <h3 class="card-title">Vector & Stack (Legacy Lists)</h3>
+            <span class="badge badge-core">Thread-Safe</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Vector is like an ArrayList with a security turnstile on every method (synchronized). Stack is a stack of dinner plates (top plate comes off first).
+          </div>
+          <ul class="card-bullets">
+            <li><b>Vector:</b> Similar to ArrayList, but all methods are <code>synchronized</code> (thread-safe, but slower).</li>
+            <li><b>Stack:</b> Extends Vector to provide LIFO operations: <code>push(e)</code>, <code>pop()</code>, <code>peek()</code>, <code>empty()</code>.</li>
+            <li>Modern Java replaces Stack with <code>ArrayDeque</code> for single-threaded speed.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('vector_stack_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 5: Queue & Deque (PriorityQueue & ArrayDeque) -->
+        <div class="card" data-topic="mod4" data-keywords="priorityqueue arraydeque queue deque heap natural order fifo">
+          <div class="card-top">
+            <h3 class="card-title">PriorityQueue & ArrayDeque</h3>
+            <span class="badge badge-core">Queue & Deque</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> PriorityQueue is like an emergency triage room: the highest priority patient is treated first regardless of arrival time. ArrayDeque is a fast 2-way tunnel.
+          </div>
+          <ul class="card-bullets">
+            <li><b>PriorityQueue:</b> Elements ordered by natural priority (min-heap) or custom Comparator. <code>poll()</code> always retrieves smallest/highest-priority item.</li>
+            <li><b>ArrayDeque:</b> Resizable array implementing Deque. Faster than Stack and LinkedList when used as stack/queue.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('queue_deque_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 6: ArrayList vs LinkedList Table -->
         <div class="card" data-topic="mod4" data-keywords="arraylist vs linkedlist difference table speed memory storage">
           <div class="card-top">
             <h3 class="card-title">ArrayList vs LinkedList</h3>
@@ -1266,11 +1526,14 @@
           <button class="card-btn" onclick="openModal('list_comparison_modal')">🚀 View List Insights</button>
         </div>
 
-        <!-- Card 5: HashSet & Set Operations -->
+        <!-- Card 7: HashSet & Set Operations -->
         <div class="card" data-topic="mod4" data-keywords="hashset set union intersection difference addall retainall removeall containsall removeif">
           <div class="card-top">
             <h3 class="card-title">HashSet & Set Algebra</h3>
             <span class="badge badge-core">Unique Elements</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Like a bag of unique collectible marbles: if you drop in a marble you already own, the bag silently ignores it. No order is promised.
           </div>
           <ul class="card-bullets">
             <li>Stores <b>unique elements only</b> (duplicates rejected without throwing error).</li>
@@ -1285,11 +1548,32 @@
           <button class="card-btn" onclick="openModal('hashset_operations')">🚀 View Code & Output</button>
         </div>
 
-        <!-- Card 6: HashMap Key-Value Operations -->
+        <!-- Card 8: SortedSet & TreeSet -->
+        <div class="card" data-topic="mod4" data-keywords="sortedset treeset red black tree sorted unique elements comparable comparator">
+          <div class="card-top">
+            <h3 class="card-title">SortedSet & TreeSet</h3>
+            <span class="badge badge-core">Sorted Set</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Like an automated alphabetical bookshelf: any book you place in is automatically slotted into sorted alphabetical order.
+          </div>
+          <ul class="card-bullets">
+            <li>Stores unique elements in <b>ascending natural sorted order</b> (or custom Comparator).</li>
+            <li>Implemented using a <b>Red-Black self-balancing binary search tree</b>.</li>
+            <li>$O(\log n)$ time for search, insertion, and deletion.</li>
+            <li>Does NOT allow <code>null</code> values (throws <code>NullPointerException</code> on comparison).</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('treeset_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 9: HashMap Key-Value Operations -->
         <div class="card" data-topic="mod4" data-keywords="hashmap map key value put get remove containskey containsvalue keyset entryset getordefault putifabsent">
           <div class="card-top">
             <h3 class="card-title">HashMap (Key-Value Storage)</h3>
             <span class="badge badge-core">Map Interface</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Like a hotel key-card rack: key #204 opens Room 204 instantly. Keys must be unique, but two different rooms can have identical TVs inside!
           </div>
           <ul class="card-bullets">
             <li>Stores key-value pairs; <b>Keys must be unique</b> (values can duplicate).</li>
@@ -1301,17 +1585,43 @@
           <button class="card-btn" onclick="openModal('hashmap_methods')">🚀 View Code & Output</button>
         </div>
 
-        <!-- Card 7: Iterator & Safe Removal -->
+        <!-- Card 10: HashSet vs HashMap -->
+        <div class="card" data-topic="mod4" data-keywords="hashset vs hashmap comparison table keys values add put">
+          <div class="card-top">
+            <h3 class="card-title">HashSet vs HashMap</h3>
+            <span class="badge badge-exam">Exam Table</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>HashSet</th><th>HashMap</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Stores values only</td><td>Stores key-value pairs</td></tr>
+                <tr><td>Duplicate values not allowed</td><td>Duplicate keys not allowed (values can duplicate)</td></tr>
+                <tr><td>Uses <code>add()</code></td><td>Uses <code>put()</code></td></tr>
+                <tr><td>Retrieve by value existence</td><td>Retrieve by key</td></tr>
+                <tr><td>Allows 1 null value</td><td>Allows 1 null key & multiple null values</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="card-btn" onclick="openModal('hashmap_methods')">🚀 View Map & Set Demo</button>
+        </div>
+
+        <!-- Card 11: Iterator & Safe Removal -->
         <div class="card" data-topic="mod4" data-keywords="iterator hasnext next remove concurrentmodificationexception traverse list set map">
           <div class="card-top">
             <h3 class="card-title">Iterator & Safe Deletion</h3>
             <span class="badge badge-hard">Exam Trap</span>
           </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Like a laser pointer guiding you through a checklist one by one. Calling it.remove() crosses off an item safely without causing you to lose your spot.
+          </div>
           <ul class="card-bullets">
             <li>Used to step through collections: <code>hasNext()</code> and <code>next()</code>.</li>
             <li><b>Why use Iterator instead of for-each?</b> Modifying a collection inside a regular for-each loop throws <code>ConcurrentModificationException</code>!</li>
             <li><code>it.remove()</code> is the <b>only safe way</b> to remove elements while actively iterating.</li>
-            <li>Can traverse Lists, Sets, and Map key sets / entry sets.</li>
+            <li>Works across all: Lists, Sets, and Map key sets / entry sets.</li>
           </ul>
           <div class="hard-expl">
             <b>💡 1-Liner:</b> Always use it.remove() during iteration to avoid ConcurrentModificationException caused by modifying the backing collection during loop execution.
@@ -1319,11 +1629,14 @@
           <button class="card-btn" onclick="openModal('iterator_demo')">🚀 View Code & Output</button>
         </div>
 
-        <!-- Card 8: Comparator & Custom Sorting -->
+        <!-- Card 12: Comparator & Custom Sorting -->
         <div class="card" data-topic="mod4" data-keywords="comparator compare lambda naturalorder reverseorder reversed nullsfirst nullslast collections sort">
           <div class="card-top">
             <h3 class="card-title">Comparator & Custom Sorting</h3>
             <span class="badge badge-core">java.util.Comparator</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> A custom referee with a rulebook: you can tell the referee to rank students by marks, rank them by age, or send all missing scores (nulls) to the very back!
           </div>
           <ul class="card-bullets">
             <li>Defines custom sorting logic for objects using lambdas: <code>(a, b) -> a - b</code>.</li>
@@ -1337,28 +1650,54 @@
           <button class="card-btn" onclick="openModal('comparator_demo')">🚀 View Code & Output</button>
         </div>
 
-        <!-- Card 9: Generics & Type Safety -->
+        <!-- Card 13: Generics & Type Safety -->
         <div class="card" data-topic="mod4" data-keywords="generics type safety classcastexception compile time type checking raw types">
           <div class="card-top">
             <h3 class="card-title">Generics & Type Safety</h3>
             <span class="badge badge-core">Type Safety</span>
           </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Like a labeled medicine bottle: 'Aspirin Only'. The pharmacist stops you from accidentally putting in cough syrup before you even leave the pharmacy.
+          </div>
           <ul class="card-bullets">
             <li><b>Without Generics (Raw Type):</b> <code>ArrayList list = new ArrayList();</code> can hold mixed types, leading to dangerous runtime <code>ClassCastException</code>.</li>
             <li><b>With Generics:</b> <code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();</code> enforces type check at compile-time.</li>
-            <li><b>Advantages:</b>
-              <br>1. Catches bugs at compile time.
-              <br>2. Eliminates manual explicit casting (<code>(String)list.get(0)</code>).
-              <br>3. Cleaner and safer code.</li>
+            <li><b>Advantages:</b> Catches bugs at compile time; eliminates manual explicit casting; cleaner and safer code.</li>
           </ul>
           <button class="card-btn" onclick="openModal('generics_demo')">🚀 View Code & Output</button>
         </div>
 
-        <!-- Card 10: Utility Classes (Objects, Optional, Math, Time) -->
+        <!-- Card 14: Master Collections Comparison Table -->
+        <div class="card" data-topic="mod4" data-keywords="full comparison table collections arraylist linkedlist hashset hashmap treeset">
+          <div class="card-top">
+            <h3 class="card-title">Full Collections Master Table</h3>
+            <span class="badge badge-exam">Quick Cheat Sheet</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>Collection</th><th>Ordered</th><th>Duplicate</th><th>Null</th><th>Access Speed</th><th>Best Use</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>ArrayList</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td>Fast $O(1)$</td><td>Searching & random access</td></tr>
+                <tr><td><code>LinkedList</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td>Moderate $O(n)$</td><td>Frequent insert/delete</td></tr>
+                <tr><td><code>HashSet</code></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td><td>One null</td><td>Fast $O(1)$</td><td>Unique elements</td></tr>
+                <tr><td><code>TreeSet</code></td><td><span class="yes-pill">Sorted</span></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td><td>$O(\log n)$</td><td>Unique sorted elements</td></tr>
+                <tr><td><code>HashMap</code></td><td><span class="no-pill">No</span></td><td>Keys: No, Vals: Yes</td><td>1 null key</td><td>Fast $O(1)$</td><td>Key-value storage</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="card-btn" onclick="openModal('full_collections_cmp_modal')">🚀 View Master Summary</button>
+        </div>
+
+        <!-- Card 15: Core Java Utility Classes -->
         <div class="card" data-topic="mod4" data-keywords="utility classes objects optional math localdate localtime localdatetime nullpointerexception">
           <div class="card-top">
             <h3 class="card-title">Core Java Utility Classes</h3>
             <span class="badge badge-core">java.util & time</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Objects & Optional are your safety helmets against NullPointerExceptions; Math is a static calculator; java.time is a modern immutable clock.
           </div>
           <ul class="card-bullets">
             <li><b><code>Objects</code>:</b> Null-safe operations: <code>Objects.equals(a, b)</code>, <code>isNull()</code>, <code>nonNull()</code>, <code>toString(obj, default)</code>.</li>
@@ -1367,6 +1706,30 @@
             <li><b><code>java.time</code>:</b> <code>LocalDate</code> (Date only), <code>LocalTime</code> (Time only), <code>LocalDateTime</code> (Both). Immutable & thread-safe!</li>
           </ul>
           <button class="card-btn" onclick="openModal('utility_classes_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 16: Master Utility Classes Table -->
+        <div class="card" data-topic="mod4" data-keywords="utility classes table objects optional math localdate localtime localdatetime comparison">
+          <div class="card-top">
+            <h3 class="card-title">Utility Classes Comparison Table</h3>
+            <span class="badge badge-exam">Quick Cheat Sheet</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>Utility Class</th><th>Package</th><th>Purpose</th><th>Example Method</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>Objects</code></td><td><code>java.util</code></td><td>Null-safe object utilities</td><td><code>Objects.equals(a, b)</code></td></tr>
+                <tr><td><code>Optional</code></td><td><code>java.util</code></td><td>Handle null values safely</td><td><code>opt.orElse("Guest")</code></td></tr>
+                <tr><td><code>Math</code></td><td><code>java.lang</code></td><td>Mathematical calculations (all static)</td><td><code>Math.sqrt(49)</code></td></tr>
+                <tr><td><code>LocalDate</code></td><td><code>java.time</code></td><td>Date only (Year-Month-Day)</td><td><code>LocalDate.now()</code></td></tr>
+                <tr><td><code>LocalTime</code></td><td><code>java.time</code></td><td>Time only (Hour-Minute-Second)</td><td><code>LocalTime.now()</code></td></tr>
+                <tr><td><code>LocalDateTime</code></td><td><code>java.time</code></td><td>Date and Time together</td><td><code>LocalDateTime.now()</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="card-btn" onclick="openModal('full_utils_cmp_modal')">🚀 View Utilities Summary</button>
         </div>
 
       </div>
@@ -3010,6 +3373,195 @@ Next Week: 2026-09-30`,
         twist: "java.time classes (LocalDate, LocalTime) are immutable and thread-safe, making them vastly superior to legacy java.util.Date and Calendar which were mutable and prone to concurrency bugs."
       },
 
+      vector_stack_demo: {
+        title: "Vector & Stack (Legacy Thread-Safe Collections)",
+        badge: "java.util.Vector & Stack",
+        code: `import java.util.Vector;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        // --- 1. Vector (Synchronized Resizable Array) ---
+        Vector<String> vec = new Vector<>();
+        vec.add("Apple");
+        vec.add("Banana");
+        vec.add("Mango");
+        System.out.println("Vector elements: " + vec);
+        System.out.println("Capacity: " + vec.capacity());
+
+        // --- 2. Stack (LIFO: Last In, First Out) ---
+        Stack<Integer> stk = new Stack<>();
+        stk.push(10); // Pushes item onto top
+        stk.push(20);
+        stk.push(30);
+        System.out.println("Stack: " + stk);
+        System.out.println("Top item (peek): " + stk.peek()); // 30
+        System.out.println("Popped item: " + stk.pop());       // 30
+        System.out.println("Stack after pop: " + stk);
+        System.out.println("Search '10' position: " + stk.search(10));
+    }
+}`,
+        output: `Vector elements: [Apple, Banana, Mango]
+Capacity: 10
+Stack: [10, 20, 30]
+Top item (peek): 30
+Popped item: 30
+Stack after pop: [10, 20]
+Search '10' position: 2`,
+        twist: "Vector is synchronized (thread-safe) which introduces locking overhead. For single-threaded apps, prefer ArrayList. For LIFO stack operations, prefer ArrayDeque over legacy Stack."
+      },
+
+      queue_deque_demo: {
+        title: "PriorityQueue & ArrayDeque (Queue & Deque)",
+        badge: "Queue Hierarchy",
+        code: `import java.util.PriorityQueue;
+import java.util.ArrayDeque;
+
+public class Main {
+    public static void main(String[] args) {
+        // --- 1. PriorityQueue (Natural Min-Heap Ordering) ---
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.offer(40);
+        pq.offer(10);
+        pq.offer(25);
+        pq.offer(5);
+
+        System.out.println("PriorityQueue elements: " + pq);
+        System.out.println("poll() smallest first: " + pq.poll()); // 5
+        System.out.println("poll() next smallest: " + pq.poll());   // 10
+
+        // --- 2. ArrayDeque (Fast Double-Ended Queue) ---
+        ArrayDeque<String> ad = new ArrayDeque<>();
+        ad.addFirst("Middle");
+        ad.addFirst("Front");
+        ad.addLast("Back");
+        System.out.println("ArrayDeque: " + ad);
+        System.out.println("Removed First: " + ad.removeFirst());
+        System.out.println("Removed Last: " + ad.removeLast());
+        System.out.println("Remaining: " + ad);
+    }
+}`,
+        output: `PriorityQueue elements: [5, 10, 25, 40]
+poll() smallest first: 5
+poll() next smallest: 10
+ArrayDeque: [Front, Middle, Back]
+Removed First: Front
+Removed Last: Back
+Remaining: [Middle]`,
+        twist: "PriorityQueue does NOT guarantee order when printed directly with println; it only guarantees that poll() or peek() always retrieves the lowest (highest-priority) element in O(log n) time."
+      },
+
+      treeset_demo: {
+        title: "TreeSet & SortedSet (Red-Black Binary Tree)",
+        badge: "Sorted Set",
+        code: `import java.util.TreeSet;
+
+public class Main {
+    public static void main(String[] args) {
+        // TreeSet: Elements are automatically sorted in natural ascending order
+        TreeSet<Integer> set = new TreeSet<>();
+        set.add(45);
+        set.add(10);
+        set.add(30);
+        set.add(10); // Duplicate! Silently ignored
+        set.add(5);
+
+        System.out.println("TreeSet (Automatically Sorted): " + set);
+        System.out.println("Lowest element (first): " + set.first());
+        System.out.println("Highest element (last): " + set.last());
+        System.out.println("HeadSet (<30): " + set.headSet(30));
+        System.out.println("TailSet (>=30): " + set.tailSet(30));
+
+        // set.add(null); // RUNTIME ERROR: NullPointerException!
+    }
+}`,
+        output: `TreeSet (Automatically Sorted): [5, 10, 30, 45]
+Lowest element (first): 5
+Highest element (last): 45
+HeadSet (<30): [5, 10]
+TailSet (>=30): [30, 45]`,
+        twist: "TreeSet does NOT allow null values because it calls compareTo() to determine where to place elements in its Red-Black tree; calling compareTo() on null immediately throws NullPointerException!"
+      },
+
+      full_collections_cmp_modal: {
+        title: "Master Collections Framework Architectural Matrix",
+        badge: "Exam Master Sheet",
+        code: `/*
+========================================================================================
+JAVA COLLECTIONS FRAMEWORK: COMPLETE SELECTION GUIDE
+========================================================================================
+
+Collection   | Ordered? | Duplicates? | Null Values? | Time Complexity | Best Use Case
+─────────────┼──────────┼─────────────┼──────────────┼─────────────────┼─────────────────────────────
+ArrayList    | Yes      | Yes         | Yes          | O(1) Get / O(n) | Search & random access index
+LinkedList   | Yes      | Yes         | Yes          | O(n) Get / O(1)*| Frequent insert/delete at ends
+Vector       | Yes      | Yes         | Yes          | O(1) Get (Sync) | Legacy thread-safe lists
+Stack        | LIFO     | Yes         | Yes          | O(1) Push/Pop   | Legacy plate-stack algorithm
+PriorityQueue| Heap-ord | Yes         | No           | O(log n) Poll   | Priority task scheduling
+ArrayDeque   | FIFO/LIFO| Yes         | No           | O(1) Push/Pop   | Modern high-speed Stack/Queue
+HashSet      | No       | No          | 1 null       | O(1) Search/Add | Unique sets, membership test
+TreeSet      | Sorted   | No          | No           | O(log n)        | Unique items kept sorted
+HashMap      | No       | Keys: No    | 1 null key   | O(1) Key-Lookup | Fast key-value association
+TreeMap      | Key-Sort | Keys: No    | No null keys | O(log n)        | Key-value pairs kept sorted
+
+* LinkedList O(1) only when adding/removing at first or last node (via Deque interface).
+*/`,
+        output: `Cheat Sheet Rule:
+1. Need fast index access? -> ArrayList
+2. Need unique items? -> HashSet
+3. Need unique items in sorted order? -> TreeSet
+4. Need key-value dictionary? -> HashMap
+5. Need FIFO Queue or LIFO Stack? -> ArrayDeque`,
+        twist: "Always declare the variable with the general interface type rather than the concrete class (e.g. List<String> list = new ArrayList<>();). This allows swapping implementations seamlessly without rewriting business logic."
+      },
+
+      full_utils_cmp_modal: {
+        title: "Java Core Utility Classes Architectural Matrix",
+        badge: "Utility Cheatsheet",
+        code: `/*
+========================================================================================
+JAVA CORE UTILITY CLASSES: SUMMARY & BEST PRACTICES
+========================================================================================
+
+Utility Class       | Package     | Instantiation? | Key Superpower
+────────────────────┼─────────────┼────────────────┼────────────────────────────────────────
+Objects             | java.util   | Static methods | Null-safe equals, hash, toString, require
+Optional<T>         | java.util   | of / ofNullable| Explicit container eliminating NullPointer
+Math                | java.lang   | Static methods | High-performance primitive math functions
+LocalDate           | java.time   | .now() / .of() | Immutable date only (Year-Month-Day)
+LocalTime           | java.time   | .now() / .of() | Immutable time only (Hour-Minute-Second)
+LocalDateTime       | java.time   | .now() / .of() | Immutable timestamp (Date + Time)
+
+SAMPLE COMBINED USAGE:
+*/
+import java.util.Objects;
+import java.util.Optional;
+import java.time.LocalDate;
+
+public class Main {
+    public static void main(String[] args) {
+        String input = null;
+        
+        // 1. Safe toString fallback
+        System.out.println(Objects.toString(input, "N/A"));
+        
+        // 2. Safe Optional chain
+        Optional.ofNullable(input)
+                .ifPresentOrElse(
+                    val -> System.out.println("Length: " + val.length()),
+                    () -> System.out.println("Safe: Value is absent!")
+                );
+                
+        // 3. Immutable date
+        System.out.println("System Date: " + LocalDate.now());
+    }
+}`,
+        output: `N/A
+Safe: Value is absent!
+System Date: 2026-09-23`,
+        twist: "Never use Optional as a field type in classes or as a parameter to methods; Optional was specifically architected as a method return type to clearly communicate that a return value might be absent."
+      },
+
       exception_hierarchy_demo: {
         title: "Throwable Hierarchy & Checked vs Unchecked",
         badge: "Exception Architecture",
@@ -3376,41 +3928,46 @@ Caught Custom Exception: User is under-age: 15`,
       return div.innerHTML;
     }
 
+    let currentActiveTab = "all";
+
     // Tab Switching
     function switchTab(topic, btn) {
+      currentActiveTab = topic;
       document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-
-      const sections = document.querySelectorAll(".module-section");
-      sections.forEach(sec => {
-        if (topic === "all" || sec.id === topic) {
-          sec.style.display = "block";
-        } else {
-          sec.style.display = "none";
-        }
-      });
+      applyFilters();
     }
 
     // Real-time Search Filtering
     function filterCards() {
+      applyFilters();
+    }
+
+    function applyFilters() {
       const query = document.getElementById("searchInput").value.toLowerCase().trim();
       const cards = document.querySelectorAll(".card");
-      let visibleCount = 0;
+      const activeSections = {};
 
       cards.forEach(card => {
-        const text = (card.innerText + " " + (card.dataset.keywords || "")).toLowerCase();
-        if (text.includes(query)) {
+        const cardTopic = card.getAttribute("data-topic");
+        const matchesTab = (currentActiveTab === "all" || cardTopic === currentActiveTab);
+        const text = (card.textContent + " " + (card.getAttribute("data-keywords") || "")).toLowerCase();
+        const matchesSearch = (query === "" || text.includes(query));
+
+        if (matchesTab && matchesSearch) {
           card.style.display = "flex";
-          visibleCount++;
+          const sec = card.closest(".module-section");
+          if (sec) activeSections[sec.id] = true;
         } else {
           card.style.display = "none";
         }
       });
 
-      // Show/hide parent sections if all child cards are hidden
+      // Show or hide parent sections
       document.querySelectorAll(".module-section").forEach(sec => {
-        const visibleChild = sec.querySelectorAll('.card[style="display: flex;"]');
-        if (query.length > 0 && visibleChild.length === 0) {
+        if (currentActiveTab !== "all" && sec.id !== currentActiveTab) {
+          sec.style.display = "none";
+        } else if (query !== "" && !activeSections[sec.id]) {
           sec.style.display = "none";
         } else {
           sec.style.display = "block";
