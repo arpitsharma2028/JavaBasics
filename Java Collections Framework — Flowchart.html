@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Java Collections Framework — Flowchart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg-alt: #14161f;
+    --panel: #191c27;
+    --panel-2: #1f2230;
+    --border: #2a2e40;
+    --border-soft: #22253400;
+    --text: #e7e8f2;
+    --text-dim: #a3a6bd;
+    --text-faint: #6f7389;
+    --interface: #5ab0ff;
+    --interface-bg: rgba(90,176,255,0.10);
+    --class: #6fd39a;
+    --class-bg: rgba(111,211,154,0.10);
+    --method: #ffb454;
+    --method-bg: rgba(255,180,84,0.10);
+    --util: #c993ff;
+    --util-bg: rgba(201,147,255,0.10);
+    --danger: #ff8080;
+    --code-bg: #10121a;
+    --shadow: 0 8px 24px rgba(0,0,0,0.35);
+    --radius: 10px;
+    --sidebar-w: 250px;
+  }
+  :root:not([data-theme="light"]) { color-scheme: dark; }
+  :root[data-theme="light"] {
+    --bg: #f5f5f8;
+    --bg-alt: #ffffff;
+    --panel: #ffffff;
+    --panel-2: #f0f0f6;
+    --border: #dcdce6;
+    --text: #16171f;
+    --text-dim: #4b4d5e;
+    --text-faint: #7b7d8f;
+    --interface: #0f6fc7;
+    --interface-bg: rgba(15,111,199,0.08);
+    --class: #1a8f52;
+    --class-bg: rgba(26,143,82,0.08);
+    --method: #b06a00;
+    --method-bg: rgba(176,106,0,0.08);
+    --util: #7a2fc9;
+    --util-bg: rgba(122,47,201,0.08);
+    --code-bg: #0f1117;
+    --shadow: 0 8px 20px rgba(20,20,40,0.08);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f5f5f8; --bg-alt: #ffffff; --panel: #ffffff; --panel-2: #f0f0f6;
+      --border: #dcdce6; --text: #16171f; --text-dim: #4b4d5e; --text-faint: #7b7d8f;
+      --interface: #0f6fc7; --interface-bg: rgba(15,111,199,0.08);
+      --class: #1a8f52; --class-bg: rgba(26,143,82,0.08);
+      --method: #b06a00; --method-bg: rgba(176,106,0,0.08);
+      --util: #7a2fc9; --util-bg: rgba(122,47,201,0.08);
+      --code-bg: #0f1117; --shadow: 0 8px 20px rgba(20,20,40,0.08); color-scheme: light;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top,0px) + 76px); }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    -webkit-font-smoothing: antialiased;
+  }
+  code, pre, .mono { font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 40;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding-inline: 16px; height: 60px;
+  }
+  .topbar .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.01em; }
+  .brand .dot { width: 10px; height: 10px; border-radius: 3px; background: linear-gradient(135deg, var(--interface), var(--class)); flex: none; }
+  .topbar .brand span.sub { color: var(--text-faint); font-weight: 500; font-size: 0.8rem; }
+  .menu-btn {
+    display: none; background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+    border-radius: 8px; width: 38px; height: 38px; align-items: center; justify-content: center; cursor: pointer;
+  }
+  .theme-btn {
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+    border-radius: 8px; height: 38px; padding: 0 12px; cursor: pointer; font-size: 0.82rem; font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .topbar-right { display: flex; gap: 8px; align-items: center; }
+
+  /* ---------- Layout ---------- */
+  .shell { display: flex; max-width: 1320px; margin: 0 auto; }
+  nav.sidebar {
+    width: var(--sidebar-w); flex: none;
+    position: sticky; top: 60px; align-self: flex-start;
+    height: calc(100dvh - 60px - env(safe-area-inset-top,0px));
+    overflow-y: auto; padding: 22px 10px 40px 20px;
+    border-right: 1px solid var(--border);
+  }
+  nav.sidebar::-webkit-scrollbar { width: 6px; }
+  nav.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  nav.sidebar .group-label {
+    font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint);
+    margin: 18px 0 6px; font-weight: 700;
+  }
+  nav.sidebar .group-label:first-child { margin-top: 0; }
+  nav.sidebar a {
+    display: block; color: var(--text-dim); text-decoration: none; font-size: 0.87rem;
+    padding: 6px 10px; border-radius: 7px; margin-bottom: 1px; border-left: 2px solid transparent;
+  }
+  nav.sidebar a:hover { background: var(--panel-2); color: var(--text); }
+  nav.sidebar a.active { color: var(--interface); background: var(--interface-bg); border-left-color: var(--interface); font-weight: 600; }
+
+  main { flex: 1; min-width: 0; padding: 36px 28px 120px; max-width: 900px; }
+
+  /* ---------- Hero ---------- */
+  .hero { margin-bottom: 44px; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0 0 10px; letter-spacing: -0.02em; line-height: 1.15; }
+  .hero p { color: var(--text-dim); font-size: 1rem; max-width: 62ch; margin: 0 0 18px; line-height: 1.6; }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; }
+  .legend .chip {
+    display: flex; align-items: center; gap: 7px; font-size: 0.78rem; padding: 5px 10px 5px 8px;
+    border-radius: 20px; border: 1px solid var(--border); color: var(--text-dim);
+  }
+  .legend .sw { width: 9px; height: 9px; border-radius: 3px; }
+
+  /* ---------- Section ---------- */
+  section.cat { margin-bottom: 56px; scroll-margin-top: 76px; }
+  .cat-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+  .cat-head h2 { font-size: 1.5rem; margin: 0; letter-spacing: -0.01em; }
+  .tag {
+    font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 3px 8px; border-radius: 5px; line-height: 1.3;
+  }
+  .tag.iface { color: var(--interface); background: var(--interface-bg); }
+  .tag.cls { color: var(--class); background: var(--class-bg); }
+  .tag.util { color: var(--util); background: var(--util-bg); }
+  .pkgline { color: var(--text-faint); font-size: 0.82rem; margin: 2px 0 18px; }
+  .pkgline code { color: var(--text-dim); }
+
+  /* ---------- Flow blocks & connectors ---------- */
+  .flow { display: flex; flex-direction: column; }
+  .fnode {
+    background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px 18px; box-shadow: var(--shadow);
+  }
+  .fnode + .connector + .fnode { margin-top: 0; }
+  .connector { display: flex; align-items: center; padding-left: 26px; height: 22px; }
+  .connector .line { width: 2px; height: 100%; background: var(--border); position: relative; }
+  .connector .line::after {
+    content: ""; position: absolute; left: -4px; bottom: -1px; width: 0; height: 0;
+    border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid var(--border);
+  }
+  .fnode h4 {
+    margin: 0 0 10px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text-faint); font-weight: 700;
+  }
+  .fnode p { margin: 0; color: var(--text-dim); line-height: 1.6; font-size: 0.92rem; }
+  .fnode ul.feat { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 6px 16px; }
+  .fnode ul.feat li { font-size: 0.87rem; color: var(--text-dim); padding-left: 16px; position: relative; }
+  .fnode ul.feat li::before { content: "›"; position: absolute; left: 0; color: var(--class); font-weight: 700; }
+
+  /* ---------- Method table ---------- */
+  table.mtable { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  table.mtable th { text-align: left; color: var(--text-faint); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; padding: 0 10px 8px 0; border-bottom: 1px solid var(--border); }
+  table.mtable td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.mtable tr:last-child td { border-bottom: none; }
+  table.mtable td.mname code { color: var(--method); background: var(--method-bg); padding: 2px 6px; border-radius: 5px; font-size: 0.82rem; white-space: nowrap; }
+  table.mtable td.msyntax code { color: var(--text-dim); font-size: 0.82rem; }
+  table.mtable td.mdesc { color: var(--text-dim); }
+
+  /* ---------- Code blocks ---------- */
+  pre.code {
+    background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 14px 16px; overflow-x: auto; margin: 0; font-size: 0.82rem; line-height: 1.55;
+  }
+  pre.code code { color: #d8dae8; white-space: pre; }
+  .tk-kw { color: #ff8fc7; } .tk-type { color: #6fd39a; } .tk-str { color: #ffcb6b; }
+  .tk-cm { color: #6f7389; font-style: italic; } .tk-mth { color: #82c9ff; } .tk-num { color: #f78c6c; }
+
+  /* ---------- Comparison tables ---------- */
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+  table.cmp { width: 100%; border-collapse: collapse; min-width: 560px; font-size: 0.86rem; background: var(--panel); }
+  table.cmp th { background: var(--panel-2); text-align: left; padding: 10px 14px; font-weight: 700; color: var(--text); border-bottom: 1px solid var(--border); white-space: nowrap; }
+  table.cmp td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-dim); white-space: nowrap; }
+  table.cmp tr:last-child td { border-bottom: none; }
+  table.cmp td.rowhead, table.cmp th.rowhead { color: var(--text); font-weight: 600; }
+
+  /* ---------- Note box ---------- */
+  .note { border: 1px dashed var(--border); border-radius: var(--radius); padding: 12px 16px; color: var(--text-faint); font-size: 0.85rem; background: var(--panel-2); }
+  .note strong { color: var(--text-dim); }
+
+  /* ---------- Hierarchy diagram ---------- */
+  .diagram-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel); box-shadow: var(--shadow); padding: 18px 8px; }
+  svg#hier { display: block; margin: 0 auto; min-width: 760px; }
+  .hbox { rx: 7; }
+  .hlabel { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; fill: #0b0c12; }
+  .hcap { font-family: 'Inter', sans-serif; font-size: 11px; fill: var(--text-faint); }
+
+  /* ---------- Footer ---------- */
+  footer { color: var(--text-faint); font-size: 0.8rem; padding: 20px 0 10px; border-top: 1px solid var(--border); margin-top: 20px; }
+
+  .backtop {
+    position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom,0px)); z-index: 30;
+    width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border);
+    background: var(--panel); color: var(--text); box-shadow: var(--shadow); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .2s;
+  }
+  .backtop.show { opacity: 1; pointer-events: auto; }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 880px) {
+    .menu-btn { display: flex; }
+    nav.sidebar {
+      position: fixed; top: 60px; left: 0; height: calc(100dvh - 60px); width: 78vw; max-width: 300px;
+      background: var(--bg-alt); border-right: 1px solid var(--border);
+      transform: translateX(-100%); transition: transform .22s ease; z-index: 39; padding-bottom: 40px;
+    }
+    nav.sidebar.open { transform: translateX(0); box-shadow: 12px 0 30px rgba(0,0,0,0.3); }
+    .scrim { position: fixed; inset: 60px 0 0 0; background: rgba(0,0,0,0.4); z-index: 38; display: none; }
+    .scrim.show { display: block; }
+    main { padding: 26px 16px 100px; }
+    table.mtable { font-size: 0.8rem; }
+    .fnode { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <span class="dot"></span>
+    <span>Collections Framework<span class="sub">&nbsp;· Java</span></span>
+  </div>
+  <div class="topbar-right">
+    <button class="theme-btn" id="themeBtn">🌓 Theme</button>
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar">
+    <div class="group-label">Overview</div>
+    <a href="#overview">What is a Framework?</a>
+    <a href="#hierarchy">Hierarchy Diagram</a>
+
+    <div class="group-label">List Interface</div>
+    <a href="#list">List Interface</a>
+    <a href="#arraylist">ArrayList</a>
+    <a href="#linkedlist">LinkedList</a>
+    <a href="#list-cmp">ArrayList vs LinkedList</a>
+
+    <div class="group-label">Set Interface</div>
+    <a href="#set">Set Interface</a>
+    <a href="#hashset">HashSet</a>
+
+    <div class="group-label">Map</div>
+    <a href="#hashmap">HashMap</a>
+    <a href="#set-map-cmp">HashSet vs HashMap</a>
+
+    <div class="group-label">Traversal &amp; Sorting</div>
+    <a href="#iterator">Iterator</a>
+    <a href="#comparator">Comparator</a>
+
+    <div class="group-label">Type Safety</div>
+    <a href="#generics">Generics</a>
+    <a href="#typesafety">Type Safety</a>
+
+    <div class="group-label">Summary</div>
+    <a href="#advantages">Advantages</a>
+    <a href="#full-cmp">Full Comparison</a>
+
+    <div class="group-label">Utility Classes</div>
+    <a href="#objects">Objects</a>
+    <a href="#optional">Optional</a>
+    <a href="#math">Math</a>
+    <a href="#datetime">LocalDate / Time / DateTime</a>
+    <a href="#util-cmp">Utility Comparison</a>
+  </nav>
+
+  <main>
+    <div class="hero" id="overview">
+      <h1>Java Collections Framework</h1>
+      <p>A complete flowchart of every interface and class in this deck — hierarchy, characteristics, methods and syntax, in the order things actually connect: interface → implementing class → features → methods → example.</p>
+      <div class="legend">
+        <span class="chip"><span class="sw" style="background:var(--interface)"></span>Interface</span>
+        <span class="chip"><span class="sw" style="background:var(--class)"></span>Class</span>
+        <span class="chip"><span class="sw" style="background:var(--method)"></span>Method</span>
+        <span class="chip"><span class="sw" style="background:var(--util)"></span>Utility class</span>
+      </div>
+    </div>
+
+    <section class="cat">
+      <div class="cat-head"><h2>What is a Framework / Collection?</h2></div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>Framework</h4>
+          <p>A set of classes and interfaces that provides a ready-made architecture. A good object-oriented design includes a framework — a collection of classes where every class performs the same kind of task.</p>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Java Collection</h4>
+          <p>A single unit made up of multiple objects (a group). The Collections Framework provides interfaces — <code>List</code>, <code>Set</code>, <code>Queue</code>, <code>Deque</code> — and classes — <code>ArrayList</code>, <code>Vector</code>, <code>LinkedList</code>, <code>PriorityQueue</code>, <code>HashSet</code>, <code>LinkedHashSet</code>, <code>TreeSet</code> — to implement data structures and algorithms: searching, sorting, insertion, manipulation, and deletion.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cat" id="hierarchy">
+      <div class="cat-head"><h2>Hierarchy of the Collection Framework</h2></div>
+      <div class="diagram-wrap">
+        <svg id="hier" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+          <!-- connectors -->
+          <g stroke="#5b5f78" stroke-width="1.6" fill="none">
+            <path d="M170 65 L170 95" marker-end="url(#arr)"/>
+            <path d="M170 135 L170 165" marker-end="url(#arr)"/>
+            <path d="M170 200 L170 215 L90 215 L90 245" marker-end="url(#arr)"/>
+            <path d="M170 200 L170 215 L400 215 L400 245" marker-end="url(#arr)"/>
+            <path d="M170 200 L170 215 L720 215 L720 245" marker-end="url(#arr)"/>
+            <!-- List children -->
+            <path d="M90 280 L90 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+            <path d="M90 335 L90 360" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+            <path d="M90 390 L90 415" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+            <path d="M90 445 L90 460" marker-end="url(#arr)"/>
+            <!-- Queue children -->
+            <path d="M330 260 L295 260 L295 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+            <path d="M400 280 L400 305" marker-end="url(#arr)"/>
+            <path d="M400 335 L400 360" marker-end="url(#arr)"/>
+            <path d="M400 390 L400 415" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+            <!-- Set children -->
+            <path d="M655 260 L620 260 L620 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+            <path d="M775 260 L810 260 L810 305" stroke-dasharray="4 3" marker-end="url(#arrD)"/>
+            <path d="M720 280 L720 360" marker-end="url(#arr)"/>
+            <path d="M720 390 L720 415" marker-end="url(#arr)"/>
+          </g>
+          <defs>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5b5f78"/></marker>
+            <marker id="arrD" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6fd39a"/></marker>
+          </defs>
+          <!-- Iterable / Collection -->
+          <g>
+            <rect x="110" y="30" width="120" height="34" rx="7" fill="#5ab0ff"/>
+            <text x="170" y="52" text-anchor="middle" class="hlabel">Iterable</text>
+            <rect x="110" y="100" width="120" height="34" rx="7" fill="#5ab0ff"/>
+            <text x="170" y="122" text-anchor="middle" class="hlabel">Collection</text>
+          </g>
+          <!-- List / Queue / Set -->
+          <rect x="30" y="165" width="120" height="34" rx="7" fill="#5ab0ff"/>
+          <text x="90" y="187" text-anchor="middle" class="hlabel">List</text>
+          <rect x="340" y="165" width="120" height="34" rx="7" fill="#5ab0ff"/>
+          <text x="400" y="187" text-anchor="middle" class="hlabel">Queue</text>
+          <rect x="660" y="165" width="120" height="34" rx="7" fill="#5ab0ff"/>
+          <text x="720" y="187" text-anchor="middle" class="hlabel">Set</text>
+          <!-- List branch -->
+          <rect x="30" y="245" width="120" height="32" rx="7" fill="#6fd39a"/>
+          <text x="90" y="266" text-anchor="middle" class="hlabel">ArrayList</text>
+          <rect x="30" y="305" width="120" height="32" rx="7" fill="#6fd39a"/>
+          <text x="90" y="326" text-anchor="middle" class="hlabel">LinkedList</text>
+          <rect x="30" y="360" width="120" height="32" rx="7" fill="#6fd39a"/>
+          <text x="90" y="381" text-anchor="middle" class="hlabel">Vector</text>
+          <rect x="30" y="415" width="120" height="32" rx="7" fill="#6fd39a"/>
+          <text x="90" y="436" text-anchor="middle" class="hlabel">Stack</text>
+          <!-- Queue branch -->
+          <rect x="330" y="245" width="140" height="32" rx="7" fill="#6fd39a"/>
+          <text x="400" y="266" text-anchor="middle" class="hlabel">PriorityQueue</text>
+          <rect x="330" y="305" width="140" height="32" rx="7" fill="#5ab0ff"/>
+          <text x="400" y="326" text-anchor="middle" class="hlabel">Deque</text>
+          <rect x="330" y="360" width="140" height="32" rx="7" fill="#6fd39a"/>
+          <text x="400" y="381" text-anchor="middle" class="hlabel">ArrayDeque</text>
+          <!-- Set branch -->
+          <rect x="655" y="245" width="130" height="32" rx="7" fill="#6fd39a"/>
+          <text x="720" y="266" text-anchor="middle" class="hlabel">HashSet</text>
+          <rect x="545" y="305" width="150" height="32" rx="7" fill="#6fd39a"/>
+          <text x="620" y="326" text-anchor="middle" class="hlabel">LinkedHashSet</text>
+          <rect x="745" y="305" width="140" height="32" rx="7" fill="#5ab0ff"/>
+          <text x="815" y="326" text-anchor="middle" class="hlabel">SortedSet</text>
+          <rect x="655" y="360" width="130" height="32" rx="7" fill="#5ab0ff"/>
+          <text x="720" y="381" text-anchor="middle" class="hlabel">SortedSet</text>
+          <rect x="655" y="415" width="130" height="32" rx="7" fill="#6fd39a"/>
+          <text x="720" y="436" text-anchor="middle" class="hlabel">TreeSet</text>
+          <!-- captions -->
+          <text x="170" y="463" text-anchor="middle" class="hcap">■ interface   ■ class   dashed = implements   solid = extends</text>
+        </svg>
+      </div>
+      <div class="note" style="margin-top:14px">
+        <strong>Note:</strong> <code>Map</code> (and <code>HashMap</code>, covered below) is part of the Collections <em>Framework</em> but does <strong>not</strong> extend the <code>Collection</code> interface — it stores key/value pairs instead of single elements, so it sits outside this tree as its own root. <code>Vector</code>, <code>Stack</code>, <code>PriorityQueue</code>, <code>Deque</code>/<code>ArrayDeque</code>, <code>LinkedHashSet</code>, <code>SortedSet</code> and <code>TreeSet</code> appear in this hierarchy diagram; this deck's worked examples and method lists focus on <code>ArrayList</code>, <code>LinkedList</code> and <code>HashSet</code> (with <code>LinkedList</code> also demonstrated acting as a <code>Queue</code> and a <code>Stack</code>).
+      </div>
+    </section>
+
+    <!-- ================= LIST ================= -->
+    <section class="cat" id="list">
+      <div class="cat-head"><span class="tag iface">Interface</span><h2>List</h2></div>
+      <div class="pkgline">Stores an <strong>ordered</strong> collection of objects. Duplicate values are allowed.</div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>Implemented by</h4>
+          <ul class="feat">
+            <li>ArrayList</li><li>LinkedList</li><li>Vector</li><li>Stack</li>
+          </ul>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Syntax</h4>
+          <pre class="code"><code><span class="tk-type">List</span>&lt;data-type&gt; list1 = <span class="tk-kw">new</span> <span class="tk-type">ArrayList</span>();
+<span class="tk-type">List</span>&lt;data-type&gt; list2 = <span class="tk-kw">new</span> <span class="tk-type">LinkedList</span>();
+<span class="tk-type">List</span>&lt;data-type&gt; list3 = <span class="tk-kw">new</span> <span class="tk-type">Vector</span>();
+<span class="tk-type">List</span>&lt;data-type&gt; list4 = <span class="tk-kw">new</span> <span class="tk-type">Stack</span>();</code></pre>
+          <p style="margin-top:10px">The List interface defines methods to insert, delete, and access elements — implemented below by ArrayList and LinkedList.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ARRAYLIST ================= -->
+    <section class="cat" id="arraylist">
+      <div class="cat-head"><span class="tag cls">Class</span><h2>ArrayList</h2></div>
+      <div class="pkgline">Package: <code>java.util.ArrayList</code> &nbsp;·&nbsp; Import: <code>import java.util.ArrayList;</code></div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>What it is</h4>
+          <p>A resizable (dynamic) array that stores a group of objects in insertion order and allows duplicate values — unlike a normal array (<code>String[] students = new String[3]</code>), whose size is fixed once created.</p>
+          <pre class="code" style="margin-top:10px"><code><span class="tk-type">ArrayList</span>&lt;<span class="tk-type">String</span>&gt; students = <span class="tk-kw">new</span> <span class="tk-type">ArrayList</span>&lt;&gt;();</code></pre>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Characteristics</h4>
+          <ul class="feat">
+            <li>Dynamic size</li>
+            <li>Maintains insertion order</li>
+            <li>Allows duplicate elements</li>
+            <li>Fast random access</li>
+            <li>Allows null values</li>
+            <li>Slower insertion/deletion in the middle</li>
+          </ul>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Methods &amp; Syntax</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Purpose</th></tr>
+            <tr><td class="mname"><code>add()</code></td><td class="msyntax"><code>students.add("Rahul")</code></td><td class="mdesc">Add an element</td></tr>
+            <tr><td class="mname"><code>add(i,e)</code></td><td class="msyntax"><code>students.add(1, "Priya")</code></td><td class="mdesc">Add at a specific position</td></tr>
+            <tr><td class="mname"><code>get()</code></td><td class="msyntax"><code>students.get(1)</code></td><td class="mdesc">Retrieve an element</td></tr>
+            <tr><td class="mname"><code>set()</code></td><td class="msyntax"><code>students.set(1, "Neha")</code></td><td class="mdesc">Update an element</td></tr>
+            <tr><td class="mname"><code>remove()</code></td><td class="msyntax"><code>students.remove("Priya")</code></td><td class="mdesc">Remove an element (by value)</td></tr>
+            <tr><td class="mname"><code>remove(i)</code></td><td class="msyntax"><code>students.remove(1)</code></td><td class="mdesc">Remove using index</td></tr>
+            <tr><td class="mname"><code>size()</code></td><td class="msyntax"><code>students.size()</code></td><td class="mdesc">Find number of elements</td></tr>
+            <tr><td class="mname"><code>contains()</code></td><td class="msyntax"><code>students.contains("Priya")</code></td><td class="mdesc">Check whether an element exists</td></tr>
+            <tr><td class="mname"><code>isEmpty()</code></td><td class="msyntax"><code>students.isEmpty()</code></td><td class="mdesc">Check whether list is empty</td></tr>
+            <tr><td class="mname"><code>clear()</code></td><td class="msyntax"><code>students.clear()</code></td><td class="mdesc">Remove all elements</td></tr>
+            <tr><td class="mname"><code>indexOf()</code></td><td class="msyntax"><code>students.indexOf("Rahul")</code></td><td class="mdesc">Find first index of an element</td></tr>
+            <tr><td class="mname"><code>lastIndexOf()</code></td><td class="msyntax"><code>students.lastIndexOf("Rahul")</code></td><td class="mdesc">Find last occurrence</td></tr>
+            <tr><td class="mname"><code>toArray()</code></td><td class="msyntax"><code>students.toArray(new String[0])</code></td><td class="mdesc">Convert ArrayList to array</td></tr>
+            <tr><td class="mname"><code>addAll()</code></td><td class="msyntax"><code>a.addAll(b)</code></td><td class="mdesc">Add one list's elements to another</td></tr>
+            <tr><td class="mname"><code>removeAll()</code></td><td class="msyntax"><code>a.removeAll(b)</code></td><td class="mdesc">Remove elements common with another list</td></tr>
+            <tr><td class="mname"><code>retainAll()</code></td><td class="msyntax"><code>a.retainAll(b)</code></td><td class="mdesc">Keep only elements common with another list</td></tr>
+            <tr><td class="mname"><code>forEach()</code></td><td class="msyntax"><code>students.forEach(name -> System.out.println(name))</code></td><td class="mdesc">Traverse the ArrayList</td></tr>
+            <tr><td class="mname"><code>sort()</code></td><td class="msyntax"><code>numbers.sort(null)</code></td><td class="mdesc">Sort elements</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Example</h4>
+          <pre class="code"><code><span class="tk-kw">import</span> java.util.ArrayList;
+
+<span class="tk-kw">public class</span> <span class="tk-type">Main</span> {
+    <span class="tk-kw">public static void</span> <span class="tk-mth">main</span>(<span class="tk-type">String</span>[] args) {
+        <span class="tk-type">ArrayList</span>&lt;<span class="tk-type">String</span>&gt; students = <span class="tk-kw">new</span> <span class="tk-type">ArrayList</span>&lt;&gt;();
+        students.<span class="tk-mth">add</span>(<span class="tk-str">"Rahul"</span>);
+        students.<span class="tk-mth">add</span>(<span class="tk-str">"Priya"</span>);
+        students.<span class="tk-mth">add</span>(<span class="tk-str">"Aman"</span>);
+        System.out.<span class="tk-mth">println</span>(students);
+    }
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LINKEDLIST ================= -->
+    <section class="cat" id="linkedlist">
+      <div class="cat-head"><span class="tag cls">Class</span><h2>LinkedList</h2></div>
+      <div class="pkgline">Package: <code>java.util.LinkedList</code> &nbsp;·&nbsp; Implements <code>List</code> and <code>Deque</code> using a doubly linked list internally</div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>What it is</h4>
+          <p>Stores elements as nodes connected through links, rather than a contiguous array. Can be used as a <strong>List</strong>, <strong>Queue</strong>, or <strong>Deque</strong>.</p>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Characteristics</h4>
+          <ul class="feat">
+            <li>Part of Java Collection Framework</li>
+            <li>Dynamic memory allocation</li>
+            <li>Dynamic size — grows/shrinks automatically</li>
+            <li>Maintains insertion order</li>
+            <li>Allows duplicate elements</li>
+            <li>Allows null values</li>
+            <li>Index-based access supported</li>
+            <li>Fast insertion/deletion at beginning or end</li>
+            <li>Slower random access than ArrayList</li>
+          </ul>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>List-style Methods &amp; Syntax</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Purpose</th></tr>
+            <tr><td class="mname"><code>add()</code></td><td class="msyntax"><code>students.add("Rahul")</code></td><td class="mdesc">Add an element</td></tr>
+            <tr><td class="mname"><code>addFirst()</code></td><td class="msyntax"><code>students.addFirst("Rahul")</code></td><td class="mdesc">Add at the beginning</td></tr>
+            <tr><td class="mname"><code>addLast()</code></td><td class="msyntax"><code>students.addLast("Neha")</code></td><td class="mdesc">Add at the end</td></tr>
+            <tr><td class="mname"><code>get()</code></td><td class="msyntax"><code>students.get(1)</code></td><td class="mdesc">Access an element by index</td></tr>
+            <tr><td class="mname"><code>set()</code></td><td class="msyntax"><code>students.set(1, "Neha")</code></td><td class="mdesc">Update an element</td></tr>
+            <tr><td class="mname"><code>remove()</code></td><td class="msyntax"><code>students.remove("Priya")</code></td><td class="mdesc">Delete an element by value</td></tr>
+            <tr><td class="mname"><code>removeFirst()</code></td><td class="msyntax"><code>numbers.removeFirst()</code></td><td class="mdesc">Remove first element</td></tr>
+            <tr><td class="mname"><code>removeLast()</code></td><td class="msyntax"><code>numbers.removeLast()</code></td><td class="mdesc">Remove last element</td></tr>
+            <tr><td class="mname"><code>size()</code></td><td class="msyntax"><code>students.size()</code></td><td class="mdesc">Number of elements</td></tr>
+            <tr><td class="mname"><code>contains()</code></td><td class="msyntax"><code>students.contains("Priya")</code></td><td class="mdesc">Check whether element exists</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>As a Queue — FIFO (First In → First Out)</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Purpose</th></tr>
+            <tr><td class="mname"><code>offer()</code></td><td class="msyntax"><code>queue.offer("A")</code></td><td class="mdesc">Adds an element</td></tr>
+            <tr><td class="mname"><code>peek()</code></td><td class="msyntax"><code>queue.peek()</code></td><td class="mdesc">Views the first element</td></tr>
+            <tr><td class="mname"><code>poll()</code></td><td class="msyntax"><code>queue.poll()</code></td><td class="mdesc">Removes the first element</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>As a Stack — LIFO (Last In → First Out)</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Purpose</th></tr>
+            <tr><td class="mname"><code>push()</code></td><td class="msyntax"><code>stack.push(10)</code></td><td class="mdesc">Adds at the beginning</td></tr>
+            <tr><td class="mname"><code>pop()</code></td><td class="msyntax"><code>stack.pop()</code></td><td class="mdesc">Removes from the beginning</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Example — LinkedList as a Queue</h4>
+          <pre class="code"><code><span class="tk-kw">import</span> java.util.LinkedList;
+<span class="tk-kw">public class</span> <span class="tk-type">Main</span> {
+  <span class="tk-kw">public static void</span> <span class="tk-mth">main</span>(<span class="tk-type">String</span>[] args) {
+    <span class="tk-type">LinkedList</span>&lt;<span class="tk-type">String</span>&gt; queue = <span class="tk-kw">new</span> <span class="tk-type">LinkedList</span>&lt;&gt;();
+    queue.<span class="tk-mth">offer</span>(<span class="tk-str">"A"</span>); queue.<span class="tk-mth">offer</span>(<span class="tk-str">"B"</span>); queue.<span class="tk-mth">offer</span>(<span class="tk-str">"C"</span>);
+    System.out.<span class="tk-mth">println</span>(<span class="tk-str">"Front: "</span> + queue.<span class="tk-mth">peek</span>());
+    System.out.<span class="tk-mth">println</span>(<span class="tk-str">"Removed: "</span> + queue.<span class="tk-mth">poll</span>());
+  }
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="cat" id="list-cmp">
+      <div class="cat-head"><h2>ArrayList vs LinkedList</h2></div>
+      <div class="tbl-wrap">
+        <table class="cmp">
+          <tr><th>Feature</th><th>ArrayList</th><th>LinkedList</th></tr>
+          <tr><td class="rowhead">Storage</td><td>Dynamic Array</td><td>Doubly Linked List</td></tr>
+          <tr><td class="rowhead">Access</td><td>Fast</td><td>Slow</td></tr>
+          <tr><td class="rowhead">Insertion</td><td>Slow</td><td>Fast</td></tr>
+          <tr><td class="rowhead">Memory</td><td>Less</td><td>More</td></tr>
+          <tr><td class="rowhead">Best Use</td><td>Searching</td><td>Frequent insertion/deletion</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= SET ================= -->
+    <section class="cat" id="set">
+      <div class="cat-head"><span class="tag iface">Interface</span><h2>Set</h2></div>
+      <div class="pkgline">Stores <strong>unique</strong> elements — no duplicates allowed. Implemented in this deck by <code>HashSet</code>; also appears in the hierarchy as <code>LinkedHashSet</code>, <code>SortedSet</code>, and <code>TreeSet</code>.</div>
+    </section>
+
+    <section class="cat" id="hashset">
+      <div class="cat-head"><span class="tag cls">Class</span><h2>HashSet</h2></div>
+      <div class="pkgline">Package: <code>java.util.HashSet</code></div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>What it is</h4>
+          <p>A HashSet stores unique elements only.</p>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Characteristics</h4>
+          <ul class="feat">
+            <li>No duplicate values</li>
+            <li>No guaranteed insertion order</li>
+            <li>Allows one null value</li>
+            <li>Fast searching</li>
+          </ul>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Methods &amp; Syntax</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Purpose</th></tr>
+            <tr><td class="mname"><code>add()</code></td><td class="msyntax"><code>set.add("Java")</code></td><td class="mdesc">Add an element (duplicates are silently ignored)</td></tr>
+            <tr><td class="mname"><code>remove()</code></td><td class="msyntax"><code>set.remove("Python")</code></td><td class="mdesc">Remove an element</td></tr>
+            <tr><td class="mname"><code>contains()</code></td><td class="msyntax"><code>set.contains("Java")</code></td><td class="mdesc">Check an element exists</td></tr>
+            <tr><td class="mname"><code>size()</code></td><td class="msyntax"><code>set.size()</code></td><td class="mdesc">Number of elements</td></tr>
+            <tr><td class="mname"><code>isEmpty()</code></td><td class="msyntax"><code>set.isEmpty()</code></td><td class="mdesc">Check whether the set is empty</td></tr>
+            <tr><td class="mname"><code>clear()</code></td><td class="msyntax"><code>set.clear()</code></td><td class="mdesc">Remove all elements</td></tr>
+            <tr><td class="mname"><code>addAll()</code></td><td class="msyntax"><code>A.addAll(B)</code></td><td class="mdesc">Union of two sets</td></tr>
+            <tr><td class="mname"><code>retainAll()</code></td><td class="msyntax"><code>A.retainAll(B)</code></td><td class="mdesc">Intersection of two sets</td></tr>
+            <tr><td class="mname"><code>removeAll()</code></td><td class="msyntax"><code>A.removeAll(B)</code></td><td class="mdesc">Difference of two sets</td></tr>
+            <tr><td class="mname"><code>containsAll()</code></td><td class="msyntax"><code>A.containsAll(B)</code></td><td class="mdesc">Check for multiple elements</td></tr>
+            <tr><td class="mname"><code>iterator()</code></td><td class="msyntax"><code>set.iterator()</code></td><td class="mdesc">Traverse elements</td></tr>
+            <tr><td class="mname"><code>clone()</code></td><td class="msyntax"><code>(HashSet&lt;String&gt;) set1.clone()</code></td><td class="mdesc">Copy a HashSet</td></tr>
+            <tr><td class="mname"><code>removeIf()</code></td><td class="msyntax"><code>numbers.removeIf(n -> n > 20)</code></td><td class="mdesc">Remove elements matching a condition</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Example — Duplicates are ignored</h4>
+          <pre class="code"><code><span class="tk-kw">import</span> java.util.HashSet;
+<span class="tk-kw">public class</span> <span class="tk-type">HashSetDemo</span> {
+    <span class="tk-kw">public static void</span> <span class="tk-mth">main</span>(<span class="tk-type">String</span>[] args) {
+        <span class="tk-type">HashSet</span>&lt;<span class="tk-type">String</span>&gt; fruits = <span class="tk-kw">new</span> <span class="tk-type">HashSet</span>&lt;&gt;();
+        fruits.<span class="tk-mth">add</span>(<span class="tk-str">"Apple"</span>);
+        fruits.<span class="tk-mth">add</span>(<span class="tk-str">"Banana"</span>);
+        fruits.<span class="tk-mth">add</span>(<span class="tk-str">"Apple"</span>); <span class="tk-cm">// ignored — duplicate</span>
+        System.out.<span class="tk-mth">println</span>(fruits);
+    }
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HASHMAP ================= -->
+    <section class="cat" id="hashmap">
+      <div class="cat-head"><span class="tag cls">Class</span><h2>HashMap</h2></div>
+      <div class="pkgline">Package: <code>java.util.HashMap</code> &nbsp;·&nbsp; Stores data outside the <code>Collection</code> tree, as its own <code>Map</code> hierarchy</div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>What it is</h4>
+          <p>HashMap stores data as <strong>key–value</strong> pairs.</p>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Characteristics</h4>
+          <ul class="feat">
+            <li>Stores key-value pairs</li>
+            <li>Keys must be unique</li>
+            <li>Values may be duplicated</li>
+            <li>Fast retrieval</li>
+          </ul>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Methods &amp; Syntax</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Purpose</th></tr>
+            <tr><td class="mname"><code>put()</code></td><td class="msyntax"><code>students.put(101, "Rahul")</code></td><td class="mdesc">Add data</td></tr>
+            <tr><td class="mname"><code>get()</code></td><td class="msyntax"><code>students.get(101)</code></td><td class="mdesc">Get value by key</td></tr>
+            <tr><td class="mname"><code>remove()</code></td><td class="msyntax"><code>students.remove(102)</code></td><td class="mdesc">Remove data by key</td></tr>
+            <tr><td class="mname"><code>containsKey()</code></td><td class="msyntax"><code>students.containsKey(101)</code></td><td class="mdesc">Check a key exists</td></tr>
+            <tr><td class="mname"><code>containsValue()</code></td><td class="msyntax"><code>students.containsValue("Priya")</code></td><td class="mdesc">Check a value exists</td></tr>
+            <tr><td class="mname"><code>size()</code></td><td class="msyntax"><code>students.size()</code></td><td class="mdesc">Count entries</td></tr>
+            <tr><td class="mname"><code>keySet()</code></td><td class="msyntax"><code>students.keySet()</code></td><td class="mdesc">Get all keys</td></tr>
+            <tr><td class="mname"><code>entrySet()</code></td><td class="msyntax"><code>students.entrySet()</code></td><td class="mdesc">Get all key-value pairs</td></tr>
+            <tr><td class="mname"><code>replace()</code></td><td class="msyntax"><code>map.replace(2, "Mango")</code></td><td class="mdesc">Replace a value</td></tr>
+            <tr><td class="mname"><code>putIfAbsent()</code></td><td class="msyntax"><code>map.putIfAbsent(2, "Banana")</code></td><td class="mdesc">Add only if the key doesn't exist</td></tr>
+            <tr><td class="mname"><code>getOrDefault()</code></td><td class="msyntax"><code>map.getOrDefault(2, "Not Found")</code></td><td class="mdesc">Get value or a default</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Example — entrySet()</h4>
+          <pre class="code"><code><span class="tk-kw">import</span> java.util.HashMap;
+<span class="tk-kw">import</span> java.util.Map;
+<span class="tk-kw">public class</span> <span class="tk-type">Main</span> {
+    <span class="tk-kw">public static void</span> <span class="tk-mth">main</span>(<span class="tk-type">String</span>[] args) {
+        <span class="tk-type">HashMap</span>&lt;<span class="tk-type">Integer</span>, <span class="tk-type">String</span>&gt; students = <span class="tk-kw">new</span> <span class="tk-type">HashMap</span>&lt;&gt;();
+        students.<span class="tk-mth">put</span>(<span class="tk-num">101</span>, <span class="tk-str">"Rahul"</span>);
+        students.<span class="tk-mth">put</span>(<span class="tk-num">102</span>, <span class="tk-str">"Priya"</span>);
+        <span class="tk-kw">for</span> (Map.Entry&lt;Integer, String&gt; entry : students.<span class="tk-mth">entrySet</span>()) {
+            System.out.<span class="tk-mth">println</span>(entry.<span class="tk-mth">getKey</span>() + <span class="tk-str">" = "</span> + entry.<span class="tk-mth">getValue</span>());
+        }
+    }
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="cat" id="set-map-cmp">
+      <div class="cat-head"><h2>HashSet vs HashMap</h2></div>
+      <div class="tbl-wrap">
+        <table class="cmp">
+          <tr><th>HashSet</th><th>HashMap</th></tr>
+          <tr><td>Stores values only</td><td>Stores key-value pairs</td></tr>
+          <tr><td>Duplicate values not allowed</td><td>Duplicate keys not allowed</td></tr>
+          <tr><td>Uses <code>add()</code></td><td>Uses <code>put()</code></td></tr>
+          <tr><td>Retrieve by value</td><td>Retrieve by key</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= ITERATOR ================= -->
+    <section class="cat" id="iterator">
+      <div class="cat-head"><span class="tag cls">Class / Interface</span><h2>Iterator</h2></div>
+      <div class="pkgline">Package: <code>java.util.Iterator</code></div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>What it is</h4>
+          <p>Used to traverse (visit) the elements of a collection one by one.</p>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Methods &amp; Syntax</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Purpose</th></tr>
+            <tr><td class="mname"><code>hasNext()</code></td><td class="msyntax"><code>it.hasNext()</code></td><td class="mdesc">Checks if another element exists</td></tr>
+            <tr><td class="mname"><code>next()</code></td><td class="msyntax"><code>it.next()</code></td><td class="mdesc">Returns the next element</td></tr>
+            <tr><td class="mname"><code>remove()</code></td><td class="msyntax"><code>it.remove()</code></td><td class="mdesc">Removes the current element</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Works across every collection type</h4>
+          <ul class="feat">
+            <li><code>ArrayList</code> → <code>list.iterator()</code></li>
+            <li><code>HashSet</code> → <code>set.iterator()</code></li>
+            <li><code>LinkedList</code> → <code>list.iterator()</code></li>
+            <li><code>HashMap</code> keys → <code>map.keySet().iterator()</code></li>
+            <li><code>HashMap</code> values → <code>map.values().iterator()</code></li>
+          </ul>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Example — remove a specific element while iterating</h4>
+          <pre class="code"><code><span class="tk-kw">import</span> java.util.ArrayList;
+<span class="tk-kw">import</span> java.util.Iterator;
+<span class="tk-kw">public class</span> <span class="tk-type">Main</span> {
+  <span class="tk-kw">public static void</span> <span class="tk-mth">main</span>(<span class="tk-type">String</span>[] args) {
+    <span class="tk-type">ArrayList</span>&lt;<span class="tk-type">String</span>&gt; students = <span class="tk-kw">new</span> <span class="tk-type">ArrayList</span>&lt;&gt;();
+    students.<span class="tk-mth">add</span>(<span class="tk-str">"Rahul"</span>); students.<span class="tk-mth">add</span>(<span class="tk-str">"Priya"</span>); students.<span class="tk-mth">add</span>(<span class="tk-str">"Aman"</span>);
+    Iterator&lt;String&gt; it = students.<span class="tk-mth">iterator</span>();
+    <span class="tk-kw">while</span> (it.<span class="tk-mth">hasNext</span>()) {
+      String name = it.<span class="tk-mth">next</span>();
+      <span class="tk-kw">if</span> (name.<span class="tk-mth">equals</span>(<span class="tk-str">"Priya"</span>)) it.<span class="tk-mth">remove</span>();
+    }
+    System.out.<span class="tk-mth">println</span>(students);
+  }
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMPARATOR ================= -->
+    <section class="cat" id="comparator">
+      <div class="cat-head"><span class="tag cls">Class / Interface</span><h2>Comparator</h2></div>
+      <div class="pkgline">Package: <code>java.util.Comparator</code></div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>What it is</h4>
+          <p>Used to define custom sorting rules for objects.</p>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Functions &amp; Syntax</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Purpose</th></tr>
+            <tr><td class="mname"><code>compare()</code></td><td class="msyntax"><code>c.compare(10, 20)</code></td><td class="mdesc">Compares two values, custom rule</td></tr>
+            <tr><td class="mname"><code>naturalOrder()</code></td><td class="msyntax"><code>numbers.sort(Comparator.naturalOrder())</code></td><td class="mdesc">Sort ascending, natural order</td></tr>
+            <tr><td class="mname"><code>reverseOrder()</code></td><td class="msyntax"><code>numbers.sort(Comparator.reverseOrder())</code></td><td class="mdesc">Sort descending</td></tr>
+            <tr><td class="mname"><code>reversed()</code></td><td class="msyntax"><code>numbers.sort(c.reversed())</code></td><td class="mdesc">Reverse an existing comparator</td></tr>
+            <tr><td class="mname"><code>nullsFirst()</code></td><td class="msyntax"><code>names.sort(Comparator.nullsFirst(Comparator.naturalOrder()))</code></td><td class="mdesc">Puts null values first when sorting</td></tr>
+            <tr><td class="mname"><code>nullsLast()</code></td><td class="msyntax"><code>names.sort(Comparator.nullsLast(Comparator.naturalOrder()))</code></td><td class="mdesc">Puts null values last when sorting</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Example — Collections.sort()</h4>
+          <pre class="code"><code><span class="tk-kw">import</span> java.util.*;
+<span class="tk-kw">public class</span> <span class="tk-type">ComparatorDemo</span> {
+  <span class="tk-kw">public static void</span> <span class="tk-mth">main</span>(<span class="tk-type">String</span>[] args) {
+    <span class="tk-type">ArrayList</span>&lt;<span class="tk-type">Integer</span>&gt; list = <span class="tk-kw">new</span> <span class="tk-type">ArrayList</span>&lt;&gt;();
+    list.<span class="tk-mth">add</span>(<span class="tk-num">45</span>); list.<span class="tk-mth">add</span>(<span class="tk-num">10</span>); list.<span class="tk-mth">add</span>(<span class="tk-num">30</span>);
+    Collections.<span class="tk-mth">sort</span>(list);
+    System.out.<span class="tk-mth">println</span>(<span class="tk-str">"Ascending : "</span> + list);
+    Collections.<span class="tk-mth">sort</span>(list, Collections.<span class="tk-mth">reverseOrder</span>());
+    System.out.<span class="tk-mth">println</span>(<span class="tk-str">"Descending : "</span> + list);
+  }
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GENERICS ================= -->
+    <section class="cat" id="generics">
+      <div class="cat-head"><h2>Generics</h2></div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>What it is</h4>
+          <p>Generics let you specify what type of data a collection can store: <code>ArrayList&lt;Integer&gt; numbers = new ArrayList&lt;&gt;();</code> — here <code>&lt;Integer&gt;</code> means the ArrayList can store only Integer values.</p>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Without Generics — mixed types allowed, causes problems</h4>
+          <pre class="code"><code><span class="tk-type">ArrayList</span> list = <span class="tk-kw">new</span> <span class="tk-type">ArrayList</span>();
+list.<span class="tk-mth">add</span>(<span class="tk-num">10</span>);
+list.<span class="tk-mth">add</span>(<span class="tk-str">"Hello"</span>);
+list.<span class="tk-mth">add</span>(<span class="tk-num">20.5</span>); <span class="tk-cm">// mixed types → problems when retrieving</span></code></pre>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>With Generics — only the declared type is allowed</h4>
+          <pre class="code"><code><span class="tk-type">ArrayList</span>&lt;<span class="tk-type">Integer</span>&gt; list = <span class="tk-kw">new</span> <span class="tk-type">ArrayList</span>&lt;&gt;();
+list.<span class="tk-mth">add</span>(<span class="tk-num">10</span>); list.<span class="tk-mth">add</span>(<span class="tk-num">20</span>); list.<span class="tk-mth">add</span>(<span class="tk-num">30</span>);
+list.<span class="tk-mth">add</span>(<span class="tk-str">"Hello"</span>); <span class="tk-cm">// ✗ compile-time error</span></code></pre>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Main advantages</h4>
+          <ul class="feat">
+            <li>Type safety — only the specified type can be stored</li>
+            <li>No need for explicit casting when retrieving objects</li>
+            <li>Errors are detected at compile time</li>
+            <li>Makes programs easier to read and maintain</li>
+          </ul>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Generics across the framework</h4>
+          <pre class="code"><code><span class="tk-type">ArrayList</span>&lt;<span class="tk-type">String</span>&gt; names = <span class="tk-kw">new</span> <span class="tk-type">ArrayList</span>&lt;&gt;();
+<span class="tk-type">HashSet</span>&lt;<span class="tk-type">String</span>&gt; cities = <span class="tk-kw">new</span> <span class="tk-type">HashSet</span>&lt;&gt;();
+<span class="tk-type">HashMap</span>&lt;<span class="tk-type">Integer</span>, <span class="tk-type">String</span>&gt; students = <span class="tk-kw">new</span> <span class="tk-type">HashMap</span>&lt;&gt;();</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TYPE SAFETY ================= -->
+    <section class="cat" id="typesafety">
+      <div class="cat-head"><h2>Type Safety</h2></div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>What it is</h4>
+          <p>The compiler checks that only the correct type of objects can be stored in a collection, preventing many runtime errors — achieved with Generics (<code>&lt;&gt;</code>).</p>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Without Type Safety — runtime error</h4>
+          <pre class="code"><code><span class="tk-type">ArrayList</span> list = <span class="tk-kw">new</span> <span class="tk-type">ArrayList</span>();
+list.<span class="tk-mth">add</span>(<span class="tk-str">"Rahul"</span>);
+list.<span class="tk-mth">add</span>(<span class="tk-num">100</span>);
+<span class="tk-type">String</span> name = (String) list.<span class="tk-mth">get</span>(<span class="tk-num">1</span>); <span class="tk-cm">// ClassCastException at runtime</span></code></pre>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>With Type Safety — no casting needed</h4>
+          <pre class="code"><code><span class="tk-type">ArrayList</span>&lt;<span class="tk-type">String</span>&gt; students = <span class="tk-kw">new</span> <span class="tk-type">ArrayList</span>&lt;&gt;();
+students.<span class="tk-mth">add</span>(<span class="tk-str">"Rahul"</span>); students.<span class="tk-mth">add</span>(<span class="tk-str">"Priya"</span>);
+<span class="tk-type">String</span> name = students.<span class="tk-mth">get</span>(<span class="tk-num">0</span>); <span class="tk-cm">// safe, no cast required</span></code></pre>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>In the Collection Framework</h4>
+          <ul class="feat">
+            <li>Ensures a collection contains only the specified data type</li>
+            <li>Achieved using Generics (&lt;&gt;)</li>
+            <li>Provides compile-time type checking</li>
+            <li>Reduces the possibility of runtime errors</li>
+            <li>Eliminates unnecessary type casting</li>
+            <li>Makes programs safer and easier to understand</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ADVANTAGES / COMPARISON ================= -->
+    <section class="cat" id="advantages">
+      <div class="cat-head"><h2>Advantages of the Collections Framework</h2></div>
+      <div class="fnode">
+        <ul class="feat">
+          <li>Dynamic data storage</li>
+          <li>Efficient searching and sorting</li>
+          <li>Built-in algorithms</li>
+          <li>Reduces coding effort</li>
+          <li>Supports Generics for type safety</li>
+          <li>Improves code reusability and maintainability</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cat" id="full-cmp">
+      <div class="cat-head"><h2>Full Comparison</h2></div>
+      <div class="tbl-wrap">
+        <table class="cmp">
+          <tr><th>Collection</th><th>Ordered</th><th>Duplicate</th><th>Null</th><th>Access Speed</th><th>Best Use</th></tr>
+          <tr><td class="rowhead">ArrayList</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Fast</td><td>Searching &amp; random access</td></tr>
+          <tr><td class="rowhead">LinkedList</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Moderate</td><td>Frequent insert/delete</td></tr>
+          <tr><td class="rowhead">HashSet</td><td>No</td><td>No</td><td>One null</td><td>Fast</td><td>Unique elements</td></tr>
+          <tr><td class="rowhead">HashMap</td><td>No</td><td>Keys: No, Values: Yes</td><td>One null key</td><td>Fast</td><td>Key-value storage</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= UTILITY CLASSES ================= -->
+    <div class="hero" style="margin-bottom:24px">
+      <h1 style="font-size:1.7rem">Utility Classes</h1>
+      <p>Ready-made methods for common programming tasks — object comparison, math, optional values, and dates/times.</p>
+    </div>
+
+    <section class="cat" id="objects">
+      <div class="cat-head"><span class="tag util">Utility</span><h2>Objects</h2></div>
+      <div class="pkgline">Package: <code>java.util.Objects</code></div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>What it is</h4>
+          <p>Provides utility methods to perform operations on objects safely — checking for null, comparing objects, generating hash codes, converting objects to strings.</p>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Common Methods</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Description</th></tr>
+            <tr><td class="mname"><code>equals(a,b)</code></td><td class="msyntax"><code>Objects.equals(s1, s2)</code></td><td class="mdesc">Compares two objects safely</td></tr>
+            <tr><td class="mname"><code>isNull(obj)</code></td><td class="msyntax"><code>Objects.isNull(s3)</code></td><td class="mdesc">Checks if object is null</td></tr>
+            <tr><td class="mname"><code>nonNull(obj)</code></td><td class="msyntax"><code>Objects.nonNull(s1)</code></td><td class="mdesc">Checks if object is not null</td></tr>
+            <tr><td class="mname"><code>hash()</code></td><td class="msyntax"><code>Objects.hash(a, b)</code></td><td class="mdesc">Generates hash code</td></tr>
+            <tr><td class="mname"><code>toString(obj)</code></td><td class="msyntax"><code>Objects.toString(s3, "Default Value")</code></td><td class="mdesc">Converts object to string safely</td></tr>
+            <tr><td class="mname"><code>requireNonNull(obj)</code></td><td class="msyntax"><code>Objects.requireNonNull(obj)</code></td><td class="mdesc">Throws exception if object is null</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Example</h4>
+          <pre class="code"><code><span class="tk-kw">import</span> java.util.Objects;
+<span class="tk-kw">public class</span> <span class="tk-type">ObjectsDemo</span> {
+    <span class="tk-kw">public static void</span> <span class="tk-mth">main</span>(<span class="tk-type">String</span>[] args) {
+        String s1 = <span class="tk-str">"Java"</span>, s2 = <span class="tk-str">"Java"</span>, s3 = <span class="tk-kw">null</span>;
+        System.out.<span class="tk-mth">println</span>(Objects.<span class="tk-mth">equals</span>(s1, s2));
+        System.out.<span class="tk-mth">println</span>(Objects.<span class="tk-mth">isNull</span>(s3));
+        System.out.<span class="tk-mth">println</span>(Objects.<span class="tk-mth">toString</span>(s3, <span class="tk-str">"Default Value"</span>));
+    }
+}</code></pre>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Advantages</h4>
+          <ul class="feat">
+            <li>Prevents NullPointerException</li>
+            <li>Safe object comparison</li>
+            <li>Cleaner code</li>
+            <li>Useful in collections and object validation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cat" id="optional">
+      <div class="cat-head"><span class="tag util">Utility</span><h2>Optional</h2></div>
+      <div class="pkgline">Package: <code>java.util.Optional</code></div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>What it is</h4>
+          <p>A container object that may or may not contain a value — helps avoid NullPointerException by explicitly handling missing values.</p>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Methods &amp; Syntax</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Purpose</th></tr>
+            <tr><td class="mname"><code>ofNullable()</code></td><td class="msyntax"><code>Optional.ofNullable(name)</code></td><td class="mdesc">Wraps a value that may be null</td></tr>
+            <tr><td class="mname"><code>orElse()</code></td><td class="msyntax"><code>value.orElse("Guest")</code></td><td class="mdesc">Returns a default if empty</td></tr>
+            <tr><td class="mname"><code>isPresent()</code></td><td class="msyntax"><code>value.isPresent()</code></td><td class="mdesc">Checks whether a value is present</td></tr>
+            <tr><td class="mname"><code>get()</code></td><td class="msyntax"><code>value.get()</code></td><td class="mdesc">Retrieves the wrapped value</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Example</h4>
+          <pre class="code"><code><span class="tk-kw">import</span> java.util.Optional;
+<span class="tk-kw">public class</span> <span class="tk-type">OptionalDemo</span> {
+  <span class="tk-kw">public static void</span> <span class="tk-mth">main</span>(<span class="tk-type">String</span>[] args) {
+    String name = <span class="tk-kw">null</span>;
+    Optional&lt;String&gt; value = Optional.<span class="tk-mth">ofNullable</span>(name);
+    System.out.<span class="tk-mth">println</span>(value.<span class="tk-mth">orElse</span>(<span class="tk-str">"Guest"</span>));
+  }
+}</code></pre>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Advantages</h4>
+          <ul class="feat">
+            <li>Avoids NullPointerException</li>
+            <li>Improves readability</li>
+            <li>Encourages safe coding practices</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cat" id="math">
+      <div class="cat-head"><span class="tag util">Utility</span><h2>Math</h2></div>
+      <div class="pkgline">Package: <code>java.lang.Math</code> &nbsp;·&nbsp; All methods are <code>static</code> — no object creation required</div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>Methods &amp; Syntax</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th><th>Purpose</th></tr>
+            <tr><td class="mname"><code>max()</code></td><td class="msyntax"><code>Math.max(20, 35)</code></td><td class="mdesc">Largest of two values</td></tr>
+            <tr><td class="mname"><code>sqrt()</code></td><td class="msyntax"><code>Math.sqrt(49)</code></td><td class="mdesc">Square root</td></tr>
+            <tr><td class="mname"><code>pow()</code></td><td class="msyntax"><code>Math.pow(2, 5)</code></td><td class="mdesc">Power</td></tr>
+            <tr><td class="mname"><code>abs()</code></td><td class="msyntax"><code>Math.abs(-15)</code></td><td class="mdesc">Absolute value</td></tr>
+            <tr><td class="mname"><code>random()</code></td><td class="msyntax"><code>Math.random()</code></td><td class="mdesc">Random value between 0 and 1</td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>Advantages</h4>
+          <ul class="feat">
+            <li>Built-in mathematical functions</li>
+            <li>Faster than manual implementation</li>
+            <li>Easy to use</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cat" id="datetime">
+      <div class="cat-head"><span class="tag util">Utility</span><h2>LocalDate · LocalTime · LocalDateTime</h2></div>
+      <div class="pkgline">Package: <code>java.time</code></div>
+      <div class="flow">
+        <div class="fnode">
+          <h4>LocalDate — date only (Year-Month-Day)</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th></tr>
+            <tr><td class="mname"><code>now()</code></td><td class="msyntax"><code>LocalDate.now()</code></td></tr>
+            <tr><td class="mname"><code>plusDays()</code></td><td class="msyntax"><code>today.plusDays(7)</code></td></tr>
+            <tr><td class="mname"><code>getYear()</code></td><td class="msyntax"><code>today.getYear()</code></td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>LocalTime — time only (Hour-Minute-Second)</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th></tr>
+            <tr><td class="mname"><code>now()</code></td><td class="msyntax"><code>LocalTime.now()</code></td></tr>
+            <tr><td class="mname"><code>plusHours()</code></td><td class="msyntax"><code>time.plusHours(2)</code></td></tr>
+          </table>
+        </div>
+        <div class="connector"><div class="line"></div></div>
+        <div class="fnode">
+          <h4>LocalDateTime — date and time together</h4>
+          <table class="mtable">
+            <tr><th>Method</th><th>Syntax</th></tr>
+            <tr><td class="mname"><code>now()</code></td><td class="msyntax"><code>LocalDateTime.now()</code></td></tr>
+            <tr><td class="mname"><code>plusDays()</code></td><td class="msyntax"><code>now.plusDays(1)</code></td></tr>
+            <tr><td class="mname"><code>plusHours()</code></td><td class="msyntax"><code>now.plusHours(1)</code></td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="cat" id="util-cmp">
+      <div class="cat-head"><h2>Utility Classes — Comparison</h2></div>
+      <div class="tbl-wrap">
+        <table class="cmp">
+          <tr><th>Utility Class</th><th>Package</th><th>Purpose</th><th>Example Method</th></tr>
+          <tr><td class="rowhead">Objects</td><td><code>java.util</code></td><td>Object utilities</td><td><code>Objects.equals()</code></td></tr>
+          <tr><td class="rowhead">Optional</td><td><code>java.util</code></td><td>Handle null values safely</td><td><code>orElse()</code></td></tr>
+          <tr><td class="rowhead">Math</td><td><code>java.lang</code></td><td>Mathematical calculations</td><td><code>Math.sqrt()</code></td></tr>
+          <tr><td class="rowhead">LocalDate</td><td><code>java.time</code></td><td>Date only</td><td><code>now()</code></td></tr>
+          <tr><td class="rowhead">LocalTime</td><td><code>java.time</code></td><td>Time only</td><td><code>now()</code></td></tr>
+          <tr><td class="rowhead">LocalDateTime</td><td><code>java.time</code></td><td>Date and time</td><td><code>now()</code></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <footer>Built from "Collections Framework in Java &amp; Utility Classes" — every category, characteristic, method and syntax example included.</footer>
+  </main>
+</div>
+
+<button class="backtop" id="backtop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+</button>
+
+<script>
+  var menuBtn = document.getElementById('menuBtn');
+  var sidebar = document.getElementById('sidebar');
+  var scrim = document.getElementById('scrim');
+  function closeMenu(){ sidebar.classList.remove('open'); scrim.classList.remove('show'); }
+  menuBtn && menuBtn.addEventListener('click', function(){
+    sidebar.classList.toggle('open'); scrim.classList.toggle('show');
+  });
+  scrim && scrim.addEventListener('click', closeMenu);
+  document.querySelectorAll('nav.sidebar a').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+
+  var themeBtn = document.getElementById('themeBtn');
+  themeBtn && themeBtn.addEventListener('click', function(){
+    var root = document.documentElement;
+    var cur = root.getAttribute('data-theme');
+    if (cur === 'dark') root.setAttribute('data-theme','light');
+    else if (cur === 'light') root.setAttribute('data-theme','dark');
+    else {
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.setAttribute('data-theme', prefersDark ? 'light' : 'dark');
+    }
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.sidebar a'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  function onScroll(){
+    var y = window.scrollY + 100;
+    var current = sections[0];
+    sections.forEach(function(s){ if (s.offsetTop <= y) current = s; });
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if (current) {
+      var link = links.find ? links.find(function(a){ return a.getAttribute('href') === '#' + current.id; }) : null;
+      if (!link) {
+        for (var i=0;i<links.length;i++){ if (links[i].getAttribute('href') === '#'+current.id){ link = links[i]; break; } }
+      }
+      if (link) link.classList.add('active');
+    }
+    var backtop = document.getElementById('backtop');
+    if (window.scrollY > 500) backtop.classList.add('show'); else backtop.classList.remove('show');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  document.getElementById('backtop').addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
