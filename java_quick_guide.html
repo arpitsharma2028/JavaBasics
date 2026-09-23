@@ -1,0 +1,3422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java OOP & Core Concepts — Master Quick Revision Guide</title>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #1e293b;
+      --bg-card-hover: #273549;
+      --border-color: #334155;
+      --border-focus: #6366f1;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-purple: #a855f7;
+      --accent-green: #22c55e;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --code-bg: #090d16;
+      --code-text: #e2e8f0;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 70px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header & Hero */
+    header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+      border-bottom: 1px solid var(--border-color);
+      padding: 24px 20px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(99, 102, 241, 0.2);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #ffffff, #93c5fd, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.25;
+    }
+
+    .stats-pills {
+      display: flex;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+
+    .pill {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      color: var(--text-muted);
+    }
+    .pill b { color: var(--accent-blue); }
+
+    /* Search & Filter Toolbar */
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 10px 14px 10px 38px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .tab-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .tab-pills::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease-in-out;
+    }
+
+    .tab-btn:hover {
+      background: var(--bg-card-hover);
+      color: #fff;
+    }
+
+    .tab-btn.active {
+      background: #4f46e5;
+      color: #fff;
+      border-color: #6366f1;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1300px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    /* Section Styles */
+    .module-section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .section-tag {
+      background: #312e81;
+      color: #c7d2fe;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 18px;
+    }
+
+    /* Concept Card */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .card:hover {
+      border-color: #475569;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .badge-core { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-exam { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-hard { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+    .card-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+    }
+
+    .card-bullets li {
+      position: relative;
+      padding-left: 18px;
+      line-height: 1.45;
+    }
+
+    .card-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    .hard-expl {
+      background: rgba(168, 85, 247, 0.1);
+      border-left: 3px solid var(--accent-purple);
+      padding: 8px 12px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.82rem;
+      color: #e9d5ff;
+      margin-top: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .hard-expl b {
+      color: #c084fc;
+      white-space: nowrap;
+    }
+
+    .card-btn {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #090d16;
+      border: 1px solid #334155;
+      color: #38bdf8;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .card-btn:hover {
+      background: #38bdf8;
+      color: #090d16;
+      border-color: #38bdf8;
+    }
+
+    /* Comparison Table Styling */
+    .table-container {
+      overflow-x: auto;
+      margin: 10px 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.84rem;
+    }
+
+    th, td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background: #111827;
+      color: #93c5fd;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .yes-pill {
+      background: rgba(34, 197, 94, 0.2);
+      color: #4ade80;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .no-pill {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Modal Overlay & Dialog */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: #1e293b;
+      border: 1px solid #475569;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 820px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.95);
+      transition: transform 0.2s ease;
+    }
+
+    .modal-overlay.active .modal {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: #182234;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .modal-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Code Editor Window Styling (Standard VS Code Dark+ Theme) */
+    .code-editor-window {
+      border: 1px solid #334155;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #1e1e1e;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .code-editor-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #181818;
+      padding: 8px 14px;
+      border-bottom: 1px solid #2d2d2d;
+    }
+
+    .editor-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .editor-filename {
+      font-size: 0.78rem;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      color: #94a3b8;
+      margin-left: 8px;
+    }
+
+    .editor-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .copy-btn {
+      background: #252526;
+      border: 1px solid #3c3c3c;
+      color: #cccccc;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+    }
+
+    .copy-btn:hover {
+      background: #37373d;
+      color: #ffffff;
+      border-color: #555555;
+    }
+
+    pre {
+      background: #1e1e1e;
+      border: none;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: "JetBrains Mono", Consolas, "Fira Code", monospace;
+      font-size: 0.88rem;
+      color: #9cdcfe;
+      line-height: 1.55;
+    }
+
+    /* Standard Code Editor Syntax Tokens */
+    .hl-comment    { color: #6a9955; font-style: italic; }
+    .hl-string     { color: #ce9178; }
+    .hl-number     { color: #b5cea8; }
+    .hl-keyword    { color: #569cd6; font-weight: 600; }
+    .hl-flow       { color: #c586c0; font-weight: 600; }
+    .hl-primitive  { color: #569cd6; font-weight: 600; }
+    .hl-type       { color: #4ec9b0; font-weight: 600; }
+    .hl-method     { color: #dcdcaa; }
+    .hl-annotation { color: #dcdcaa; font-weight: 600; }
+    .hl-literal    { color: #569cd6; font-weight: 600; }
+    .hl-tag        { color: #808080; }
+    .hl-xml-elem   { color: #569cd6; font-weight: 600; }
+    .hl-xml-attr   { color: #9cdcfe; }
+
+    .terminal-box {
+      background: #141414;
+      border: 1px solid #2d2d2d;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .terminal-header {
+      background: #1f1f1f;
+      color: #4ade80;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 7px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid #2d2d2d;
+    }
+
+    .terminal-header::before {
+      content: "▶";
+      font-size: 0.65rem;
+    }
+
+    .terminal-content {
+      padding: 12px 14px;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 0.85rem;
+      color: #86efac;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    .twist-box {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.84rem;
+      color: #fde68a;
+    }
+
+    .twist-box b {
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    /* Footer Navigation for Mobile */
+    .mobile-quick-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #0f172a;
+      border-top: 1px solid var(--border-color);
+      padding: 8px 12px;
+      z-index: 30;
+      justify-content: space-around;
+    }
+
+    .mobile-nav-item {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.72rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      font-weight: 600;
+    }
+
+    .mobile-nav-item.active {
+      color: var(--accent-blue);
+    }
+
+    /* Media Queries for Mobile Responsiveness */
+    @media (max-width: 768px) {
+      h1 { font-size: 1.3rem; }
+      .header-container { gap: 12px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .modal { max-height: 94vh; margin: 8px; border-radius: var(--radius-md); }
+      .modal-body { padding: 14px; }
+      pre { font-size: 0.8rem; padding: 12px; }
+      .mobile-quick-nav { display: flex; }
+      body { padding-bottom: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="title-row">
+        <div>
+          <span class="brand-badge">⚡ UCS553 EWA — Java Complete Revision</span>
+          <h1>Java OOP & Core Concepts Cheatsheet</h1>
+        </div>
+        <div class="stats-pills">
+          <span class="pill">Modules: <b>5</b></span>
+          <span class="pill">Interactive Examples: <b>42</b></span>
+          <span class="pill">Mode: <b>Exam Prep</b></span>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search keywords (e.g., overriding, maven, hashmap, throws, comparator)..." onkeyup="filterCards()">
+        </div>
+        <div class="tab-pills" id="filterPills">
+          <button class="tab-btn active" onclick="switchTab('all', this)">All Topics</button>
+          <button class="tab-btn" onclick="switchTab('mod1', this)">1. Methods & Classes</button>
+          <button class="tab-btn" onclick="switchTab('mod2', this)">2. Inheritance & Interfaces</button>
+          <button class="tab-btn" onclick="switchTab('mod3', this)">3. Conventions & Build Tools</button>
+          <button class="tab-btn" onclick="switchTab('mod4', this)">4. Collections & Utils</button>
+          <button class="tab-btn" onclick="switchTab('mod5', this)">5. Exceptions</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- ==================== MODULE 1 ==================== -->
+    <section class="module-section" id="mod1">
+      <div class="section-header">
+        <span class="section-tag">PDF 1</span>
+        <h2 class="section-title">A Closer Look at Methods & Classes</h2>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- Card 1: Method Overloading -->
+        <div class="card" data-topic="mod1" data-keywords="overloading method polymorphism compile time parameters automatic conversion">
+          <div class="card-top">
+            <h3 class="card-title">Method Overloading</h3>
+            <span class="badge badge-core">Polymorphism</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Two or more methods in the <b>same class</b> share the <b>same name</b>.</li>
+            <li>Must differ in <b>parameter types</b> or <b>number of parameters</b>.</li>
+            <li>Return type alone <b>CANNOT</b> differentiate overloaded methods!</li>
+            <li>Enables compile-time (static) polymorphism.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('overload_basic')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 2: Overload Resolution & Type Conversion -->
+        <div class="card" data-topic="mod1" data-keywords="automatic conversion overload resolution type promotion widening int double">
+          <div class="card-top">
+            <h3 class="card-title">Automatic Type Conversion</h3>
+            <span class="badge badge-exam">Exam Trap</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Java searches for an <b>exact parameter match</b> first.</li>
+            <li>If missing, Java automatically <b>widens</b> types (e.g., <code>int → double</code>).</li>
+            <li>If you have <code>test(double)</code> and pass <code>int 88</code>, it executes <code>test(double)</code>.</li>
+            <li>Java will <b>never automatically narrow</b> (e.g. <code>double → int</code>).</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> Exact match wins; otherwise primitives auto-widen upward to the next compatible overloaded method without error.
+          </div>
+          <button class="card-btn" onclick="openModal('overload_conversion')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 3: Constructor Overloading -->
+        <div class="card" data-topic="mod1" data-keywords="constructor overloading cube box default parameterized initialization">
+          <div class="card-top">
+            <h3 class="card-title">Constructor Overloading</h3>
+            <span class="badge badge-core">Initialization</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Multiple constructors with different parameters in the same class.</li>
+            <li>Allows creating objects in various ways: default, cube (single param), or full dimensions.</li>
+            <li>Common pattern: <code>Box()</code> indicates uninitialized (e.g. <code>-1</code>), <code>Box(len)</code> for cube.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('constructor_overload')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 4: Passing Variables (Value vs Reference) -->
+        <div class="card" data-topic="mod1" data-keywords="call by value call by reference primitive object modification address heap stack">
+          <div class="card-top">
+            <h3 class="card-title">Call by Value vs Reference</h3>
+            <span class="badge badge-hard">High Yield</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Primitives:</b> Passed strictly by <b>value</b>. Changes inside method have <b>no effect</b> outside.</li>
+            <li><b>Objects:</b> The <b>reference is passed by value</b>. Both caller and method point to same heap object!</li>
+            <li>Mutating object fields inside a method <b>directly alters</b> the caller's object.</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> Java is 100% pass-by-value; but for objects, the "value" being copied is the memory memory reference itself!
+          </div>
+          <button class="card-btn" onclick="openModal('pass_by_val_ref')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 5: Objects as Parameters & Returning Objects -->
+        <div class="card" data-topic="mod1" data-keywords="object parameter return object copy constructor equalto clone">
+          <div class="card-top">
+            <h3 class="card-title">Objects as Parameters & Returns</h3>
+            <span class="badge badge-core">OOP Patterns</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Methods can take class types: e.g., <code>boolean equalTo(Test o)</code>.</li>
+            <li><b>Copy Constructor:</b> <code>Box(Box ob)</code> creates a clone initially identical to an existing object.</li>
+            <li>Methods can instantiate and return new objects (e.g., <code>Test incrByTen()</code>).</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('obj_param_return')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 6: Access Modifiers & Encapsulation -->
+        <div class="card" data-topic="mod1" data-keywords="access modifier private default protected public encapsulation stack">
+          <div class="card-top">
+            <h3 class="card-title">Access Modifiers & Matrix</h3>
+            <span class="badge badge-exam">Must Know</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>Modifier</th><th>Class</th><th>Pkg</th><th>Subclass</th><th>World</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>private</code></td><td><span class="yes-pill">Yes</span></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td></tr>
+                <tr><td><code>default</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td></tr>
+                <tr><td><code>protected</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="no-pill">No</span></td></tr>
+                <tr><td><code>public</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Default:</b> Package-private (no modifier keyword). Visible only within same package.</li>
+            <li><b>Protected:</b> Same package + subclasses in external packages via inheritance.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('stack_access')">🚀 View Stack Encapsulation Demo</button>
+        </div>
+
+        <!-- Card 7: Static Members & Static Blocks -->
+        <div class="card" data-topic="mod1" data-keywords="static variable static method static block this super restrictions main">
+          <div class="card-top">
+            <h3 class="card-title">Static Members & Blocks</h3>
+            <span class="badge badge-hard">Tricky</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Static members belong to the <b>class</b>, shared across all instances (no per-object copy).</li>
+            <li><b>Static block:</b> Executes strictly <b>once</b> when class is first loaded into memory.</li>
+            <li><b>3 Strict Restrictions on static methods:</b>
+              <br>1. Can only directly call other static methods.
+              <br>2. Can only directly access static data.
+              <br>3. Cannot refer to <code>this</code> or <code>super</code>!</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> Static code has no "this" instance pointer because it runs before and independently of any object instantiation.
+          </div>
+          <button class="card-btn" onclick="openModal('static_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 8: Final Keyword (Constants) -->
+        <div class="card" data-topic="mod1" data-keywords="final constant variable constructor immutability">
+          <div class="card-top">
+            <h3 class="card-title">The 'final' Keyword (Fields)</h3>
+            <span class="badge badge-core">Constants</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Prevents modification; turns a variable into a constant.</li>
+            <li>Must be initialized in one of two places:
+              <br>• Directly at declaration: <code>final int FILE_NEW = 1;</code>
+              <br>• Inside a constructor (blank final).</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('final_field_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 9: Programming Problem - BankAccount -->
+        <div class="card" data-topic="mod1" data-keywords="programming problem bankaccount transferin transferout money sender receiver">
+          <div class="card-top">
+            <h3 class="card-title">Slide Problem: BankAccount</h3>
+            <span class="badge badge-exam">Slide Coding Problem</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Fields: <code>accountNumber</code>, <code>balance</code>, <code>username</code>.</li>
+            <li><code>transferIn(BankAccount sender, double amt)</code>: adds to self, deducts from sender, returns updated sender.</li>
+            <li><code>transferOut(BankAccount receiver, double amt)</code>: deducts from self, adds to receiver, returns updated receiver.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('bank_account_problem')">🚀 View Solution & Test</button>
+        </div>
+
+        <!-- Card 10: Programming Problem - Shape Overloading -->
+        <div class="card" data-topic="mod1" data-keywords="programming problem shape constructor overloading method overloading area square rectangle circle">
+          <div class="card-top">
+            <h3 class="card-title">Slide Problem: Shape Overloading</h3>
+            <span class="badge badge-exam">Slide Coding Problem</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Constructor Overloading:</b> Square(side), Rectangle(l, b), Circle(radius).</li>
+            <li><b>Method Overloading:</b> <code>area(int side)</code>, <code>area(int l, int b)</code>, <code>area(double r)</code>.</li>
+            <li>Method to check if two Shape objects are of identical type/dimensions.</li>
+            <li>Uses private fields and public getters (Encapsulation).</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('shape_problem')">🚀 View Solution & Test</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 2 ==================== -->
+    <section class="module-section" id="mod2">
+      <div class="section-header">
+        <span class="section-tag">PDF 2</span>
+        <h2 class="section-title">Nested Classes, Inheritance, Abstract Classes & Interfaces</h2>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- Card 1: Nested & Inner Classes -->
+        <div class="card" data-topic="mod2" data-keywords="nested inner class static nested scope block loop local">
+          <div class="card-top">
+            <h3 class="card-title">Nested & Inner Classes</h3>
+            <span class="badge badge-core">Class Design</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Inner Class (non-static):</b> Has direct access to all outer class variables/methods (even private).</li>
+            <li><b>Static Nested Class:</b> Must access outer members through an object instance.</li>
+            <li>Can define inner classes within any block scope (e.g. inside a method or even a <code>for</code> loop).</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('inner_class_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 2: Command Line Args & Varargs -->
+        <div class="card" data-topic="mod2" data-keywords="command line arguments args main varargs variable length">
+          <div class="card-top">
+            <h3 class="card-title">CLI Args & Varargs (...)</h3>
+            <span class="badge badge-core">Syntax</span>
+          </div>
+          <ul class="card-bullets">
+            <li><code>main(String args[])</code>: Arguments stored as string array (<code>args[0]</code>, <code>args[1]</code>).</li>
+            <li><b>Varargs:</b> <code>void test(int... v)</code> takes variable number of arguments (treated internally as array).</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('varargs_cli_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 3: Inheritance Basics & super() Order -->
+        <div class="card" data-topic="mod2" data-keywords="inheritance extends superclass subclass super constructor order private">
+          <div class="card-top">
+            <h3 class="card-title">Inheritance & Constructor Order</h3>
+            <span class="badge badge-exam">High Yield</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Uses <code>extends</code>. Java supports <b>single inheritance only</b> for classes.</li>
+            <li>Subclass cannot access <code>private</code> members of superclass.</li>
+            <li><b>Constructor Execution Order:</b> Parent constructor executes <b>first</b>, followed by child! Java calls <code>super()</code> automatically.</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> Base class must be fully constructed in memory before derived extensions can be safely layered onto it.
+          </div>
+          <button class="card-btn" onclick="openModal('inheritance_order')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 4: Reference Variables & Upcasting vs Downcasting -->
+        <div class="card" data-topic="mod2" data-keywords="reference variable upcasting downcasting animal dog unsafe compile time error">
+          <div class="card-top">
+            <h3 class="card-title">Upcasting vs Downcasting</h3>
+            <span class="badge badge-hard">Exam Trap</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Upcasting (Allowed):</b> Superclass reference can hold subclass object: <code>Figure f = new Rectangle();</code></li>
+            <li><b>Downcasting (Illegal without cast/object):</b> <code>Dog d = new Animal();</code> fails with <b>Compilation Error</b>!</li>
+            <li>Why error? A pure Animal object doesn't have the specialized fields/methods required by Dog.</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> Reference type determines which members are accessible at compile time; runtime object type determines which method body executes.
+          </div>
+          <button class="card-btn" onclick="openModal('upcasting_downcasting')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 5: The 'super' Keyword (3 Uses) -->
+        <div class="card" data-topic="mod2" data-keywords="super keyword parent variable method constructor child">
+          <div class="card-top">
+            <h3 class="card-title">The 'super' Keyword (3 Uses)</h3>
+            <span class="badge badge-core">Core OOP</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>1. Access parent variables:</b> <code>super.x</code> (when shadowed by child <code>x</code>).</li>
+            <li><b>2. Call parent method:</b> <code>super.show()</code> (when overridden in child).</li>
+            <li><b>3. Call parent constructor:</b> <code>super(a, b)</code> (must be 1st statement in child constructor).</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('super_three_uses')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 6: Method Overriding & DMD -->
+        <div class="card" data-topic="mod2" data-keywords="method overriding runtime polymorphism dynamic method dispatch dmd figure rectangle triangle">
+          <div class="card-top">
+            <h3 class="card-title">Overriding & Dynamic Method Dispatch</h3>
+            <span class="badge badge-hard">Polymorphism</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Subclass provides its own implementation with <b>same name, params, and return type</b>.</li>
+            <li>Enables <b>Runtime Polymorphism</b> via Dynamic Method Dispatch (DMD).</li>
+            <li><b>Cannot override:</b> <code>static</code>, <code>final</code>, or <code>private</code> methods!</li>
+            <li><b>Covariant return:</b> Subclass can return a narrower subtype (e.g. <code>Dog</code> instead of <code>Animal</code>).</li>
+            <li><b>Visibility rule:</b> Subclass can <b>increase</b> visibility (<code>protected → public</code>), but cannot reduce it!</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> DMD resolves the method call at runtime by checking the actual heap object type, not the reference type.
+          </div>
+          <button class="card-btn" onclick="openModal('dmd_overriding')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 7: Abstract Classes & Rules -->
+        <div class="card" data-topic="mod2" data-keywords="abstract class abstract method rules instantiate new figure shape">
+          <div class="card-top">
+            <h3 class="card-title">Abstract Classes & Rules</h3>
+            <span class="badge badge-core">Abstraction</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Class with one or more <code>abstract</code> methods must be declared <code>abstract</code>.</li>
+            <li><b>CANNOT be instantiated directly:</b> <code>new AbstractClass()</code> is illegal.</li>
+            <li>Subclasses must either implement all abstract methods or also be declared abstract.</li>
+            <li><b>CANNOT have:</b> <code>abstract static</code> methods or <code>abstract constructors</code>! Concrete methods are allowed.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('abstract_class_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 8: Interfaces & Modern Features (Java 8/9) -->
+        <div class="card" data-topic="mod2" data-keywords="interface default static private conflict resolution multiple inheritance implements">
+          <div class="card-top">
+            <h3 class="card-title">Interfaces & Java 8/9 Features</h3>
+            <span class="badge badge-hard">Modern Java</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Pure abstraction blueprint. Implemented using <code>implements A, B</code> (Multiple Inheritance).</li>
+            <li>Variables are implicitly <b><code>public static final</code></b> constants.</li>
+            <li><b>Default Methods (Java 8+):</b> Have body, inherited, can be overridden.</li>
+            <li><b>Static Methods (Java 8+):</b> Called via <code>InterfaceName.method()</code>; not inherited.</li>
+            <li><b>Private Methods (Java 9+):</b> Helper code shared between default/static methods.</li>
+            <li><b>Default Method Clash Resolution:</b> <code>InterfaceName.super.methodName()</code>.</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> Default methods allow interface enhancement without breaking existing classes; clashes are resolved using InterfaceName.super.method().
+          </div>
+          <button class="card-btn" onclick="openModal('interface_modern')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 9: Nested Interfaces & Extending Interfaces -->
+        <div class="card" data-topic="mod2" data-keywords="nested interface smartprinter partial implementation extends interface">
+          <div class="card-top">
+            <h3 class="card-title">Nested Interfaces & Partial Impl</h3>
+            <span class="badge badge-exam">Slide Coding</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Nested Interface:</b> Declared inside a class/interface (e.g. <code>Computer.USBDevice</code>). Can be public, protected, private.</li>
+            <li><b>Extending:</b> An interface can inherit another using <code>extends</code> (e.g. <code>interface B extends A</code>).</li>
+            <li><b>Partial Implementation:</b> If a class implements an interface but omits some methods, the class <b>must be declared abstract</b>!</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('nested_interface_smartprinter')">🚀 View Solution & Test</button>
+        </div>
+
+        <!-- Card 10: Programming Problem - Employee & Manager -->
+        <div class="card" data-topic="mod2" data-keywords="programming problem employee manager inheritance super override displaydetails department salary">
+          <div class="card-top">
+            <h3 class="card-title">Slide Problem: Employee & Manager</h3>
+            <span class="badge badge-exam">Slide Coding Problem</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Superclass <code>Employee(name, salary)</code> with <code>displayDetails()</code>.</li>
+            <li>Subclass <code>Manager(name, salary, department)</code> using <code>super(name, salary)</code>.</li>
+            <li>Overrides <code>displayDetails()</code> to display employee info + department.</li>
+            <li>Demonstrates accessing inherited members in subclass constructor and methods.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('employee_manager_problem')">🚀 View Solution & Test</button>
+        </div>
+
+        <!-- Card 11: Programming Problem - Abstract Employee -->
+        <div class="card" data-topic="mod2" data-keywords="programming problem abstract employee fulltime parttime calculatesalary polymorphic reference">
+          <div class="card-top">
+            <h3 class="card-title">Slide Problem: Abstract Employee</h3>
+            <span class="badge badge-exam">Slide Coding Problem</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Abstract <code>Employee(name, id)</code> with abstract <code>calculateSalary()</code> and concrete <code>displayDetails()</code>.</li>
+            <li><code>FullTimeEmployee</code>: monthlySalary.</li>
+            <li><code>PartTimeEmployee</code>: hoursWorked × hourlyRate.</li>
+            <li>Dynamic method dispatch in <code>main()</code> using base <code>Employee</code> references.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('fulltime_parttime_employee')">🚀 View Solution & Test</button>
+        </div>
+
+        <!-- Card 12: Variables in Interfaces - Decision Maker -->
+        <div class="card" data-topic="mod2" data-keywords="variables in interfaces sharedconstants automated decision maker question askme switch">
+          <div class="card-top">
+            <h3 class="card-title">Slide Problem: SharedConstants</h3>
+            <span class="badge badge-core">Interface Constants</span>
+          </div>
+          <ul class="card-bullets">
+            <li><code>interface SharedConstants</code>: <code>NO=0, YES=1, MAYBE=2, LATER=3, SOON=4, NEVER=5</code>.</li>
+            <li>All variables are implicitly <code>public static final</code>.</li>
+            <li><code>Question</code> and <code>AskMe</code> classes implement the interface to share standard decision flags.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('shared_constants_interface')">🚀 View Solution & Test</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 3 ==================== -->
+    <section class="module-section" id="mod3">
+      <div class="section-header">
+        <span class="section-tag">PDF 3</span>
+        <h2 class="section-title">Java Coding Conventions & Build Tools (Maven & Gradle)</h2>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- Card 1: Coding Conventions -->
+        <div class="card" data-topic="mod3" data-keywords="coding conventions naming pascalcase camelcase snakecase indentation braces 4 spaces">
+          <div class="card-top">
+            <h3 class="card-title">Coding Conventions & Naming</h3>
+            <span class="badge badge-core">Best Practices</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Classes & Interfaces:</b> <code>PascalCase</code> (e.g. <code>StudentRecord</code>, <code>PaymentProcessor</code>).</li>
+            <li><b>Methods & Variables:</b> <code>camelCase</code> (e.g. <code>calculateSalary()</code>, <code>totalMarks</code>). Prefer verbs for methods.</li>
+            <li><b>Constants:</b> <code>UPPER_SNAKE_CASE</code> with <code>final</code> (e.g. <code>MAX_MARKS</code>).</li>
+            <li><b>Packages:</b> All <code>lowercase</code> (e.g. <code>com.example.student</code>).</li>
+            <li><b>Formatting:</b> 4 spaces indentation, opening brace <code>{</code> on same line, spaces around operators (<code>a + b</code>).</li>
+            <li><b>Class Order:</b> 1. Constants → 2. Instance Variables → 3. Constructors → 4. Methods.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('conventions_demo')">🚀 View Standard Class Template</button>
+        </div>
+
+        <!-- Card 2: Why Build Tools & Dependency Transitivity -->
+        <div class="card" data-topic="mod3" data-keywords="build tools maven gradle dependencies transitive repository m2 central">
+          <div class="card-top">
+            <h3 class="card-title">Why Build Tools & Repositories</h3>
+            <span class="badge badge-exam">Architecture</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Without build tools:</b> Manual compilation, manually downloading dozens of JARs, classpath hell.</li>
+            <li><b>Automates:</b> Compilation, dependency resolution, testing, packaging (JAR/WAR), plugin management, CI/CD.</li>
+            <li><b>Transitive Dependency:</b> If App depends on Library A, and Library A depends on B, the build tool automatically resolves and downloads B!</li>
+            <li><b>Repositories:</b> Remote (Maven Central) → downloaded once to Local Cache (<code>~/.m2/repository</code> for Maven).</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> Transitive dependency management prevents developers from manually hunting down and resolving nested third-party library dependencies.
+          </div>
+          <button class="card-btn" onclick="openModal('build_tools_flow')">🚀 View Dependency Flow Diagram</button>
+        </div>
+
+        <!-- Card 3: Maven Architecture & pom.xml -->
+        <div class="card" data-topic="mod3" data-keywords="maven pom.xml groupid artifactid version lifecycle compile package clean install">
+          <div class="card-top">
+            <h3 class="card-title">Maven: POM & Lifecycles</h3>
+            <span class="badge badge-core">Maven Core</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Philosophy:</b> <i>"Convention over configuration"</i> (Standard paths: <code>src/main/java</code>, <code>src/test/java</code>, <code>target/</code>).</li>
+            <li><b>pom.xml (GAV Coordinates):</b>
+              <br>• <code>groupId</code>: organization/package (e.g. <code>com.example</code>)
+              <br>• <code>artifactId</code>: project/module name (e.g. <code>student-app</code>)
+              <br>• <code>version</code>: project release version (e.g. <code>1.0</code>).</li>
+            <li><b>Default Lifecycle:</b> <code>validate → compile → test → package → verify → install → deploy</code>.</li>
+            <li>Running <code>mvn package</code> automatically runs earlier phases (compile, test) first!</li>
+            <li><b>Key Commands:</b> <code>mvn clean</code>, <code>mvn compile</code>, <code>mvn test</code>, <code>mvn package</code>, <code>mvn clean package</code>.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('maven_pom_demo')">🚀 View pom.xml & Lifecycle</button>
+        </div>
+
+        <!-- Card 4: Gradle & Gradle Wrapper -->
+        <div class="card" data-topic="mod3" data-keywords="gradle build.gradle gradlew wrapper tasks dsl groovy kotlin">
+          <div class="card-top">
+            <h3 class="card-title">Gradle & The Gradle Wrapper</h3>
+            <span class="badge badge-exam">Gradle Core</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Uses flexible Groovy or Kotlin DSL (<code>build.gradle</code> or <code>build.gradle.kts</code>) instead of XML.</li>
+            <li><b>Task-based:</b> Units of work like <code>compileJava</code>, <code>test</code>, <code>jar</code>, <code>build</code>.</li>
+            <li><b>Gradle Wrapper (gradlew / gradlew.bat):</b> Bundled scripts so any developer or CI runner executes <code>./gradlew build</code> without manually installing Gradle!</li>
+            <li>Ensures exact, consistent Gradle version across whole team.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('gradle_demo')">🚀 View build.gradle & Wrapper</button>
+        </div>
+
+        <!-- Card 5: Maven vs Gradle Comparison -->
+        <div class="card" data-topic="mod3" data-keywords="maven vs gradle comparison xml dsl groovy speed performance android enterprise">
+          <div class="card-top">
+            <h3 class="card-title">Maven vs Gradle Comparison</h3>
+            <span class="badge badge-core">Exam Table</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>Feature</th><th>Maven</th><th>Gradle</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Config File</td><td><code>pom.xml</code> (XML)</td><td><code>build.gradle</code> (Groovy/Kotlin)</td></tr>
+                <tr><td>Philosophy</td><td>Convention over Config</td><td>Flexibility & Custom Tasks</td></tr>
+                <tr><td>Build Speed</td><td>Standard</td><td>Faster (Incremental & Daemon)</td></tr>
+                <tr><td>Dominance</td><td>Enterprise Java / Spring</td><td>Android / Modern Polyglot</td></tr>
+                <tr><td>Learning Curve</td><td>Easier, highly rigid</td><td>Steeper, scriptable</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="card-btn" onclick="openModal('mvn_vs_gradle_modal')">🚀 View Comparison Summary</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 4 ==================== -->
+    <section class="module-section" id="mod4">
+      <div class="section-header">
+        <span class="section-tag">PDF 4</span>
+        <h2 class="section-title">Collections Framework, Generics & Utility Classes</h2>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- Card 1: Collection Framework Hierarchy -->
+        <div class="card" data-topic="mod4" data-keywords="collections framework hierarchy list set queue deque map arraylist linkedlist hashset hashmap">
+          <div class="card-top">
+            <h3 class="card-title">Collection Hierarchy & Types</h3>
+            <span class="badge badge-core">Architecture</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Hierarchy:</b> <code>Iterable → Collection → (List, Queue, Set)</code>. Map is a separate hierarchy!</li>
+            <li><b>List:</b> Ordered, allows duplicates, index-based access (<code>ArrayList</code>, <code>LinkedList</code>, <code>Vector</code>, <code>Stack</code>).</li>
+            <li><b>Set:</b> Unordered, <b>unique elements only</b> (<code>HashSet</code>, <code>TreeSet</code>).</li>
+            <li><b>Map:</b> Key-Value pairs, <b>unique keys</b>, duplicate values allowed (<code>HashMap</code>, <code>TreeMap</code>).</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('collection_hierarchy_demo')">🚀 View Hierarchy Chart</button>
+        </div>
+
+        <!-- Card 2: ArrayList Deep Dive -->
+        <div class="card" data-topic="mod4" data-keywords="arraylist resizable dynamic array get set add remove contains toarray foreach sort">
+          <div class="card-top">
+            <h3 class="card-title">ArrayList (Dynamic Array)</h3>
+            <span class="badge badge-core">List Interface</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Dynamic resizable array; fast $O(1)$ random access by index via <code>get(i)</code>.</li>
+            <li>Slower $O(n)$ insertion/deletion in the middle (requires shifting elements).</li>
+            <li><b>Key Methods:</b> <code>add(e)</code>, <code>add(index, e)</code>, <code>get(i)</code>, <code>set(i, val)</code>, <code>remove(i)</code>, <code>size()</code>, <code>contains(e)</code>, <code>isEmpty()</code>, <code>clear()</code>, <code>indexOf()</code>, <code>toArray()</code>, <code>sort(null)</code>.</li>
+            <li>Bulk ops: <code>addAll()</code>, <code>removeAll()</code>, <code>retainAll()</code>.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('arraylist_methods')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 3: LinkedList as List, Queue & Stack -->
+        <div class="card" data-topic="mod4" data-keywords="linkedlist queue stack doubly linked node offer poll peek push pop fifo lifo">
+          <div class="card-top">
+            <h3 class="card-title">LinkedList (List, Queue & Stack)</h3>
+            <span class="badge badge-hard">High Yield</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Doubly linked list of nodes; implements both <code>List</code> and <code>Deque</code>.</li>
+            <li>Fast $O(1)$ insertions/deletions at ends; slower $O(n)$ random index access.</li>
+            <li><b>As a Queue (FIFO - First In First Out):</b>
+              <br>• <code>offer(e)</code> (add to tail) | <code>peek()</code> (view head) | <code>poll()</code> (remove head).</li>
+            <li><b>As a Stack (LIFO - Last In First Out):</b>
+              <br>• <code>push(e)</code> (add to top) | <code>pop()</code> (remove from top).</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> LinkedList implements Deque, allowing it to seamlessly act as either a FIFO Queue (offer/poll) or a LIFO Stack (push/pop).
+          </div>
+          <button class="card-btn" onclick="openModal('linkedlist_queue_stack')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 4: ArrayList vs LinkedList Table -->
+        <div class="card" data-topic="mod4" data-keywords="arraylist vs linkedlist difference table speed memory storage">
+          <div class="card-top">
+            <h3 class="card-title">ArrayList vs LinkedList</h3>
+            <span class="badge badge-exam">Exam Table</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>Feature</th><th>ArrayList</th><th>LinkedList</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Storage</td><td>Dynamic Resizable Array</td><td>Doubly Linked List Nodes</td></tr>
+                <tr><td>Access Time</td><td>Fast $O(1)$ by index</td><td>Slow $O(n)$ pointer traversal</td></tr>
+                <tr><td>Insert/Delete</td><td>Slow (shifts elements)</td><td>Fast $O(1)$ at head/tail</td></tr>
+                <tr><td>Memory Overhead</td><td>Lower (contiguous array)</td><td>Higher (pointers for prev/next)</td></tr>
+                <tr><td>Best Use</td><td>Frequent read/search</td><td>Frequent additions/deletions</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="card-btn" onclick="openModal('list_comparison_modal')">🚀 View List Insights</button>
+        </div>
+
+        <!-- Card 5: HashSet & Set Operations -->
+        <div class="card" data-topic="mod4" data-keywords="hashset set union intersection difference addall retainall removeall containsall removeif">
+          <div class="card-top">
+            <h3 class="card-title">HashSet & Set Algebra</h3>
+            <span class="badge badge-core">Unique Elements</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Stores <b>unique elements only</b> (duplicates rejected without throwing error).</li>
+            <li>No insertion order; allows one <code>null</code>; fast $O(1)$ lookup.</li>
+            <li><b>Mathematical Set Operations:</b>
+              <br>• <b>Union:</b> <code>A.addAll(B)</code>
+              <br>• <b>Intersection:</b> <code>A.retainAll(B)</code>
+              <br>• <b>Difference:</b> <code>A.removeAll(B)</code>
+              <br>• <b>Subset Check:</b> <code>A.containsAll(B)</code>
+              <br>• <b>Conditional Remove:</b> <code>set.removeIf(n -> n > 20)</code>.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('hashset_operations')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 6: HashMap Key-Value Operations -->
+        <div class="card" data-topic="mod4" data-keywords="hashmap map key value put get remove containskey containsvalue keyset entryset getordefault putifabsent">
+          <div class="card-top">
+            <h3 class="card-title">HashMap (Key-Value Storage)</h3>
+            <span class="badge badge-core">Map Interface</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Stores key-value pairs; <b>Keys must be unique</b> (values can duplicate).</li>
+            <li>Allows one <code>null</code> key and multiple <code>null</code> values; fast $O(1)$ retrieval.</li>
+            <li><b>Key Methods:</b> <code>put(k, v)</code>, <code>get(k)</code>, <code>remove(k)</code>, <code>containsKey(k)</code>, <code>containsValue(v)</code>, <code>size()</code>.</li>
+            <li><b>Advanced:</b> <code>putIfAbsent(k, v)</code>, <code>getOrDefault(k, defaultVal)</code>, <code>replace(k, newVal)</code>.</li>
+            <li><b>Traversal:</b> <code>keySet()</code> for keys, <code>entrySet()</code> for <code>Map.Entry&lt;K,V&gt;</code>.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('hashmap_methods')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 7: Iterator & Safe Removal -->
+        <div class="card" data-topic="mod4" data-keywords="iterator hasnext next remove concurrentmodificationexception traverse list set map">
+          <div class="card-top">
+            <h3 class="card-title">Iterator & Safe Deletion</h3>
+            <span class="badge badge-hard">Exam Trap</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Used to step through collections: <code>hasNext()</code> and <code>next()</code>.</li>
+            <li><b>Why use Iterator instead of for-each?</b> Modifying a collection inside a regular for-each loop throws <code>ConcurrentModificationException</code>!</li>
+            <li><code>it.remove()</code> is the <b>only safe way</b> to remove elements while actively iterating.</li>
+            <li>Can traverse Lists, Sets, and Map key sets / entry sets.</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> Always use it.remove() during iteration to avoid ConcurrentModificationException caused by modifying the backing collection during loop execution.
+          </div>
+          <button class="card-btn" onclick="openModal('iterator_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 8: Comparator & Custom Sorting -->
+        <div class="card" data-topic="mod4" data-keywords="comparator compare lambda naturalorder reverseorder reversed nullsfirst nullslast collections sort">
+          <div class="card-top">
+            <h3 class="card-title">Comparator & Custom Sorting</h3>
+            <span class="badge badge-core">java.util.Comparator</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Defines custom sorting logic for objects using lambdas: <code>(a, b) -> a - b</code>.</li>
+            <li><b>Built-in Factory Methods:</b>
+              <br>• <code>Comparator.naturalOrder()</code> (Ascending)
+              <br>• <code>Comparator.reverseOrder()</code> (Descending)
+              <br>• <code>c.reversed()</code> (Inverts sorting)
+              <br>• <code>Comparator.nullsFirst(...)</code> & <code>nullsLast(...)</code>.</li>
+            <li>Used with <code>list.sort(comparator)</code> or <code>Collections.sort(list, comparator)</code>.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('comparator_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 9: Generics & Type Safety -->
+        <div class="card" data-topic="mod4" data-keywords="generics type safety classcastexception compile time type checking raw types">
+          <div class="card-top">
+            <h3 class="card-title">Generics & Type Safety</h3>
+            <span class="badge badge-core">Type Safety</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Without Generics (Raw Type):</b> <code>ArrayList list = new ArrayList();</code> can hold mixed types, leading to dangerous runtime <code>ClassCastException</code>.</li>
+            <li><b>With Generics:</b> <code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();</code> enforces type check at compile-time.</li>
+            <li><b>Advantages:</b>
+              <br>1. Catches bugs at compile time.
+              <br>2. Eliminates manual explicit casting (<code>(String)list.get(0)</code>).
+              <br>3. Cleaner and safer code.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('generics_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 10: Utility Classes (Objects, Optional, Math, Time) -->
+        <div class="card" data-topic="mod4" data-keywords="utility classes objects optional math localdate localtime localdatetime nullpointerexception">
+          <div class="card-top">
+            <h3 class="card-title">Core Java Utility Classes</h3>
+            <span class="badge badge-core">java.util & time</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b><code>Objects</code>:</b> Null-safe operations: <code>Objects.equals(a, b)</code>, <code>isNull()</code>, <code>nonNull()</code>, <code>toString(obj, default)</code>.</li>
+            <li><b><code>Optional&lt;T&gt;</code>:</b> Container avoiding NPE: <code>Optional.ofNullable(val)</code>, <code>isPresent()</code>, <code>orElse("default")</code>.</li>
+            <li><b><code>Math</code>:</b> Pure static methods: <code>max()</code>, <code>min()</code>, <code>sqrt()</code>, <code>pow()</code>, <code>abs()</code>, <code>random()</code>.</li>
+            <li><b><code>java.time</code>:</b> <code>LocalDate</code> (Date only), <code>LocalTime</code> (Time only), <code>LocalDateTime</code> (Both). Immutable & thread-safe!</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('utility_classes_demo')">🚀 View Code & Output</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== MODULE 5 ==================== -->
+    <section class="module-section" id="mod5">
+      <div class="section-header">
+        <span class="section-tag">PDF 5</span>
+        <h2 class="section-title">Exception Handling</h2>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- Card 1: Exceptions vs Errors & Hierarchy -->
+        <div class="card" data-topic="mod5" data-keywords="exception error throwable checked unchecked runtimeexception virtualmachineerror hierarchy">
+          <div class="card-top">
+            <h3 class="card-title">Exception vs Error & Hierarchy</h3>
+            <span class="badge badge-core">Hierarchy</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Root class: <b><code>Throwable</code></b> splits into:
+              <br>• <b><code>Error</code>:</b> Irrecoverable system failures (e.g. <code>OutOfMemoryError</code>, <code>StackOverflowError</code>). Do not catch!
+              <br>• <b><code>Exception</code>:</b> Abnormal conditions that applications should catch and handle.</li>
+            <li><b>Checked Exceptions:</b> Verified at compile time (e.g. <code>IOException</code>, <code>SQLException</code>). Must handle with try-catch or declare with <code>throws</code>!</li>
+            <li><b>Unchecked Exceptions:</b> Subclasses of <code>RuntimeException</code> (e.g. <code>NullPointerException</code>, <code>ArithmeticException</code>). Not checked at compile time.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('exception_hierarchy_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 2: Try, Catch, Finally & Catch Ordering -->
+        <div class="card" data-topic="mod5" data-keywords="try catch finally ordering unreachable code multi catch pipe">
+          <div class="card-top">
+            <h3 class="card-title">Try-Catch-Finally & Ordering</h3>
+            <span class="badge badge-hard">Exam Trap</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Catch Ordering Rule:</b> Specific exceptions must come <b>FIRST</b>, superclass <code>Exception</code> must come <b>LAST</b>!</li>
+            <li>Placing general <code>catch(Exception e)</code> first causes a <b>Compile Error: unreachable code</b>!</li>
+            <li><b>Finally block:</b> Guaranteed to execute whether exception occurred or not (used for cleanup like closing files/DB).</li>
+            <li><b>Multi-catch (Java 7+):</b> Combine handlers using pipe symbol: <code>catch (ArithmeticException | ArrayIndexOutOfBoundsException e)</code>.</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> Catch clauses evaluate top-to-bottom; placing a superclass handler above a subclass handler shadows it and triggers a compiler error.
+          </div>
+          <button class="card-btn" onclick="openModal('try_catch_ordering')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 3: Exception Propagation (Call Stack) -->
+        <div class="card" data-topic="mod5" data-keywords="exception propagation call stack method3 method2 method1 unhandled terminates">
+          <div class="card-top">
+            <h3 class="card-title">Exception Propagation</h3>
+            <span class="badge badge-hard">Call Stack</span>
+          </div>
+          <ul class="card-bullets">
+            <li>When an exception is thrown inside a method and not caught, it drops off the call stack to the caller method.</li>
+            <li>JVM unrolls the stack searching outwards until an appropriate enclosing catch block is found.</li>
+            <li>If unhandled all the way to <code>main()</code>, the JVM prints a stack trace and abruptly terminates the program!</li>
+          </ul>
+          <div class="hard-expl">
+            <b>💡 1-Liner:</b> Uncaught exceptions propagate backward up the method invocation stack until an enclosing catch block intercepts them or JVM terminates.
+          </div>
+          <button class="card-btn" onclick="openModal('exception_propagation')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 4: 'throw' vs 'throws' -->
+        <div class="card" data-topic="mod5" data-keywords="throw vs throws keyword difference signature trigger checked">
+          <div class="card-top">
+            <h3 class="card-title">throw vs throws</h3>
+            <span class="badge badge-exam">High Yield</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>Aspect</th><th><code>throw</code></th><th><code>throws</code></th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Location</td><td>Inside method body</td><td>In method signature</td></tr>
+                <tr><td>Purpose</td><td>Actually triggers an exception instance</td><td>Declares that method might propagate checked exception</td></tr>
+                <tr><td>Syntax</td><td><code>throw new MyException();</code></td><td><code>void test() throws IOException</code></td></tr>
+                <tr><td>Count</td><td>Followed by 1 exception object</td><td>Can list multiple classes separated by comma</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="card-btn" onclick="openModal('throw_vs_throws_demo')">🚀 View Code & Output</button>
+        </div>
+
+        <!-- Card 5: Custom Exceptions & Slide Problem -->
+        <div class="card" data-topic="mod5" data-keywords="custom exception creating user defined missingdata nullpointerexception string length">
+          <div class="card-top">
+            <h3 class="card-title">Custom Exceptions & Null Demo</h3>
+            <span class="badge badge-exam">Slide Coding Problem</span>
+          </div>
+          <ul class="card-bullets">
+            <li><b>Custom Exception:</b> Create by extending <code>Exception</code> (checked) or <code>RuntimeException</code> (unchecked).</li>
+            <li>Provide standard constructors calling <code>super()</code> and <code>super(message)</code>.</li>
+            <li><b>Slide Problem:</b> Create String variable set to <code>null</code>, call <code>length()</code>, catch <code>NullPointerException</code>, print custom error message.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('custom_exception_null')">🚀 View Solution & Test</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Mobile Bottom Quick Navigation -->
+  <nav class="mobile-quick-nav">
+    <a href="#mod1" class="mobile-nav-item"><span>⚡</span>Methods</a>
+    <a href="#mod2" class="mobile-nav-item"><span>🧬</span>Inheritance</a>
+    <a href="#mod3" class="mobile-nav-item"><span>🛠️</span>Build Tools</a>
+    <a href="#mod4" class="mobile-nav-item"><span>📦</span>Collections</a>
+    <a href="#mod5" class="mobile-nav-item"><span>🛡️</span>Exceptions</a>
+  </nav>
+
+  <!-- Interactive Modal Popup Container -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleBackdropClick(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Example Preview</div>
+        <button class="close-btn" onclick="closeModal()" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content injected dynamically via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Embedded Interactive Script & Database of Slide Code Examples -->
+  <script>
+    // Database of code examples with exact slide concepts, outputs, and twists
+    const examplesData = {
+      overload_basic: {
+        title: "Method Overloading Demo (4 Variations)",
+        badge: "Compile-Time Polymorphism",
+        code: `// Demonstrate method overloading (from slides)
+class OverloadDemo {
+    void test() {
+        System.out.println("No parameters");
+    }
+    void test(int a) {
+        System.out.println("a: " + a);
+    }
+    void test(int a, int b) {
+        System.out.println("a and b: " + a + " " + b);
+    }
+    double test(double a) {
+        System.out.println("double a: " + a);
+        return a * a;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        OverloadDemo ob = new OverloadDemo();
+        ob.test();
+        ob.test(10);
+        ob.test(10, 20);
+        double result = ob.test(123.25);
+        System.out.println("Result of ob.test(123.25): " + result);
+    }
+}`,
+        output: `No parameters
+a: 10
+a and b: 10 20
+double a: 123.25
+Result of ob.test(123.25): 15190.5625`,
+        twist: "Return types can differ (void vs double), but return type alone cannot be used to distinguish overloaded methods. Parameter signatures MUST differ!"
+      },
+
+      overload_conversion: {
+        title: "Automatic Type Conversion in Overload Resolution",
+        badge: "Exam Favorite",
+        code: `// Automatic type conversion resolution
+class OverloadDemo {
+    void test() {
+        System.out.println("No parameters");
+    }
+    void test(int a, int b) {
+        System.out.println("a and b: " + a + " " + b);
+    }
+    // Notice: NO test(int a) method exists!
+    void test(double a) {
+        System.out.println("Inside test(double) a: " + a);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        OverloadDemo ob = new OverloadDemo();
+        int i = 88;
+        ob.test();
+        ob.test(10, 20);
+        // int 'i' is automatically widened to double!
+        ob.test(i); 
+        ob.test(123.2);
+    }
+}`,
+        output: `No parameters
+a and b: 10 20
+Inside test(double) a: 88.0
+Inside test(double) a: 123.2`,
+        twist: "Java widens primitives automatically (byte -> short -> int -> long -> float -> double). If test(int) is added back, Java picks test(int) because exact match takes priority over type promotion."
+      },
+
+      constructor_overload: {
+        title: "Constructor Overloading (Box & Cube)",
+        badge: "OOP Construction",
+        code: `class Box {
+    double width, height, depth;
+
+    // 1. Full dimensions specified
+    Box(double w, double h, double d) {
+        width = w; height = h; depth = d;
+    }
+    // 2. No dimensions specified (default)
+    Box() {
+        width = height = depth = -1; // -1 indicates uninitialized
+    }
+    // 3. Cube constructor (single dimension)
+    Box(double len) {
+        width = height = depth = len;
+    }
+
+    double volume() {
+        return width * height * depth;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box mybox1 = new Box(10, 20, 15);
+        Box mybox2 = new Box();
+        Box mycube = new Box(7);
+
+        System.out.println("Volume of mybox1 is " + mybox1.volume());
+        System.out.println("Volume of mybox2 is " + mybox2.volume());
+        System.out.println("Volume of mycube is " + mycube.volume());
+    }
+}`,
+        output: `Volume of mybox1 is 3000.0
+Volume of mybox2 is -1.0
+Volume of mycube is 343.0`,
+        twist: "If you define any parameterized constructor in Java, the compiler NO LONGER provides the implicit default no-arg constructor. You must write Box() explicitly if you wish to call new Box()!"
+      },
+
+      pass_by_val_ref: {
+        title: "Call by Value vs Object Reference Passing",
+        badge: "Memory Mechanics",
+        code: `class Test {
+    int a, b;
+    Test(int i, int j) { a = i; b = j; }
+
+    // Primitive values
+    static void primitiveMeth(int i, int j) {
+        i *= 2; j /= 2;
+    }
+
+    // Object reference
+    static void objectMeth(Test o) {
+        o.a *= 2; o.b /= 2;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // 1. Primitive test
+        int x = 15, y = 20;
+        Test.primitiveMeth(x, y);
+        System.out.println("Primitives after call: x=" + x + ", y=" + y + " (UNCHANGED)");
+
+        // 2. Object test
+        Test ob = new Test(15, 20);
+        Test.objectMeth(ob);
+        System.out.println("Object fields after call: ob.a=" + ob.a + ", ob.b=" + ob.b + " (MODIFIED)");
+    }
+}`,
+        output: `Primitives after call: x=15, y=20 (UNCHANGED)
+Object fields after call: ob.a=30, ob.b=10 (MODIFIED)`,
+        twist: "Even though Java passes object references by value, reassigning the reference variable inside the method (e.g. o = new Test(0,0)) does NOT alter the caller's reference!"
+      },
+
+      obj_param_return: {
+        title: "Using Objects as Parameters & Copy Constructor",
+        badge: "Object Cloning",
+        code: `class Box {
+    double width, height, depth;
+
+    // Normal constructor
+    Box(double w, double h, double d) {
+        width = w; height = h; depth = d;
+    }
+
+    // Copy Constructor: Takes an object of its own class!
+    Box(Box ob) {
+        width = ob.width;
+        height = ob.height;
+        depth = ob.depth;
+    }
+
+    double volume() { return width * height * depth; }
+
+    // Method comparing two objects
+    boolean equalTo(Box o) {
+        return (o.width == width && o.height == height && o.depth == depth);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box b1 = new Box(10, 20, 15);
+        Box clone = new Box(b1); // clone b1
+        System.out.println("b1 volume: " + b1.volume());
+        System.out.println("clone volume: " + clone.volume());
+        System.out.println("b1 equals clone? " + b1.equalTo(clone));
+    }
+}`,
+        output: `b1 volume: 3000.0
+clone volume: 3000.0
+b1 equals clone? true`,
+        twist: "The copy constructor is the cleanest, most standard idiomatic way in Java to duplicate an object without relying on Java's flawed Cloneable interface."
+      },
+
+      stack_access: {
+        title: "Access Control & Encapsulation with Stack",
+        badge: "Data Hiding",
+        code: `// Integer Stack with protected internal state
+class Stack {
+    private int[] stck = new int[10];
+    private int tos;
+
+    Stack() {
+        tos = -1;
+    }
+
+    void push(int item) {
+        if (tos == 9)
+            System.out.println("Stack is full.");
+        else
+            stck[++tos] = item;
+    }
+
+    int pop() {
+        if (tos < 0) {
+            System.out.println("Stack underflow.");
+            return 0;
+        } else {
+            return stck[tos--];
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Stack mystack = new Stack();
+        for (int i = 0; i < 5; i++) mystack.push(i * 10);
+
+        System.out.println("Popping items:");
+        for (int i = 0; i < 5; i++) System.out.print(mystack.pop() + " ");
+        System.out.println();
+
+        // COMPILE ERRORS if uncommented (Data Hiding in action):
+        // mystack.tos = -2;
+        // mystack.stck[3] = 100;
+    }
+}`,
+        output: `Popping items:
+40 30 20 10 0 `,
+        twist: "Marking 'tos' and 'stck' as private prevents external code from corrupting the stack pointer or modifying raw elements directly."
+      },
+
+      static_demo: {
+        title: "Static Variables, Methods & Static Initialization Block",
+        badge: "Class Loading",
+        code: `class UseStatic {
+    static int a = 3;
+    static int b;
+
+    static void meth(int x) {
+        System.out.println("x = " + x);
+        System.out.println("a = " + a);
+        System.out.println("b = " + b);
+    }
+
+    // Static initialization block: executes strictly ONCE when class is loaded!
+    static {
+        System.out.println("Static block initialized.");
+        b = a * 4; // 3 * 4 = 12
+    }
+
+    public static void main(String[] args) {
+        meth(42);
+        // Calling static member from outside class:
+        System.out.println("Accessing via ClassName: " + UseStatic.a);
+    }
+}`,
+        output: `Static block initialized.
+x = 42
+a = 3
+b = 12
+Accessing via ClassName: 3`,
+        twist: "The static block executes BEFORE the main() method runs! If you define multiple static blocks, they execute sequentially in the exact order they appear in source code."
+      },
+
+      final_field_demo: {
+        title: "Using 'final' for Constants",
+        badge: "Immutability",
+        code: `class ConstantsDemo {
+    // 1. Initialized at declaration
+    final int FILE_NEW = 1;
+    final int FILE_OPEN = 2;
+    
+    // 2. Blank final: initialized inside constructor
+    final int MAX_USERS;
+
+    ConstantsDemo(int max) {
+        this.MAX_USERS = max;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ConstantsDemo c = new ConstantsDemo(500);
+        System.out.println("FILE_NEW: " + c.FILE_NEW);
+        System.out.println("MAX_USERS: " + c.MAX_USERS);
+
+        // c.FILE_NEW = 99; // COMPILE ERROR: cannot assign a value to final variable
+    }
+}`,
+        output: `FILE_NEW: 1
+MAX_USERS: 500`,
+        twist: "A final reference variable cannot be reassigned to another object, BUT the internal state of the referenced object itself CAN still be changed (unless its fields are also final)!"
+      },
+
+      bank_account_problem: {
+        title: "Slide Problem: BankAccount (transferIn & transferOut)",
+        badge: "Slide Exercise Solved",
+        code: `class BankAccount {
+    private String accountNumber;
+    private double balance;
+    private String username;
+
+    public BankAccount(String accNum, double bal, String user) {
+        this.accountNumber = accNum;
+        this.balance = bal;
+        this.username = user;
+    }
+
+    // transferIn: Add amount to this account, deduct from sender
+    public BankAccount transferIn(BankAccount sender, double amount) {
+        if (sender.balance >= amount) {
+            sender.balance -= amount;
+            this.balance += amount;
+            System.out.println("TransferIn Success: Received $" + amount + " from " + sender.username);
+        } else {
+            System.out.println("TransferIn Failed: Insufficient funds in sender " + sender.username);
+        }
+        return sender; // returns updated sender object as per slide requirement
+    }
+
+    // transferOut: Deduct amount from this account, add to receiver
+    public BankAccount transferOut(BankAccount receiver, double amount) {
+        if (this.balance >= amount) {
+            this.balance -= amount;
+            receiver.balance += amount;
+            System.out.println("TransferOut Success: Sent $" + amount + " to " + receiver.username);
+        } else {
+            System.out.println("TransferOut Failed: Insufficient funds in " + this.username);
+        }
+        return receiver; // returns updated receiver object
+    }
+
+    public void display() {
+        System.out.println(username + " (" + accountNumber + ") Balance: $" + balance);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BankAccount alice = new BankAccount("AC101", 1000.0, "Alice");
+        BankAccount bob = new BankAccount("AC102", 500.0, "Bob");
+
+        alice.transferOut(bob, 300.0);
+        alice.display();
+        bob.display();
+    }
+}`,
+        output: `TransferOut Success: Sent $300.0 to Bob
+Alice (AC101) Balance: $700.0
+Bob (AC102) Balance: $800.0`,
+        twist: "Notice how passing BankAccount objects as parameters allows the method to mutate the balance of both accounts simultaneously in memory."
+      },
+
+      shape_problem: {
+        title: "Slide Problem: Shape Overloading (Square, Rect, Circle)",
+        badge: "Slide Exercise Solved",
+        code: `class Shape {
+    private String type;
+    private double dim1, dim2;
+
+    // 1. Square Constructor
+    public Shape(int side) {
+        this.type = "Square";
+        this.dim1 = side;
+        this.dim2 = side;
+    }
+
+    // 2. Rectangle Constructor
+    public Shape(int length, int breadth) {
+        this.type = "Rectangle";
+        this.dim1 = length;
+        this.dim2 = breadth;
+    }
+
+    // 3. Circle Constructor
+    public Shape(double radius) {
+        this.type = "Circle";
+        this.dim1 = radius;
+        this.dim2 = radius;
+    }
+
+    // Overloaded Area Calculation Methods
+    public double area(int side) {
+        return side * side;
+    }
+    public double area(int length, int breadth) {
+        return length * breadth;
+    }
+    public double area(double radius) {
+        return Math.PI * radius * radius;
+    }
+
+    // Method to check if two Shape objects are of same shape
+    public boolean isSameShape(Shape other) {
+        if (other == null) return false;
+        return this.type.equalsIgnoreCase(other.type) &&
+               this.dim1 == other.dim1 &&
+               this.dim2 == other.dim2;
+    }
+
+    public String getType() { return type; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape sq = new Shape(5);
+        Shape rect = new Shape(4, 6);
+        Shape circle = new Shape(3.0);
+        Shape sq2 = new Shape(5);
+
+        System.out.println("Square Area: " + sq.area(5));
+        System.out.println("Rectangle Area: " + rect.area(4, 6));
+        System.out.printf("Circle Area: %.2f\\n", circle.area(3.0));
+
+        System.out.println("sq is same as sq2? " + sq.isSameShape(sq2));
+        System.out.println("sq is same as rect? " + sq.isSameShape(rect));
+    }
+}`,
+        output: `Square Area: 25.0
+Rectangle Area: 24.0
+Circle Area: 28.27
+sq is same as sq2? true
+sq is same as rect? false`,
+        twist: "Method overloading uses static dispatch based on compile-time parameter types, while constructor overloading selects the right initialization flow during 'new Shape(...)'."
+      },
+
+      inner_class_demo: {
+        title: "Nested Inner Class & Block-Scope Inner Class",
+        badge: "Inner Scope",
+        code: `class Outer {
+    int outer_x = 100;
+
+    void test() {
+        // Inner class defined inside enclosing class
+        Inner inner = new Inner();
+        inner.display();
+
+        // Inner class defined inside block (loop) scope
+        for (int i = 0; i < 2; i++) {
+            class LocalInner {
+                void showLoop(int step) {
+                    System.out.println("LocalInner in loop step " + step + ", outer_x=" + outer_x);
+                }
+            }
+            LocalInner li = new LocalInner();
+            li.showLoop(i);
+        }
+    }
+
+    class Inner {
+        void display() {
+            System.out.println("display: outer_x = " + outer_x);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Outer outer = new Outer();
+        outer.test();
+    }
+}`,
+        output: `display: outer_x = 100
+LocalInner in loop step 0, outer_x=100
+LocalInner in loop step 1, outer_x=100`,
+        twist: "An inner class can directly access private members of its outer class. However, the outer class does NOT automatically have access to private members of the inner class!"
+      },
+
+      varargs_cli_demo: {
+        title: "Command-Line Arguments & Varargs (...)",
+        badge: "Flexible Parameters",
+        code: `class VarargsDemo {
+    // Varargs method (variable-arity)
+    static void vaTest(int... v) {
+        System.out.print("Number of args: " + v.length + " | Contents: ");
+        for (int x : v) System.out.print(x + " ");
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        // Varargs calls:
+        vaTest(10);             // 1 arg
+        vaTest(1, 2, 3);        // 3 args
+        vaTest();               // 0 args (empty array)
+
+        // CLI Arguments check:
+        System.out.println("Command-line args passed: " + args.length);
+        for (int i = 0; i < args.length; i++) {
+            System.out.println("args[" + i + "]: " + args[i]);
+        }
+    }
+}`,
+        output: `Number of args: 1 | Contents: 10 
+Number of args: 3 | Contents: 1 2 3 
+Number of args: 0 | Contents: 
+Command-line args passed: 0`,
+        twist: "Varargs must be the LAST parameter in a method's parameter list! e.g., void test(String msg, int... vals) is valid, but void test(int... vals, String msg) is a compile error."
+      },
+
+      inheritance_order: {
+        title: "Constructor Execution Order in Inheritance",
+        badge: "Constructor Chaining",
+        code: `class A {
+    A() {
+        System.out.println("Inside A's Constructor (Superclass)");
+    }
+}
+
+class B extends A {
+    B() {
+        // super(); is automatically inserted here by Java compiler!
+        System.out.println("Inside B's Constructor (Subclass)");
+    }
+}
+
+class C extends B {
+    C() {
+        System.out.println("Inside C's Constructor (Multilevel Subclass)");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Instantiating C:");
+        C c = new C();
+    }
+}`,
+        output: `Instantiating C:
+Inside A's Constructor (Superclass)
+Inside B's Constructor (Subclass)
+Inside C's Constructor (Multilevel Subclass)`,
+        twist: "Constructors are executed in order of derivation: top of the hierarchy (root superclass) down to the leaf subclass. If parent has no default constructor, child MUST explicitly call super(args)."
+      },
+
+      upcasting_downcasting: {
+        title: "Upcasting vs Downcasting Safety",
+        badge: "Type Hierarchy",
+        code: `class Box {
+    double width = 5, height = 5, depth = 5;
+    double volume() { return width * height * depth; }
+}
+
+class BoxWeight extends Box {
+    double weight = 8.5;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BoxWeight bw = new BoxWeight();
+        
+        // UPCASTING: Subclass assigned to Superclass reference (SAFE)
+        Box plainBox = bw; 
+        System.out.println("Volume via Box ref: " + plainBox.volume());
+
+        // COMPILE ERROR if you try:
+        // System.out.println(plainBox.weight); // Box doesn't know about 'weight'!
+
+        // COMPILE ERROR:
+        // BoxWeight bw2 = new Box(); // Incompatible types!
+    }
+}`,
+        output: `Volume via Box ref: 125.0`,
+        twist: "Upcasting is safe and automatic because every BoxWeight is a Box. Downcasting a generic parent object into a child reference without an actual child object triggers a ClassCastException."
+      },
+
+      super_three_uses: {
+        title: "The 3 Uses of the 'super' Keyword",
+        badge: "Superclass Bridge",
+        code: `class Parent {
+    int x = 10;
+    Parent(int val) { System.out.println("1. Parent Constructor: " + val); }
+    void show() { System.out.println("2. Parent show() method"); }
+}
+
+class Child extends Parent {
+    int x = 20; // Shadows parent x
+
+    Child() {
+        super(100); // USE 1: Call parent constructor (MUST BE 1ST LINE)
+        System.out.println("Child Constructor");
+    }
+
+    void display() {
+        show();         // Calls child show
+        super.show();   // USE 2: Call parent overridden method
+        System.out.println("USE 3: Child x=" + x + ", Parent x=" + super.x);
+    }
+
+    void show() { System.out.println("Child show() method"); }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.display();
+    }
+}`,
+        output: `1. Parent Constructor: 100
+Child Constructor
+Child show() method
+2. Parent show() method
+USE 3: Child x=20, Parent x=10`,
+        twist: "super() can only be called from inside a constructor and MUST be the first statement, whereas super.method() and super.field can be used anywhere in instance methods."
+      },
+
+      dmd_overriding: {
+        title: "Method Overriding & Dynamic Method Dispatch (DMD)",
+        badge: "Runtime Polymorphism",
+        code: `class Figure {
+    double dim1, dim2;
+    Figure(double a, double b) { dim1 = a; dim2 = b; }
+    double area() {
+        System.out.println("Area for Figure is undefined.");
+        return 0;
+    }
+}
+
+class Rectangle extends Figure {
+    Rectangle(double a, double b) { super(a, b); }
+    @Override
+    double area() {
+        System.out.print("Rectangle Area: ");
+        return dim1 * dim2;
+    }
+}
+
+class Triangle extends Figure {
+    Triangle(double a, double b) { super(a, b); }
+    @Override
+    double area() {
+        System.out.print("Triangle Area: ");
+        return (dim1 * dim2) / 2;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Figure figref; // Superclass reference
+
+        figref = new Rectangle(9, 5);
+        System.out.println(figref.area()); // Dispatches to Rectangle.area()
+
+        figref = new Triangle(10, 8);
+        System.out.println(figref.area()); // Dispatches to Triangle.area()
+    }
+}`,
+        output: `Rectangle Area: 45.0
+Triangle Area: 40.0`,
+        twist: "Dynamic Method Dispatch only applies to instance methods! Static methods, final methods, and private methods cannot be overridden and do NOT participate in DMD."
+      },
+
+      abstract_class_demo: {
+        title: "Abstract Classes & Mandatory Implementation",
+        badge: "Design Contract",
+        code: `abstract class Figure {
+    double dim1, dim2;
+    Figure(double a, double b) { dim1 = a; dim2 = b; }
+
+    // Abstract method: NO BODY! Subclasses must implement it.
+    abstract double area();
+
+    // Concrete method: Allowed inside abstract class!
+    void displayDimensions() {
+        System.out.println("Dimensions: " + dim1 + " x " + dim2);
+    }
+}
+
+class Rectangle extends Figure {
+    Rectangle(double a, double b) { super(a, b); }
+    double area() { return dim1 * dim2; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Figure f = new Figure(10, 10); // COMPILE ERROR: Figure is abstract!
+        Figure fig = new Rectangle(9, 5);
+        fig.displayDimensions();
+        System.out.println("Area: " + fig.area());
+    }
+}`,
+        output: `Dimensions: 9.0 x 5.0
+Area: 45.0`,
+        twist: "An abstract class CAN have constructors, state (instance fields), and concrete methods; an interface (prior to Java 8) could have none of these."
+      },
+
+      interface_modern: {
+        title: "Modern Interfaces (Default, Static, Private Methods & Conflict Resolution)",
+        badge: "Java 8 / Java 9",
+        code: `interface A {
+    void abstractMethod();
+
+    default void show() {
+        System.out.println("Default show() from Interface A");
+        logHelper();
+    }
+    static void staticUtil() {
+        System.out.println("Static utility inside Interface A");
+    }
+    private void logHelper() {
+        System.out.println("Private helper in Interface A (Java 9+)");
+    }
+}
+
+interface B {
+    default void show() {
+        System.out.println("Default show() from Interface B");
+    }
+}
+
+// Conflict Resolution: Class implements both A and B which have conflicting default show()
+class TestClass implements A, B {
+    public void abstractMethod() {
+        System.out.println("Implemented abstractMethod");
+    }
+
+    // Resolving conflict manually using InterfaceName.super.methodName()
+    @Override
+    public void show() {
+        A.super.show(); // Delegates to A's implementation
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        TestClass obj = new TestClass();
+        obj.abstractMethod();
+        obj.show();
+        A.staticUtil(); // Called directly on Interface name
+    }
+}`,
+        output: `Implemented abstractMethod
+Default show() from Interface A
+Private helper in Interface A (Java 9+)
+Static utility inside Interface A`,
+        twist: "Interface static methods are NOT inherited by implementing classes! You must invoke them using InterfaceName.staticMethodName()."
+      },
+
+      nested_interface_smartprinter: {
+        title: "Slide Problem: SmartPrinter & Nested Interface",
+        badge: "Multiple Interfaces",
+        code: `// Nested Interface Demo (from slides)
+class Computer {
+    public interface USBDevice {
+        void connect();
+    }
+}
+
+class Keyboard implements Computer.USBDevice {
+    public void connect() { System.out.println("Keyboard connected through USB."); }
+}
+
+class Mouse implements Computer.USBDevice {
+    public void connect() { System.out.println("Mouse connected through USB."); }
+}
+
+// SmartPrinter Multiple Interface Problem
+interface Printable { void print(String doc); }
+interface Scannable { void scan(String doc); }
+interface Faxable { void fax(String doc, String num); }
+
+class SmartPrinter implements Printable, Scannable, Faxable {
+    public void print(String doc) { System.out.println("Printing: " + doc); }
+    public void scan(String doc) { System.out.println("Scanning: " + doc); }
+    public void fax(String doc, String num) { System.out.println("Faxing " + doc + " to " + num); }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Nested Interface usage:
+        Computer.USBDevice k = new Keyboard();
+        Computer.USBDevice m = new Mouse();
+        k.connect();
+        m.connect();
+
+        // Separate Interface references to same SmartPrinter instance:
+        SmartPrinter sp = new SmartPrinter();
+        Printable p = sp;
+        Scannable s = sp;
+        p.print("Thesis.pdf");
+        s.scan("Receipt.jpg");
+    }
+}`,
+        output: `Keyboard connected through USB.
+Mouse connected through USB.
+Printing: Thesis.pdf
+Scanning: Receipt.jpg`,
+        twist: "When accessing an object through an interface reference (like 'p'), you can ONLY call methods declared in that specific interface (e.g. p.scan() would be a compile error)."
+      },
+
+      employee_manager_problem: {
+        title: "Slide Problem: Employee & Manager (super & Overriding)",
+        badge: "Slide Exercise Solved",
+        code: `class Employee {
+    protected String name;
+    protected double salary;
+
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public void displayDetails() {
+        System.out.println("Employee: " + name + " | Base Salary: $" + salary);
+    }
+}
+
+class Manager extends Employee {
+    private String department;
+
+    // Use super() in Manager constructor to invoke Employee constructor
+    public Manager(String name, double salary, String department) {
+        super(name, salary);
+        this.department = department;
+    }
+
+    // Override displayDetails() to display all details including department
+    @Override
+    public void displayDetails() {
+        super.displayDetails(); // Call parent method
+        System.out.println("Department: " + department + " | Accessing inherited name directly: " + this.name);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Manager mgr = new Manager("Aditi Sharma", 85000.0, "Engineering");
+        mgr.displayDetails();
+    }
+}`,
+        output: `Employee: Aditi Sharma | Base Salary: $85000.0
+Department: Engineering | Accessing inherited name directly: Aditi Sharma`,
+        twist: "Using protected access allows the subclass Manager to access 'name' and 'salary' directly, whereas private access would have hidden them completely even from derived classes."
+      },
+
+      fulltime_parttime_employee: {
+        title: "Slide Problem: Abstract Employee (FullTime & PartTime)",
+        badge: "Slide Exercise Solved",
+        code: `abstract class Employee {
+    protected String name;
+    protected int id;
+
+    public Employee(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    // Abstract method: each subclass implements its own pay logic
+    public abstract double calculateSalary();
+
+    // Concrete method: shared by all employees
+    public void displayDetails() {
+        System.out.println("ID: " + id + " | Name: " + name);
+    }
+}
+
+class FullTimeEmployee extends Employee {
+    private double monthlySalary;
+
+    public FullTimeEmployee(String name, int id, double monthlySalary) {
+        super(name, id);
+        this.monthlySalary = monthlySalary;
+    }
+
+    @Override
+    public double calculateSalary() {
+        return monthlySalary;
+    }
+}
+
+class PartTimeEmployee extends Employee {
+    private int hoursWorked;
+    private double hourlyRate;
+
+    public PartTimeEmployee(String name, int id, int hoursWorked, double hourlyRate) {
+        super(name, id);
+        this.hoursWorked = hoursWorked;
+        this.hourlyRate = hourlyRate;
+    }
+
+    @Override
+    public double calculateSalary() {
+        return hoursWorked * hourlyRate;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Polymorphic references using abstract Employee base class:
+        Employee emp1 = new FullTimeEmployee("Rohan", 101, 60000.0);
+        Employee emp2 = new PartTimeEmployee("Simran", 102, 40, 25.0);
+
+        emp1.displayDetails();
+        System.out.println("Salary: $" + emp1.calculateSalary());
+
+        emp2.displayDetails();
+        System.out.println("Salary: $" + emp2.calculateSalary());
+    }
+}`,
+        output: `ID: 101 | Name: Rohan
+Salary: $60000.0
+ID: 102 | Name: Simran
+Salary: $1000.0`,
+        twist: "Notice how Employee emp1 = new FullTimeEmployee(...) allows treating diverse employee types uniformly while calculating specific salaries dynamically at runtime."
+      },
+
+      shared_constants_interface: {
+        title: "Slide Problem: Variables in Interfaces (Automated Decision Maker)",
+        badge: "Slide Exercise Solved",
+        code: `import java.util.Random;
+
+// Interface declaring shared constants (implicitly public static final)
+interface SharedConstants {
+    int NO = 0;
+    int YES = 1;
+    int MAYBE = 2;
+    int LATER = 3;
+    int SOON = 4;
+    int NEVER = 5;
+}
+
+class Question implements SharedConstants {
+    Random rand = new Random(42); // Seeded for predictable demonstration
+
+    int ask() {
+        int prob = (int) (100 * rand.nextDouble());
+        if (prob < 30) return NO;        // 30%
+        else if (prob < 60) return YES;  // 30%
+        else if (prob < 75) return LATER;// 15%
+        else if (prob < 98) return SOON; // 13%
+        else return NEVER;               // 2%
+    }
+}
+
+class AskMe implements SharedConstants {
+    static void answer(int result) {
+        switch(result) {
+            case NO:    System.out.println("No"); break;
+            case YES:   System.out.println("Yes"); break;
+            case MAYBE: System.out.println("Maybe"); break;
+            case LATER: System.out.println("Later"); break;
+            case SOON:  System.out.println("Soon"); break;
+            case NEVER: System.out.println("Never"); break;
+        }
+    }
+
+    public static void main(String[] args) {
+        Question q = new Question();
+        System.out.print("Decision 1: "); answer(q.ask());
+        System.out.print("Decision 2: "); answer(q.ask());
+        System.out.print("Decision 3: "); answer(q.ask());
+        System.out.print("Decision 4: "); answer(q.ask());
+    }
+}`,
+        output: `Decision 1: Later
+Decision 2: Yes
+Decision 3: No
+Decision 4: Soon`,
+        twist: "All interface fields are automatically constants (public static final). Implementing the interface imports those constants into the class scope without having to prefix them with SharedConstants.NO."
+      },
+
+      conventions_demo: {
+        title: "Clean Java Class Following All Conventions",
+        badge: "Industry Standard",
+        code: `package com.example.student; // 1. Packages: lowercase
+
+// 2. Class: PascalCase
+public class StudentRecord {
+    // 3. Constants: UPPER_SNAKE_CASE with final
+    public static final int MAX_MARKS = 100;
+
+    // 4. Instance variables: camelCase & private
+    private String studentName;
+    private int totalMarks;
+    private boolean isValid;
+
+    // 5. Constructor
+    public StudentRecord(String studentName, int totalMarks) {
+        this.studentName = studentName;
+        this.totalMarks = totalMarks;
+        this.isValid = (totalMarks <= MAX_MARKS);
+    }
+
+    // 6. Methods: camelCase, prefer action verbs, small & focused
+    public int calculateMarks(int bonus) {
+        int finalScore = this.totalMarks + bonus; // Space around operators
+        return Math.min(finalScore, MAX_MARKS);
+    }
+
+    public boolean isStudentValid() {
+        return this.isValid;
+    }
+}`,
+        output: `Compiles cleanly. Follows:
+✓ 4-space indentation
+✓ Braces on same line
+✓ Consistent member ordering: Constants -> Fields -> Constructor -> Methods`,
+        twist: "Coding conventions are not enforced by javac, but violation makes enterprise code reviews fail and breaks automated static analysis tools like SonarQube."
+      },
+
+      build_tools_flow: {
+        title: "Dependency Transitivity & Repository Architecture",
+        badge: "Maven & Gradle",
+        code: `/*
+TRANSITIVE DEPENDENCY FLOW:
+Your App ──depends on──> Library A (Spring Web)
+                               └──depends on──> Library B (Jackson JSON)
+                                                      └──depends on──> Library C (Jackson Core)
+
+Without a Build Tool:
+You would have to manually find, download, verify versions, and classpath 3 separate JARs.
+
+With Maven / Gradle:
+You declare ONLY:
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+Build tool automatically resolves and downloads A, B, and C!
+
+REPOSITORY RESOLUTION PIPELINE:
+pom.xml / build.gradle 
+   ──> Check Local Cache (~/.m2/repository or ~/.gradle/caches)
+   ──> If missing, Fetch from Remote (Maven Central)
+   ──> Save to Local Cache for future builds
+   ──> Compile project with all JARs placed on classpath
+*/`,
+        output: `[INFO] Resolving dependencies for student-app:1.0...
+[INFO] Downloading from central: org/junit/jupiter/5.10.0...
+[INFO] Cached locally in ~/.m2/repository/
+[INFO] BUILD SUCCESS`,
+        twist: "If two transitive dependencies require different versions of the same library (e.g. Lib C v1.0 vs Lib C v2.0), Maven uses 'Nearest Definition' rule, while Gradle picks the newest version by default."
+      },
+
+      maven_pom_demo: {
+        title: "Complete Maven pom.xml & Lifecycle Phases",
+        badge: "pom.xml Config",
+        code: `<!-- Standard pom.xml structure -->
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- GAV Coordinates -->
+    <groupId>com.example</groupId>
+    <artifactId>student-app</artifactId>
+    <version>1.0</version>
+
+    <!-- Dependencies -->
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Build & Plugins -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+/*
+MAVEN LIFECYCLE PHASES:
+1. validate -> checks project is correct
+2. compile  -> compiles src/main/java
+3. test     -> runs tests in src/test/java
+4. package  -> bundles compiled code into target/*.jar
+5. verify   -> runs quality integration checks
+6. install  -> installs jar into ~/.m2/repository
+7. deploy   -> copies package to remote repository
+*/`,
+        output: `Commands:
+$ mvn clean package   -> Deletes target/ then compiles, tests & creates JAR.
+$ mvn test            -> Compiles and runs test suite.`,
+        twist: "Running a lifecycle phase automatically triggers all preceding phases. Running 'mvn package' will automatically execute validate, compile, and test first."
+      },
+
+      gradle_demo: {
+        title: "Gradle build.gradle & The Gradle Wrapper",
+        badge: "build.gradle",
+        code: `// build.gradle (Groovy DSL)
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+}
+
+// Custom Gradle Task definition
+tasks.register("hello") {
+    doLast {
+        println "Hello from Gradle Custom Task!"
+    }
+}
+
+/*
+GRADLE WRAPPER FILES IN PROJECT:
+├── gradlew          (Unix shell script)
+├── gradlew.bat      (Windows batch script)
+└── gradle/wrapper/  (gradle-wrapper.jar & properties)
+
+EXECUTION:
+$ ./gradlew build    (macOS/Linux)
+$ gradlew.bat build  (Windows)
+*/`,
+        output: `> Task :hello
+Hello from Gradle Custom Task!
+BUILD SUCCESSFUL in 450ms`,
+        twist: "The Gradle Wrapper ensures that anyone cloning the repository can build immediately without having Gradle pre-installed on their machine."
+      },
+
+      mvn_vs_gradle_modal: {
+        title: "Maven vs Gradle Architectural Comparison",
+        badge: "Exam Table",
+        code: `/*
+KEY DIFFERENCES SUMMARY:
+
+1. CONFIGURATION SYNTAX:
+   • Maven: Declarative XML (pom.xml). Highly readable, standardized, verbose.
+   • Gradle: Programming DSL (Groovy or Kotlin in build.gradle). Compact, expressive.
+
+2. BUILD PHILOSOPHY:
+   • Maven: Convention Over Configuration. Rigid standard directory structure.
+   • Gradle: Highly flexible Task-Graph DAG. Custom logic written in code.
+
+3. PERFORMANCE:
+   • Maven: Traditional build cycles.
+   • Gradle: Highly optimized incremental builds, build daemon, and task output caching.
+
+4. ECOSYSTEM:
+   • Maven: Standard across enterprise backend Java & Spring ecosystem.
+   • Gradle: Official standard for Google Android development.
+*/`,
+        output: `Both tools share the same Maven Central repository and directory conventions (src/main/java, src/test/java).`,
+        twist: "In modern industry, neither is 'obsolete': Maven remains ubiquitous in large enterprise banking/backend services due to its strict predictability, while Gradle dominates mobile and multi-language projects."
+      },
+
+      collection_hierarchy_demo: {
+        title: "Java Collections Framework Architecture",
+        badge: "Framework Root",
+        code: `/*
+                    Iterable (Interface)
+                           │
+                   Collection (Interface)
+             ┌─────────────┼──────────────┐
+             │             │              │
+       List (Interface)  Queue (Interface) Set (Interface)
+       ├── ArrayList      ├── PriorityQueue ├── HashSet
+       ├── LinkedList     └── Deque         ├── LinkedHashSet
+       ├── Vector              └── LinkedList└── SortedSet
+       └── Stack                   ArrayDeque     └── TreeSet
+
+  [Separate Hierarchy]:
+  Map (Interface)
+  ├── HashMap
+  ├── LinkedHashMap
+  └── SortedMap ──> TreeMap
+*/`,
+        output: `List: Ordered, allows duplicates, index-based access.
+Set: Unordered, rejects duplicates, unique elements only.
+Queue/Deque: FIFO / LIFO ordered processing.
+Map: Key-value association, unique keys.`,
+        twist: "Notice that Map DOES NOT inherit from Collection or Iterable! However, you can view its contents as collections via map.keySet(), map.values(), or map.entrySet()."
+      },
+
+      arraylist_methods: {
+        title: "ArrayList Comprehensive Methods Demonstration",
+        badge: "Dynamic Array",
+        code: `import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> students = new ArrayList<>();
+
+        // 1. add()
+        students.add("Rahul");
+        students.add("Priya");
+        students.add("Aman");
+        System.out.println("Initial: " + students);
+
+        // 2. add(index, element)
+        students.add(1, "Neha"); // Insert at index 1
+        System.out.println("After add(1, Neha): " + students);
+
+        // 3. get() & set()
+        System.out.println("Index 2 is: " + students.get(2));
+        students.set(2, "Pooja"); // Replaces element at index 2
+        System.out.println("After set(2, Pooja): " + students);
+
+        // 4. remove() by object & by index
+        students.remove("Aman");
+        students.remove(0); // removes Rahul
+        System.out.println("After removals: " + students);
+
+        // 5. contains() & size()
+        System.out.println("Contains Neha? " + students.contains("Neha"));
+        System.out.println("Size = " + students.size());
+    }
+}`,
+        output: `Initial: [Rahul, Priya, Aman]
+After add(1, Neha): [Rahul, Neha, Priya, Aman]
+Index 2 is: Priya
+After set(2, Pooja): [Rahul, Neha, Pooja, Aman]
+After removals: [Neha, Pooja]
+Contains Neha? true
+Size = 2`,
+        twist: "If you have an ArrayList<Integer> and call list.remove(1), Java interprets 1 as an INDEX! To remove the integer value 1, you must call list.remove(Integer.valueOf(1))."
+      },
+
+      linkedlist_queue_stack: {
+        title: "LinkedList as a FIFO Queue & LIFO Stack",
+        badge: "Deque Versatility",
+        code: `import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+        // --- 1. AS A FIFO QUEUE (First In, First Out) ---
+        LinkedList<String> queue = new LinkedList<>();
+        queue.offer("A"); // enqueue
+        queue.offer("B");
+        queue.offer("C");
+        System.out.println("Queue: " + queue);
+        System.out.println("Front peek: " + queue.peek()); // examines head
+        System.out.println("Removed head: " + queue.poll()); // dequeues A
+        System.out.println("Remaining Queue: " + queue);
+
+        System.out.println("----------------------------");
+
+        // --- 2. AS A LIFO STACK (Last In, First Out) ---
+        LinkedList<Integer> stack = new LinkedList<>();
+        stack.push(10); // pushes onto top
+        stack.push(20);
+        stack.push(30);
+        System.out.println("Stack: " + stack);
+        System.out.println("Popped top: " + stack.pop()); // pops 30
+        System.out.println("Remaining Stack: " + stack);
+    }
+}`,
+        output: `Queue: [A, B, C]
+Front peek: A
+Removed head: A
+Remaining Queue: [B, C]
+----------------------------
+Stack: [30, 20, 10]
+Popped top: 30
+Remaining Stack: [20, 10]`,
+        twist: "In Queue, poll() returns null if the queue is empty, whereas remove() throws NoSuchElementException. In Stack, push() inserts at the very front of the linked list."
+      },
+
+      list_comparison_modal: {
+        title: "Deep Dive: ArrayList vs LinkedList Performance",
+        badge: "Time Complexity",
+        code: `/*
+TIME COMPLEXITY COMPARISON:
+
+Operation            ArrayList    LinkedList
+─────────────────────────────────────────────
+get(index)           O(1)         O(n)
+add(element at end)  O(1)*        O(1)
+add(at index 0)      O(n)         O(1) [addFirst]
+remove(index 0)      O(n)         O(1) [removeFirst]
+Memory overhead      Low          High (2 reference pointers per node)
+
+* ArrayList amortized O(1); occasionally O(n) when internal array resizes.
+*/`,
+        output: `Rule of Thumb:
+Use ArrayList by default for 90% of use cases.
+Only use LinkedList when you need frequent insertions/deletions at the start/end (Queue/Deque operations).`,
+        twist: "Despite frequent textbook claims, in modern hardware ArrayList often outperforms LinkedList even for mid-insertions due to CPU cache locality!"
+      },
+
+      hashset_operations: {
+        title: "HashSet & Mathematical Set Operations (Union, Intersection, Diff)",
+        badge: "Set Algebra",
+        code: `import java.util.HashSet;
+
+public class Main {
+    public static void main(String[] args) {
+        HashSet<Integer> setA = new HashSet<>();
+        setA.add(10); setA.add(20); setA.add(30);
+
+        HashSet<Integer> setB = new HashSet<>();
+        setB.add(20); setB.add(30); setB.add(40);
+
+        // 1. UNION: addAll()
+        HashSet<Integer> union = new HashSet<>(setA);
+        union.addAll(setB);
+        System.out.println("Union (A ∪ B): " + union);
+
+        // 2. INTERSECTION: retainAll()
+        HashSet<Integer> intersection = new HashSet<>(setA);
+        intersection.retainAll(setB);
+        System.out.println("Intersection (A ∩ B): " + intersection);
+
+        // 3. DIFFERENCE: removeAll()
+        HashSet<Integer> difference = new HashSet<>(setA);
+        difference.removeAll(setB);
+        System.out.println("Difference (A - B): " + difference);
+
+        // 4. removeIf() condition
+        union.removeIf(n -> n > 25);
+        System.out.println("After removeIf(n > 25): " + union);
+    }
+}`,
+        output: `Union (A ∪ B): [20, 40, 10, 30]
+Intersection (A ∩ B): [20, 30]
+Difference (A - B): [10]
+After removeIf(n > 25): [20, 10]`,
+        twist: "Notice the print order is arbitrary ([20, 40, 10, 30])! HashSet does NOT maintain insertion order. If you need insertion order, use LinkedHashSet; if sorted order, use TreeSet."
+      },
+
+      hashmap_methods: {
+        title: "HashMap Essential & Modern Java 8+ Methods",
+        badge: "Key-Value Pairs",
+        code: `import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+        HashMap<Integer, String> map = new HashMap<>();
+
+        // 1. put() & get()
+        map.put(101, "Rahul");
+        map.put(102, "Priya");
+        map.put(103, "Aman");
+        System.out.println("ID 101: " + map.get(101));
+
+        // 2. containsKey() & containsValue()
+        System.out.println("Has key 102? " + map.containsKey(102));
+
+        // 3. putIfAbsent() & getOrDefault()
+        map.putIfAbsent(102, "DuplicatePriya"); // Will NOT overwrite
+        System.out.println("104 or default: " + map.getOrDefault(104, "Not Found"));
+
+        // 4. replace()
+        map.replace(103, "Aman Sharma");
+
+        // 5. entrySet() traversal
+        System.out.println("--- Map Contents ---");
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " => " + entry.getValue());
+        }
+    }
+}`,
+        output: `ID 101: Rahul
+Has key 102? true
+104 or default: Not Found
+--- Map Contents ---
+101 => Rahul
+102 => Priya
+103 => Aman Sharma`,
+        twist: "If you call map.put(key, value) with an existing key, it returns the OLD value and replaces it with the new value. In contrast, putIfAbsent() does nothing if the key is already present."
+      },
+
+      iterator_demo: {
+        title: "Iterator Traversal & Safe Element Deletion",
+        badge: "Safe Iteration",
+        code: `import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> fruits = new ArrayList<>();
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Mango");
+
+        Iterator<String> it = fruits.iterator();
+        while (it.hasNext()) {
+            String fruit = it.next();
+            // Safe removal during iteration
+            if (fruit.equals("Banana")) {
+                it.remove(); 
+            }
+        }
+        System.out.println("After safe iterator removal: " + fruits);
+
+        /*
+        // WRONG: This throws ConcurrentModificationException!
+        for (String f : fruits) {
+            if (f.equals("Mango")) fruits.remove(f); 
+        }
+        */
+    }
+}`,
+        output: `After safe iterator removal: [Apple, Mango]`,
+        twist: "Never call collection.remove() while inside a loop; only it.remove() synchronizes the iterator's expected modification count."
+      },
+
+      comparator_demo: {
+        title: "Comparator & Modern Functional Sorting Rules",
+        badge: "Custom Sorting",
+        code: `import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Integer> nums = new ArrayList<>(Arrays.asList(30, 10, 50, 20));
+
+        // 1. Natural Ascending Order
+        nums.sort(Comparator.naturalOrder());
+        System.out.println("Ascending: " + nums);
+
+        // 2. Reverse Descending Order
+        nums.sort(Comparator.reverseOrder());
+        System.out.println("Descending: " + nums);
+
+        // 3. Handling nulls safely with nullsFirst / nullsLast
+        ArrayList<String> names = new ArrayList<>(Arrays.asList("Rahul", null, "Aman"));
+        names.sort(Comparator.nullsFirst(Comparator.naturalOrder()));
+        System.out.println("Nulls first: " + names);
+
+        names.sort(Comparator.nullsLast(Comparator.naturalOrder()));
+        System.out.println("Nulls last: " + names);
+    }
+}`,
+        output: `Ascending: [10, 20, 30, 50]
+Descending: [50, 30, 20, 10]
+Nulls first: [null, Aman, Rahul]
+Nulls last: [Aman, Rahul, null]`,
+        twist: "Collections.sort(list) modifies the list in place and requires elements to implement Comparable, while list.sort(Comparator) allows arbitrary dynamic sorting criteria on the fly."
+      },
+
+      generics_demo: {
+        title: "Generics & Compile-Time Type Safety",
+        badge: "Compile-Time Guard",
+        code: `import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        // --- 1. WITHOUT GENERICS (Dangerous Raw Type) ---
+        ArrayList rawList = new ArrayList();
+        rawList.add("Rahul");
+        rawList.add(100); // Compiles! But dangerous
+        // String s = (String) rawList.get(1); // RUNTIME ERROR: ClassCastException!
+
+        // --- 2. WITH GENERICS (Compile-time Type Safety) ---
+        ArrayList<String> safeList = new ArrayList<>();
+        safeList.add("Rahul");
+        safeList.add("Priya");
+        // safeList.add(100); // COMPILE ERROR: incompatible types!
+
+        // No explicit cast required:
+        String name = safeList.get(0);
+        System.out.println("Safe retrieved: " + name);
+    }
+}`,
+        output: `Safe retrieved: Rahul`,
+        twist: "Generics in Java use 'Type Erasure': generic type parameters are erased at runtime and replaced with Object or bounds for backward compatibility with older Java versions."
+      },
+
+      utility_classes_demo: {
+        title: "Objects, Optional, Math & Date-Time Utility Classes",
+        badge: "java.util & java.time",
+        code: `import java.util.Objects;
+import java.util.Optional;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+
+public class Main {
+    public static void main(String[] args) {
+        // 1. Objects class (null-safe equality)
+        String s1 = null, s2 = "Java";
+        System.out.println("Objects.equals: " + Objects.equals(s1, s2)); // false, no NPE!
+        System.out.println("Objects.toString: " + Objects.toString(s1, "DefaultValue"));
+
+        // 2. Optional class (null container)
+        Optional<String> opt = Optional.ofNullable(s1);
+        System.out.println("Optional orElse: " + opt.orElse("Guest"));
+
+        // 3. Math class (static utilities)
+        System.out.println("Math.max: " + Math.max(20, 35));
+        System.out.println("Math.sqrt: " + Math.sqrt(49));
+        System.out.println("Math.pow: " + Math.pow(2, 5));
+
+        // 4. Date & Time API (Java 8+)
+        LocalDate today = LocalDate.now();
+        System.out.println("Today's Date: " + today);
+        System.out.println("Next Week: " + today.plusDays(7));
+    }
+}`,
+        output: `Objects.equals: false
+Objects.toString: DefaultValue
+Optional orElse: Guest
+Math.max: 35
+Math.sqrt: 7.0
+Math.pow: 32.0
+Today's Date: 2026-09-23
+Next Week: 2026-09-30`,
+        twist: "java.time classes (LocalDate, LocalTime) are immutable and thread-safe, making them vastly superior to legacy java.util.Date and Calendar which were mutable and prone to concurrency bugs."
+      },
+
+      exception_hierarchy_demo: {
+        title: "Throwable Hierarchy & Checked vs Unchecked",
+        badge: "Exception Architecture",
+        code: `/*
+                     Throwable
+                   ┌─────┴─────┐
+               Exception      Error (Irrecoverable, e.g. OutOfMemoryError)
+            ┌──────┴──────┐
+     Checked Exceptions   RuntimeException (Unchecked Exceptions)
+     ├── IOException      ├── ArithmeticException
+     ├── SQLException     ├── NullPointerException
+     └── ClassNotFound    └── ArrayIndexOutOfBoundsException
+*/
+
+public class Main {
+    public static void main(String[] args) {
+        // Unchecked: Can occur without explicit handling
+        try {
+            int result = 18 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("Caught Unchecked: " + e.getMessage());
+        }
+
+        // Checked: Compiler forces handling or 'throws' declaration!
+        // FileReader fr = new FileReader("missing.txt"); // Won't compile without try-catch!
+    }
+}`,
+        output: `Caught Unchecked: / by zero`,
+        twist: "The key distinction: Checked exceptions represent conditions from which a well-written application should anticipate and recover (e.g. file missing), whereas Unchecked exceptions represent programming bugs (e.g. null pointer, divide by zero)."
+      },
+
+      try_catch_ordering: {
+        title: "Multiple Catch Ordering & Multi-Catch Pipe",
+        badge: "Unreachable Code Trap",
+        code: `public class Main {
+    public static void main(String[] args) {
+        try {
+            int[] numbers = {1, 2, 3};
+            System.out.println(numbers[5]); // Throws ArrayIndexOutOfBoundsException
+        }
+        // SPECIFIC EXCEPTION FIRST:
+        catch (ArithmeticException e) {
+            System.out.println("Math error occurred.");
+        }
+        // NEXT SPECIFIC EXCEPTION:
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array index does not exist: " + e.getMessage());
+        }
+        // GENERAL EXCEPTION LAST:
+        catch (Exception e) {
+            System.out.println("General fallback error.");
+        }
+        finally {
+            System.out.println("Finally block ALWAYS executes (closing resources).");
+        }
+
+        // Multi-catch alternative (Java 7+):
+        try {
+            int x = 10 / 0;
+        } catch (ArithmeticException | NullPointerException e) {
+            System.out.println("Handled with multi-catch pipe (|): " + e);
+        }
+    }
+}`,
+        output: `Array index does not exist: Index 5 out of bounds for length 3
+Finally block ALWAYS executes (closing resources).
+Handled with multi-catch pipe (|): java.lang.ArithmeticException: / by zero`,
+        twist: "If you place 'catch (Exception e)' above 'catch (ArithmeticException e)', the Java compiler throws an 'Unreachable catch block' compilation error and refuses to compile!"
+      },
+
+      exception_propagation: {
+        title: "Exception Propagation Across the Call Stack",
+        badge: "Stack Unrolling",
+        code: `public class Main {
+    // 1. Error originates here
+    public static void method3() {
+        int result = 10 / 0; // Throws ArithmeticException
+    }
+
+    // 2. method3 throws error to method2. method2 does NOT catch it.
+    public static void method2() {
+        method3();
+    }
+
+    // 3. method2 throws it to method1 which catches and handles it.
+    public static void method1() {
+        try {
+            method2();
+        } catch (ArithmeticException e) {
+            System.out.println("Exception caught in method1: Cannot divide by zero.");
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Program started.");
+        method1(); // Starts invocation chain
+        System.out.println("Program finished successfully.");
+    }
+}`,
+        output: `Program started.
+Exception caught in method1: Cannot divide by zero.
+Program finished successfully.`,
+        twist: "Unchecked exceptions propagate automatically up the call stack without needing 'throws' keywords in method signatures, but checked exceptions MUST be declared with 'throws' at each hop."
+      },
+
+      throw_vs_throws_demo: {
+        title: "throw (Action) vs throws (Declaration) in Practice",
+        badge: "Keyword Comparison",
+        code: `import java.io.FileNotFoundException;
+
+public class Main {
+    // 'throws': Declares in method signature that checked exception might occur
+    public static void readFile(String filename) throws FileNotFoundException {
+        if (!filename.equals("config.txt")) {
+            // 'throw': Actually creates and throws the exception instance!
+            throw new FileNotFoundException("File not found: " + filename);
+        }
+        System.out.println("File loaded successfully.");
+    }
+
+    public static void main(String[] args) {
+        // Caller is FORCED by compiler to handle the checked exception
+        try {
+            readFile("bad_path.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("Handled in main: " + e.getMessage());
+        }
+    }
+}`,
+        output: `Handled in main: File not found: bad_path.txt`,
+        twist: "Once a 'throw' statement executes, execution of the method immediately terminates without returning a value, executing the finally block (if present) before propagating."
+      },
+
+      custom_exception_null: {
+        title: "Custom User-Defined Exception & Slide Problem",
+        badge: "Slide Exercise Solved",
+        code: `// 1. Custom Checked Exception
+class MissingDataException extends Exception {
+    public MissingDataException() { super(); }
+    public MissingDataException(String message) { super(message); }
+}
+
+public class Main {
+    // Slide Programming Problem: Handle null string length
+    public static void testNullLength() {
+        String str = null;
+        try {
+            int len = str.length(); // Attempting method on null
+        } catch (NullPointerException e) {
+            System.out.println("Error: Cannot perform an operation on a null String.");
+        }
+    }
+
+    // Custom Exception Demo
+    public static void validateAge(int age) throws MissingDataException {
+        if (age < 18) {
+            throw new MissingDataException("User is under-age: " + age);
+        }
+        System.out.println("Age valid: " + age);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("--- Running Slide Null String Exercise ---");
+        testNullLength();
+
+        System.out.println("\\n--- Running Custom Exception Demo ---");
+        try {
+            validateAge(15);
+        } catch (MissingDataException e) {
+            System.out.println("Caught Custom Exception: " + e.getMessage());
+        }
+    }
+}`,
+        output: `--- Running Slide Null String Exercise ---
+Error: Cannot perform an operation on a null String.
+
+--- Running Custom Exception Demo ---
+Caught Custom Exception: User is under-age: 15`,
+        twist: "To create an UNCHECKED custom exception, simply inherit from RuntimeException instead of Exception. That way, callers won't be forced to write try-catch."
+      }
+    };
+
+    let currentRawCode = "";
+
+    // Syntax Highlighting Engine (Standard VS Code Dark+ Colors)
+    function highlightCode(code, lang) {
+      if (lang === "XML" || (code.trim().startsWith("<") && !code.includes("class "))) {
+        return highlightXml(code);
+      }
+      return highlightJava(code);
+    }
+
+    function highlightJava(code) {
+      const parts = [];
+      let lastIndex = 0;
+      
+      const tokenRegex = /(\/\*[\s\S]*?\*\/)|(\/\/[^\r\n]*)|("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')|(@[a-zA-Z_]\w*)|(\b(?:return|if|else|try|catch|finally|throw|throws|new|super|this|for|while|switch|case|break|default|continue|do)\b)|(\b(?:public|protected|private|static|final|abstract|class|interface|extends|implements|package|import|void|synchronized|volatile|transient|native|strictfp)\b)|(\b(?:int|double|boolean|char|float|long|short|byte|var)\b)|(\b(?:true|false|null)\b)|(\b\d+(?:\.\d+)?(?:[fFdDlL])?\b)|(\b[A-Z][a-zA-Z0-9_$]*\b)|(\b[a-zA-Z_$][a-zA-Z0-9_$]*\b)(?=\s*\()/g;
+
+      let match;
+      while ((match = tokenRegex.exec(code)) !== null) {
+        if (match.index > lastIndex) {
+          parts.push(escapeHtml(code.substring(lastIndex, match.index)));
+        }
+        
+        const [fullMatch, commentBlock, commentLine, stringLit, annotation, flowKw, declKw, primType, litBoolNull, numberLit, typeName, methodName] = match;
+        
+        if (commentBlock || commentLine) {
+          parts.push('<span class="hl-comment">' + escapeHtml(fullMatch) + '</span>');
+        } else if (stringLit) {
+          parts.push('<span class="hl-string">' + escapeHtml(fullMatch) + '</span>');
+        } else if (annotation) {
+          parts.push('<span class="hl-annotation">' + escapeHtml(fullMatch) + '</span>');
+        } else if (flowKw) {
+          parts.push('<span class="hl-flow">' + escapeHtml(fullMatch) + '</span>');
+        } else if (declKw) {
+          parts.push('<span class="hl-keyword">' + escapeHtml(fullMatch) + '</span>');
+        } else if (primType) {
+          parts.push('<span class="hl-primitive">' + escapeHtml(fullMatch) + '</span>');
+        } else if (litBoolNull) {
+          parts.push('<span class="hl-literal">' + escapeHtml(fullMatch) + '</span>');
+        } else if (numberLit) {
+          parts.push('<span class="hl-number">' + escapeHtml(fullMatch) + '</span>');
+        } else if (typeName) {
+          parts.push('<span class="hl-type">' + escapeHtml(fullMatch) + '</span>');
+        } else if (methodName) {
+          parts.push('<span class="hl-method">' + escapeHtml(fullMatch) + '</span>');
+        } else {
+          parts.push(escapeHtml(fullMatch));
+        }
+        
+        lastIndex = tokenRegex.lastIndex;
+      }
+      
+      if (lastIndex < code.length) {
+        parts.push(escapeHtml(code.substring(lastIndex)));
+      }
+      
+      return parts.join('');
+    }
+
+    function highlightXml(code) {
+      const parts = [];
+      let lastIndex = 0;
+      const tokenRegex = /(<!--[\s\S]*?-->)|("(?:\\.|[^"\\])*")|(<\/?[a-zA-Z0-9_\-]+)|([a-zA-Z0-9_\-]+)(?=\s*=)|(>|\/?>)/g;
+
+      let match;
+      while ((match = tokenRegex.exec(code)) !== null) {
+        if (match.index > lastIndex) {
+          parts.push(escapeHtml(code.substring(lastIndex, match.index)));
+        }
+        const [fullMatch, comment, stringLit, tagStart, attrName, tagEnd] = match;
+        if (comment) {
+          parts.push('<span class="hl-comment">' + escapeHtml(fullMatch) + '</span>');
+        } else if (stringLit) {
+          parts.push('<span class="hl-string">' + escapeHtml(fullMatch) + '</span>');
+        } else if (tagStart) {
+          const isClose = tagStart.startsWith('</');
+          const name = tagStart.replace(/^<\/?/, '');
+          parts.push('<span class="hl-tag">&lt;' + (isClose ? '/' : '') + '</span><span class="hl-xml-elem">' + escapeHtml(name) + '</span>');
+        } else if (attrName) {
+          parts.push('<span class="hl-xml-attr">' + escapeHtml(attrName) + '</span>');
+        } else if (tagEnd) {
+          parts.push('<span class="hl-tag">' + escapeHtml(tagEnd) + '</span>');
+        } else {
+          parts.push(escapeHtml(fullMatch));
+        }
+        lastIndex = tokenRegex.lastIndex;
+      }
+      if (lastIndex < code.length) {
+        parts.push(escapeHtml(code.substring(lastIndex)));
+      }
+      return parts.join('');
+    }
+
+    // Modal Control Functions
+    function openModal(exampleKey) {
+      const data = examplesData[exampleKey];
+      if (!data) return;
+      currentRawCode = data.code;
+
+      let filename = "Main.java";
+      let lang = "Java";
+      if (data.code.includes("<project") || data.code.includes("pom.xml")) {
+        filename = "pom.xml";
+        lang = "XML";
+      } else if (data.code.includes("build.gradle")) {
+        filename = "build.gradle";
+        lang = "Gradle";
+      }
+
+      const modalTitle = document.getElementById("modalTitle");
+      const modalBody = document.getElementById("modalBody");
+
+      modalTitle.innerHTML = `<span>${data.title}</span> <span class="badge badge-core">${data.badge}</span>`;
+
+      modalBody.innerHTML = `
+        <div class="code-editor-window">
+          <div class="code-editor-bar">
+            <div class="editor-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+              <span class="editor-filename">${filename}</span>
+            </div>
+            <div class="editor-actions">
+              <span class="lang-badge">${lang}</span>
+              <button class="copy-btn" onclick="copyCode(this)">📋 Copy Code</button>
+            </div>
+          </div>
+          <pre><code id="codeSnippet">${highlightCode(data.code, lang)}</code></pre>
+        </div>
+
+        <div class="terminal-box">
+          <div class="terminal-header">JVM Execution Console Output</div>
+          <div class="terminal-content">${escapeHtml(data.output)}</div>
+        </div>
+
+        <div class="twist-box">
+          <b>⚡ Exam Twist / Critical Concept Insight:</b>
+          <div>${escapeHtml(data.twist)}</div>
+        </div>
+      `;
+
+      const overlay = document.getElementById("modalOverlay");
+      overlay.classList.add("active");
+      document.body.style.overflow = "hidden"; // Prevent background scroll
+    }
+
+    function closeModal() {
+      const overlay = document.getElementById("modalOverlay");
+      overlay.classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target.id === "modalOverlay") {
+        closeModal();
+      }
+    }
+
+    // Keyboard support: Escape closes modal
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    });
+
+    // Copy Code function
+    function copyCode(btn) {
+      if (!currentRawCode) return;
+      navigator.clipboard.writeText(currentRawCode).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "✅ Copied!";
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+        }, 2000);
+      });
+    }
+
+    // Helper to escape HTML characters
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.innerText = text;
+      return div.innerHTML;
+    }
+
+    // Tab Switching
+    function switchTab(topic, btn) {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const sections = document.querySelectorAll(".module-section");
+      sections.forEach(sec => {
+        if (topic === "all" || sec.id === topic) {
+          sec.style.display = "block";
+        } else {
+          sec.style.display = "none";
+        }
+      });
+    }
+
+    // Real-time Search Filtering
+    function filterCards() {
+      const query = document.getElementById("searchInput").value.toLowerCase().trim();
+      const cards = document.querySelectorAll(".card");
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const text = (card.innerText + " " + (card.dataset.keywords || "")).toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = "flex";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      // Show/hide parent sections if all child cards are hidden
+      document.querySelectorAll(".module-section").forEach(sec => {
+        const visibleChild = sec.querySelectorAll('.card[style="display: flex;"]');
+        if (query.length > 0 && visibleChild.length === 0) {
+          sec.style.display = "none";
+        } else {
+          sec.style.display = "block";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
