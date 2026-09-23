@@ -654,6 +654,13 @@
       gap: 8px;
     }
 
+    .flowchart-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
     .external-flowchart-btn {
       display: inline-flex;
       align-items: center;
@@ -667,12 +674,46 @@
       font-weight: 600;
       transition: all 0.2s;
       border: 1px solid #6366f1;
+      font-family: inherit;
     }
 
     .external-flowchart-btn:hover {
       background: #4338ca;
       box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
       transform: translateY(-1px);
+    }
+
+    .external-flowchart-btn.inapp-btn {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      border-color: #60a5fa;
+      cursor: pointer;
+    }
+
+    .external-flowchart-btn.inapp-btn:hover {
+      background: linear-gradient(135deg, #1d4ed8, #4338ca);
+      box-shadow: 0 0 14px rgba(59, 130, 246, 0.6);
+    }
+
+    .external-flowchart-btn.local-btn {
+      background: #059669;
+      border-color: #10b981;
+    }
+
+    .external-flowchart-btn.local-btn:hover {
+      background: #047857;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.6);
+    }
+
+    .modal.modal-flowchart {
+      max-width: 95vw;
+      width: 95vw;
+      height: 92vh;
+      max-height: 92vh;
+    }
+
+    .modal.modal-flowchart .modal-body {
+      padding: 12px 16px;
+      height: calc(100% - 60px);
     }
 
     .flowchart-diagram-wrap {
@@ -798,7 +839,7 @@
         </div>
         <div class="stats-pills">
           <span class="pill">Modules: <b>5</b></span>
-          <span class="pill">Interactive Examples: <b>47</b></span>
+          <span class="pill">Interactive Examples: <b>54</b></span>
           <span class="pill">Mode: <b>Exam Prep</b></span>
         </div>
       </div>
@@ -1320,9 +1361,11 @@
             <span>🗺️ Java Collections Framework Flowchart & Architecture Hub</span>
             <span class="badge badge-core">Visual Architecture</span>
           </div>
-          <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/arpitsharma2028/JavaBasics/master/Java%20Collections%20Framework%20%E2%80%94%20Flowchart.html" target="_blank" rel="noopener noreferrer" class="external-flowchart-btn">
-            🌐 Open Interactive Flowchart (GitHub Live Preview) ↗
-          </a>
+          <div class="flowchart-actions">
+            <button type="button" class="external-flowchart-btn inapp-btn" onclick="openFlowchartModal()">
+              ⚡ Interactive In-App Flowchart
+            </button>
+          </div>
         </div>
 
         <p style="font-size:0.88rem; color:#c7d2fe; margin:0;">
@@ -1412,7 +1455,7 @@
       <div class="card-grid">
 
         <!-- Card 1: What is a Framework & Collection? -->
-        <div class="card" data-topic="mod4" data-keywords="what is framework collection architecture group iterable list set queue map">
+        <div class="card" data-topic="mod4" data-keywords="what is framework collection architecture group iterable list set queue map data structures algorithms">
           <div class="card-top">
             <h3 class="card-title">What is a Framework & Collection?</h3>
             <span class="badge badge-core">Core Definition</span>
@@ -1421,56 +1464,61 @@
             <b>🌱 Everyday Analogy:</b> A framework is like a pre-built house frame with plumbing and electrical wires already in place — you don't rebuild the foundation, you just furnish it!
           </div>
           <ul class="card-bullets">
-            <li><b>Framework:</b> Ready-made architecture of classes & interfaces performing standardized tasks.</li>
-            <li><b>Java Collection:</b> A single unit that groups multiple objects together.</li>
-            <li>Handles all basic data operations: Searching, Sorting, Insertion, Manipulation, Deletion.</li>
+            <li><b>Framework:</b> A set of classes and interfaces providing a ready-made architecture. An optimal object-oriented design groups classes performing similar tasks into a framework.</li>
+            <li><b>Java Collections Framework:</b> Provides interfaces and classes to implement standard data structures and algorithms.</li>
+            <li><b>Java Collection:</b> A single unit of objects (i.e., a group).</li>
+            <li><b>Supported Operations:</b> Searching, Sorting, Insertion, Manipulation, and Deletion.</li>
+            <li><b>Core Interfaces:</b> <code>Set</code>, <code>List</code>, <code>Queue</code>, <code>Deque</code>.</li>
+            <li><b>Core Classes:</b> <code>ArrayList</code>, <code>Vector</code>, <code>LinkedList</code>, <code>PriorityQueue</code>, <code>HashSet</code>, <code>LinkedHashSet</code>, <code>TreeSet</code>.</li>
           </ul>
           <button class="card-btn" onclick="openModal('collection_hierarchy_demo')">🚀 View Architecture Code</button>
         </div>
 
-        <!-- Card 2: ArrayList Deep Dive -->
-        <div class="card" data-topic="mod4" data-keywords="arraylist resizable dynamic array get set add remove contains toarray foreach sort">
+        <!-- Card 2: ArrayList Deep Dive & Methods -->
+        <div class="card" data-topic="mod4" data-keywords="arraylist resizable dynamic array get set add remove contains toarray foreach sort indexof lastindexof addall removeall retainall">
           <div class="card-top">
             <h3 class="card-title">ArrayList (Dynamic Resizable Array)</h3>
             <span class="badge badge-core">List Interface</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a paper notepad with numbered lines. Looking up line #5 is instant, but erasing line #2 requires you to erase and slide lines 3, 4, 5 up by hand.
+            <b>🌱 Everyday Analogy:</b> Like an elastic notebook with numbered lines. Looking up line #5 is instant, but erasing line #2 requires you to slide lines 3, 4, 5 up by hand.
           </div>
           <ul class="card-bullets">
-            <li>Grows and shrinks dynamically (unlike fixed-size arrays).</li>
-            <li>Maintains <b>insertion order</b>, allows <b>duplicates</b>, allows <code>null</code>.</li>
-            <li><b>Super Fast $O(1)$ random access</b> by index: <code>list.get(i)</code>.</li>
-            <li>Slower $O(n)$ insertion/deletion in middle due to element shifting.</li>
-            <li><b>Common Methods:</b> <code>add()</code>, <code>get()</code>, <code>set()</code>, <code>remove()</code>, <code>size()</code>, <code>contains()</code>, <code>isEmpty()</code>, <code>clear()</code>, <code>toArray()</code>.</li>
+            <li>Belongs to <code>java.util.ArrayList</code>.</li>
+            <li><b>Why use ArrayList over normal array?</b> A normal array has fixed size (<code>String[] arr = new String[3]</code>), whereas <code>ArrayList&lt;String&gt;</code> grows and shrinks dynamically!</li>
+            <li><b>Characteristics:</b> Dynamic size, maintains <b>insertion order</b>, allows <b>duplicate elements</b>, fast random access, allows <code>null</code> values, slower insertion/deletion in middle.</li>
+            <li><b>Core Index Operations:</b> <code>add(e)</code>, <code>add(index, e)</code>, <code>get(index)</code>, <code>set(index, e)</code>, <code>remove(obj)</code>, <code>remove(index)</code>, <code>size()</code>, <code>contains(e)</code>, <code>isEmpty()</code>, <code>clear()</code>.</li>
+            <li><b>Search & Bulk Methods:</b> <code>indexOf(e)</code>, <code>lastIndexOf(e)</code>, <code>toArray(new String[0])</code>, <code>addAll(b)</code>, <code>removeAll(b)</code>, <code>retainAll(b)</code>, <code>forEach(...)</code>, <code>numbers.sort(null)</code>.</li>
           </ul>
           <button class="card-btn" onclick="openModal('arraylist_methods')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 3: LinkedList as List, Queue & Stack -->
-        <div class="card" data-topic="mod4" data-keywords="linkedlist queue stack doubly linked node offer poll peek push pop fifo lifo">
+        <div class="card" data-topic="mod4" data-keywords="linkedlist queue stack doubly linked node offer poll peek push pop fifo lifo addfirst addlast removefirst removelast">
           <div class="card-top">
             <h3 class="card-title">LinkedList (List, Queue & Stack)</h3>
             <span class="badge badge-hard">High Yield</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a train of coaches hooked together. Adding a new train car at the front or back is instant, but finding car #40 requires walking through each car one by one.
+            <b>🌱 Everyday Analogy:</b> Like a train of coaches hooked together. Hooking a new train car at the front or back is instant ($O(1)$), but finding coach #40 requires walking through every coach one by one.
           </div>
           <ul class="card-bullets">
-            <li>Doubly linked list of nodes; implements both <code>List</code> and <code>Deque</code>.</li>
-            <li>Fast $O(1)$ insertion/deletion at heads/ends; slower $O(n)$ index search.</li>
+            <li>Stores elements as <b>nodes connected through links</b>; uses a <b>doubly linked list internally</b>.</li>
+            <li>Implements both <code>List</code> and <code>Deque</code> interfaces; belongs to <code>java.util.LinkedList</code>.</li>
+            <li>Dynamic memory allocation; fast insertion/deletion at ends; slower $O(n)$ random access compared to ArrayList.</li>
+            <li><b>Head & Tail Methods:</b> <code>addFirst(e)</code>, <code>addLast(e)</code>, <code>removeFirst()</code>, <code>removeLast()</code>.</li>
             <li><b>As a FIFO Queue (First In, First Out):</b>
-              <br>• <code>offer(e)</code>: add to end | <code>peek()</code>: view front | <code>poll()</code>: remove front.</li>
+              <br>• <code>offer(e)</code>: adds element | <code>peek()</code>: views first | <code>poll()</code>: removes first.</li>
             <li><b>As a LIFO Stack (Last In, First Out):</b>
-              <br>• <code>push(e)</code>: push onto top | <code>pop()</code>: pop off top.</li>
+              <br>• <code>push(e)</code>: adds at beginning | <code>pop()</code>: removes from beginning.</li>
           </ul>
           <div class="hard-expl">
-            <b>💡 1-Liner:</b> LinkedList implements Deque, allowing it to seamlessly act as either a FIFO Queue (offer/poll) or a LIFO Stack (push/pop).
+            <b>💡 1-Liner:</b> LinkedList implements Deque, allowing it to seamlessly act as a List, a FIFO Queue (offer/poll), or a LIFO Stack (push/pop).
           </div>
           <button class="card-btn" onclick="openModal('linkedlist_queue_stack')">🚀 View Code & Output</button>
         </div>
 
-        <!-- Card 4: Vector & Stack (Legacy Synchronized Lists) -->
+        <!-- Card 4: Vector & Stack (Legacy Lists) -->
         <div class="card" data-topic="mod4" data-keywords="vector stack synchronized thread safe lifo legacy list">
           <div class="card-top">
             <h3 class="card-title">Vector & Stack (Legacy Lists)</h3>
@@ -1480,34 +1528,34 @@
             <b>🌱 Everyday Analogy:</b> Vector is like an ArrayList with a security turnstile on every method (synchronized). Stack is a stack of dinner plates (top plate comes off first).
           </div>
           <ul class="card-bullets">
-            <li><b>Vector:</b> Similar to ArrayList, but all methods are <code>synchronized</code> (thread-safe, but slower).</li>
+            <li><b>Vector:</b> Similar to ArrayList, but all methods are <code>synchronized</code> (thread-safe, but slower due to lock overhead).</li>
             <li><b>Stack:</b> Extends Vector to provide LIFO operations: <code>push(e)</code>, <code>pop()</code>, <code>peek()</code>, <code>empty()</code>.</li>
             <li>Modern Java replaces Stack with <code>ArrayDeque</code> for single-threaded speed.</li>
           </ul>
           <button class="card-btn" onclick="openModal('vector_stack_demo')">🚀 View Code & Output</button>
         </div>
 
-        <!-- Card 5: Queue & Deque (PriorityQueue & ArrayDeque) -->
+        <!-- Card 5: PriorityQueue & ArrayDeque -->
         <div class="card" data-topic="mod4" data-keywords="priorityqueue arraydeque queue deque heap natural order fifo">
           <div class="card-top">
             <h3 class="card-title">PriorityQueue & ArrayDeque</h3>
             <span class="badge badge-core">Queue & Deque</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> PriorityQueue is like an emergency triage room: the highest priority patient is treated first regardless of arrival time. ArrayDeque is a fast 2-way tunnel.
+            <b>🌱 Everyday Analogy:</b> PriorityQueue is like an emergency triage room: highest priority patient is treated first regardless of arrival time. ArrayDeque is a fast 2-way tunnel.
           </div>
           <ul class="card-bullets">
             <li><b>PriorityQueue:</b> Elements ordered by natural priority (min-heap) or custom Comparator. <code>poll()</code> always retrieves smallest/highest-priority item.</li>
-            <li><b>ArrayDeque:</b> Resizable array implementing Deque. Faster than Stack and LinkedList when used as stack/queue.</li>
+            <li><b>ArrayDeque:</b> Resizable circular array implementing Deque. Faster than Stack and LinkedList when used as stack/queue.</li>
           </ul>
           <button class="card-btn" onclick="openModal('queue_deque_demo')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 6: ArrayList vs LinkedList Table -->
-        <div class="card" data-topic="mod4" data-keywords="arraylist vs linkedlist difference table speed memory storage">
+        <div class="card" data-topic="mod4" data-keywords="arraylist vs linkedlist difference table speed memory storage contiguous scattered">
           <div class="card-top">
-            <h3 class="card-title">ArrayList vs LinkedList</h3>
-            <span class="badge badge-exam">Exam Table</span>
+            <h3 class="card-title">Difference: ArrayList vs LinkedList</h3>
+            <span class="badge badge-exam">PDF Table p.42</span>
           </div>
           <div class="table-container">
             <table>
@@ -1515,19 +1563,19 @@
                 <tr><th>Feature</th><th>ArrayList</th><th>LinkedList</th></tr>
               </thead>
               <tbody>
-                <tr><td>Storage</td><td>Dynamic Resizable Array</td><td>Doubly Linked List Nodes</td></tr>
-                <tr><td>Access Time</td><td>Fast $O(1)$ by index</td><td>Slow $O(n)$ pointer traversal</td></tr>
-                <tr><td>Insert/Delete</td><td>Slow (shifts elements)</td><td>Fast $O(1)$ at head/tail</td></tr>
-                <tr><td>Memory Overhead</td><td>Lower (contiguous array)</td><td>Higher (pointers for prev/next)</td></tr>
-                <tr><td>Best Use</td><td>Frequent read/search</td><td>Frequent additions/deletions</td></tr>
+                <tr><td><b>Data Structure</b></td><td>Dynamic Resizable Array</td><td>Doubly Linked List</td></tr>
+                <tr><td><b>Memory Allocation</b></td><td>Contiguous memory blocks</td><td>Scattered memory blocks (nodes linked via pointers)</td></tr>
+                <tr><td><b>Element Access (<code>get</code>)</b></td><td>Fast: $O(1)$ time (index-based lookups)</td><td>Slow: $O(n)$ time (must traverse from head/tail)</td></tr>
+                <tr><td><b>Data Insertion/Removal</b></td><td>Slow: $O(n)$ time (requires shifting elements)</td><td>Fast: $O(1)$ time (only pointers change if position is known)</td></tr>
+                <tr><td><b>Memory Overhead</b></td><td>Low (stores data & structural capacity)</td><td>High (stores data plus two pointer references per node)</td></tr>
               </tbody>
             </table>
           </div>
           <button class="card-btn" onclick="openModal('list_comparison_modal')">🚀 View List Insights</button>
         </div>
 
-        <!-- Card 7: HashSet & Set Operations -->
-        <div class="card" data-topic="mod4" data-keywords="hashset set union intersection difference addall retainall removeall containsall removeif">
+        <!-- Card 7: HashSet & Set Algebra -->
+        <div class="card" data-topic="mod4" data-keywords="hashset set union intersection difference addall retainall removeall containsall removeif clone hashcode bucket">
           <div class="card-top">
             <h3 class="card-title">HashSet & Set Algebra</h3>
             <span class="badge badge-core">Unique Elements</span>
@@ -1536,14 +1584,16 @@
             <b>🌱 Everyday Analogy:</b> Like a bag of unique collectible marbles: if you drop in a marble you already own, the bag silently ignores it. No order is promised.
           </div>
           <ul class="card-bullets">
-            <li>Stores <b>unique elements only</b> (duplicates rejected without throwing error).</li>
-            <li>No insertion order; allows one <code>null</code>; fast $O(1)$ lookup.</li>
-            <li><b>Mathematical Set Operations:</b>
+            <li>Stores <b>unique elements only</b> (package: <code>java.util.HashSet</code>).</li>
+            <li><b>Internal Mechanism:</b> When you add an object, Java calls <code>hashCode()</code> to compute an index in an internal hash bucket array. Time complexity is <b>$O(1)$ (Constant Time) on average</b>!</li>
+            <li><b>Characteristics:</b> No duplicate values, no insertion order, allows <b>one null value</b>, fast searching.</li>
+            <li><b>Set Algebra & Methods:</b>
               <br>• <b>Union:</b> <code>A.addAll(B)</code>
               <br>• <b>Intersection:</b> <code>A.retainAll(B)</code>
               <br>• <b>Difference:</b> <code>A.removeAll(B)</code>
-              <br>• <b>Subset Check:</b> <code>A.containsAll(B)</code>
-              <br>• <b>Conditional Remove:</b> <code>set.removeIf(n -> n > 20)</code>.</li>
+              <br>• <b>Check Subset:</b> <code>A.containsAll(B)</code>
+              <br>• <b>Conditional Remove:</b> <code>set.removeIf(n -> n > 20)</code>
+              <br>• <b>Copy Set:</b> <code>(HashSet&lt;String&gt;) set.clone()</code>.</li>
           </ul>
           <button class="card-btn" onclick="openModal('hashset_operations')">🚀 View Code & Output</button>
         </div>
@@ -1567,7 +1617,7 @@
         </div>
 
         <!-- Card 9: HashMap Key-Value Operations -->
-        <div class="card" data-topic="mod4" data-keywords="hashmap map key value put get remove containskey containsvalue keyset entryset getordefault putifabsent">
+        <div class="card" data-topic="mod4" data-keywords="hashmap map key value put get remove containskey containsvalue keyset entryset getordefault putifabsent replace">
           <div class="card-top">
             <h3 class="card-title">HashMap (Key-Value Storage)</h3>
             <span class="badge badge-core">Map Interface</span>
@@ -1576,20 +1626,24 @@
             <b>🌱 Everyday Analogy:</b> Like a hotel key-card rack: key #204 opens Room 204 instantly. Keys must be unique, but two different rooms can have identical TVs inside!
           </div>
           <ul class="card-bullets">
-            <li>Stores key-value pairs; <b>Keys must be unique</b> (values can duplicate).</li>
-            <li>Allows one <code>null</code> key and multiple <code>null</code> values; fast $O(1)$ retrieval.</li>
-            <li><b>Key Methods:</b> <code>put(k, v)</code>, <code>get(k)</code>, <code>remove(k)</code>, <code>containsKey(k)</code>, <code>containsValue(v)</code>, <code>size()</code>.</li>
-            <li><b>Advanced:</b> <code>putIfAbsent(k, v)</code>, <code>getOrDefault(k, defaultVal)</code>, <code>replace(k, newVal)</code>.</li>
-            <li><b>Traversal:</b> <code>keySet()</code> for keys, <code>entrySet()</code> for <code>Map.Entry&lt;K,V&gt;</code>.</li>
+            <li>Stores data as <b>Key-Value pairs</b> (package: <code>java.util.HashMap</code>).</li>
+            <li><b>Characteristics:</b> Stores key-value pairs, <b>Keys must be unique</b>, Values may be duplicate, fast $O(1)$ retrieval.</li>
+            <li>Allows one <code>null</code> key and multiple <code>null</code> values.</li>
+            <li><b>Core Operations:</b> <code>put(k, v)</code>, <code>get(k)</code>, <code>remove(k)</code>, <code>containsKey(k)</code>, <code>containsValue(v)</code>, <code>size()</code>.</li>
+            <li><b>Modern Utilities:</b>
+              <br>• <code>putIfAbsent(k, v)</code>: adds only if key does not exist.
+              <br>• <code>getOrDefault(k, defaultVal)</code>: returns value or fallback default.
+              <br>• <code>replace(k, newVal)</code>: updates existing key.</li>
+            <li><b>Map Views:</b> <code>keySet()</code> returns <code>Set&lt;K&gt;</code>, <code>values()</code> returns <code>Collection&lt;V&gt;</code>, <code>entrySet()</code> returns <code>Set&lt;Map.Entry&lt;K,V&gt;&gt;</code>.</li>
           </ul>
           <button class="card-btn" onclick="openModal('hashmap_methods')">🚀 View Code & Output</button>
         </div>
 
         <!-- Card 10: HashSet vs HashMap -->
-        <div class="card" data-topic="mod4" data-keywords="hashset vs hashmap comparison table keys values add put">
+        <div class="card" data-topic="mod4" data-keywords="hashset vs hashmap comparison table keys values add put pdf p71">
           <div class="card-top">
-            <h3 class="card-title">HashSet vs HashMap</h3>
-            <span class="badge badge-exam">Exam Table</span>
+            <h3 class="card-title">Difference: HashSet vs HashMap</h3>
+            <span class="badge badge-exam">PDF Table p.71</span>
           </div>
           <div class="table-container">
             <table>
@@ -1608,8 +1662,8 @@
           <button class="card-btn" onclick="openModal('hashmap_methods')">🚀 View Map & Set Demo</button>
         </div>
 
-        <!-- Card 11: Iterator & Safe Removal -->
-        <div class="card" data-topic="mod4" data-keywords="iterator hasnext next remove concurrentmodificationexception traverse list set map">
+        <!-- Card 11: Iterator Across Lists, Sets & Maps -->
+        <div class="card" data-topic="mod4" data-keywords="iterator hasnext next remove concurrentmodificationexception traverse arraylist hashset linkedlist hashmap keyset values">
           <div class="card-top">
             <h3 class="card-title">Iterator & Safe Deletion</h3>
             <span class="badge badge-hard">Exam Trap</span>
@@ -1618,19 +1672,22 @@
             <b>🌱 Everyday Analogy:</b> Like a laser pointer guiding you through a checklist one by one. Calling it.remove() crosses off an item safely without causing you to lose your spot.
           </div>
           <ul class="card-bullets">
-            <li>Used to step through collections: <code>hasNext()</code> and <code>next()</code>.</li>
-            <li><b>Why use Iterator instead of for-each?</b> Modifying a collection inside a regular for-each loop throws <code>ConcurrentModificationException</code>!</li>
-            <li><code>it.remove()</code> is the <b>only safe way</b> to remove elements while actively iterating.</li>
-            <li>Works across all: Lists, Sets, and Map key sets / entry sets.</li>
+            <li>An <code>Iterator</code> is used to traverse (visit) elements of a collection one by one (package: <code>java.util.Iterator</code>).</li>
+            <li><b>Core Methods:</b> <code>hasNext()</code> (checks next), <code>next()</code> (returns next), <code>remove()</code> (removes current).</li>
+            <li><b>Universal Traversal:</b>
+              <br>• With <b>ArrayList / LinkedList:</b> <code>Iterator&lt;String&gt; it = list.iterator();</code>
+              <br>• With <b>HashSet:</b> <code>Iterator&lt;String&gt; it = set.iterator();</code>
+              <br>• With <b>HashMap:</b> <code>Iterator&lt;Integer&gt; it = map.keySet().iterator();</code> & <code>map.values().iterator();</code></li>
+            <li><b>Safe Removal:</b> Modifying a collection inside a regular for-each loop throws <code>ConcurrentModificationException</code>! <code>it.remove()</code> is the <b>only safe way</b> to remove elements while actively iterating.</li>
           </ul>
           <div class="hard-expl">
             <b>💡 1-Liner:</b> Always use it.remove() during iteration to avoid ConcurrentModificationException caused by modifying the backing collection during loop execution.
           </div>
-          <button class="card-btn" onclick="openModal('iterator_demo')">🚀 View Code & Output</button>
+          <button class="card-btn" onclick="openModal('iterator_comprehensive_demo')">🚀 View Code Across Collections</button>
         </div>
 
-        <!-- Card 12: Comparator & Custom Sorting -->
-        <div class="card" data-topic="mod4" data-keywords="comparator compare lambda naturalorder reverseorder reversed nullsfirst nullslast collections sort">
+        <!-- Card 12: Comparator & Custom Sorting Rules -->
+        <div class="card" data-topic="mod4" data-keywords="comparator compare lambda naturalorder reverseorder reversed nullsfirst nullslast collections sort student marks">
           <div class="card-top">
             <h3 class="card-title">Comparator & Custom Sorting</h3>
             <span class="badge badge-core">java.util.Comparator</span>
@@ -1639,36 +1696,117 @@
             <b>🌱 Everyday Analogy:</b> A custom referee with a rulebook: you can tell the referee to rank students by marks, rank them by age, or send all missing scores (nulls) to the very back!
           </div>
           <ul class="card-bullets">
-            <li>Defines custom sorting logic for objects using lambdas: <code>(a, b) -> a - b</code>.</li>
-            <li><b>Built-in Factory Methods:</b>
-              <br>• <code>Comparator.naturalOrder()</code> (Ascending)
-              <br>• <code>Comparator.reverseOrder()</code> (Descending)
-              <br>• <code>c.reversed()</code> (Inverts sorting)
-              <br>• <code>Comparator.nullsFirst(...)</code> & <code>nullsLast(...)</code>.</li>
-            <li>Used with <code>list.sort(comparator)</code> or <code>Collections.sort(list, comparator)</code>.</li>
+            <li>A <code>Comparator</code> is an interface in Java used to define custom sorting rules for objects (package: <code>java.util.Comparator</code>).</li>
+            <li><b>Built-in Factory Functions (PDF p.81):</b>
+              <br>• <code>compare(a, b)</code>: compare two objects | <code>naturalOrder()</code>: Ascending | <code>reverseOrder()</code>: Descending
+              <br>• <code>c.reversed()</code>: Reverse existing comparator | <code>nullsFirst()</code> / <code>nullsLast()</code>: Handle nulls safely
+              <br>• <code>comparing()</code> / <code>comparingInt()</code> / <code>thenComparing()</code>: Property extractors and chained secondary sorting.</li>
+            <li><b>Sorting User-Defined Classes (e.g. <code>Student</code> by marks):</b>
+              <br>1. <b>Class:</b> <code>class MarksComparator implements Comparator&lt;Student&gt; { ... }</code>
+              <br>2. <b>Lambda:</b> <code>(s1, s2) -&gt; Double.compare(s1.marks, s2.marks)</code>
+              <br>3. <b>Method Ref:</b> <code>Comparator.comparing(Student::getMarks)</code>.</li>
+            <li>List interface default method: <code>default void sort(Comparator&lt;? super E&gt; c)</code>.</li>
           </ul>
-          <button class="card-btn" onclick="openModal('comparator_demo')">🚀 View Code & Output</button>
+          <button class="card-btn" onclick="openModal('comparator_student_demo')">🚀 View Student Sorting Code</button>
         </div>
 
-        <!-- Card 13: Generics & Type Safety -->
-        <div class="card" data-topic="mod4" data-keywords="generics type safety classcastexception compile time type checking raw types">
+        <!-- Card 13: Generics Foundation & Type Safety -->
+        <div class="card" data-topic="mod4" data-keywords="generics type safety classcastexception compile time type checking raw types before vs after generics">
           <div class="card-top">
-            <h3 class="card-title">Generics & Type Safety</h3>
+            <h3 class="card-title">What are Generics? & Type Safety</h3>
             <span class="badge badge-core">Type Safety</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Like a labeled medicine bottle: 'Aspirin Only'. The pharmacist stops you from accidentally putting in cough syrup before you even leave the pharmacy.
+            <b>🌱 Everyday Analogy:</b> Like a labeled medicine bottle: 'Aspirin Only'. The pharmacist stops you from accidentally putting in cough syrup before you even leave the pharmacy!
           </div>
           <ul class="card-bullets">
-            <li><b>Without Generics (Raw Type):</b> <code>ArrayList list = new ArrayList();</code> can hold mixed types, leading to dangerous runtime <code>ClassCastException</code>.</li>
-            <li><b>With Generics:</b> <code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();</code> enforces type check at compile-time.</li>
-            <li><b>Advantages:</b> Catches bugs at compile time; eliminates manual explicit casting; cleaner and safer code.</li>
+            <li><b>Definition:</b> At its core, generics means <b>parameterized types</b>. Enables classes, interfaces, and methods to operate on specified data types.</li>
+            <li><b>Why do we need Generics?</b> Without Generics (Raw Type): <code>ArrayList list = new ArrayList();</code> can store String, Integer, etc. Calling <code>(String) list.get(2)</code> throws runtime <code>ClassCastException</code>!</li>
+            <li><b>Three Main Benefits:</b>
+              <br>1. <b>Type Safety:</b> Wrong types detected at compile time (e.g. <code>names.add(100)</code> gives compile error).
+              <br>2. <b>No Unnecessary Type Casting:</b> With generics, <code>String name = names.get(0);</code> requires no explicit cast!
+              <br>3. <b>Code Reusability:</b> One generic class works with different types without duplicating code.</li>
           </ul>
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Without Generics</th><th>With Generics</th></tr></thead>
+              <tbody>
+                <tr><td><code>ArrayList list</code></td><td><code>ArrayList&lt;String&gt; names</code></td></tr>
+                <tr><td>Can store different types</td><td>Stores specified type</td></tr>
+                <tr><td>Type safety is weak</td><td>Type safety is strong</td></tr>
+                <tr><td>Type casting may be required</td><td>Usually no casting required</td></tr>
+                <tr><td>Errors may appear at runtime</td><td>Wrong types detected at compile time</td></tr>
+              </tbody>
+            </table>
+          </div>
           <button class="card-btn" onclick="openModal('generics_demo')">🚀 View Code & Output</button>
         </div>
 
-        <!-- Card 14: Master Collections Comparison Table -->
-        <div class="card" data-topic="mod4" data-keywords="full comparison table collections arraylist linkedlist hashset hashmap treeset">
+        <!-- Card 14: Generic Class & Two Type Parameters -->
+        <div class="card" data-topic="mod4" data-keywords="generic class type parameters box pair k v t e n normal class vs generic class">
+          <div class="card-top">
+            <h3 class="card-title">Generic Class & Type Parameters</h3>
+            <span class="badge badge-core">Generic Architecture</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Like a universal shipping crate: the shipping company doesn't build a separate truck for apples and a separate truck for computers; they build a generic container that adapts to any cargo type!
+          </div>
+          <ul class="card-bullets">
+            <li>A <b>Generic Class</b> is a class that uses a type parameter to work with different data types without duplicating code (avoids separate <code>Box</code> for int and <code>StringBox</code> for String).</li>
+            <li><b>Single Type Parameter:</b> <code>class Box&lt;T&gt; { T value; Box(T value) { this.value = value; } }</code></li>
+            <li><b>Two Type Parameters:</b> <code>class Pair&lt;K, V&gt; { K key; V value; Pair(K k, V v) { ... } }</code></li>
+            <li><b>Common Type Parameter Names (PDF p.106):</b>
+              <br>• <code>T</code>: Type | <code>E</code>: Element (Collections) | <code>K</code>: Key | <code>V</code>: Value | <code>N</code>: Number.</li>
+          </ul>
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Normal Class</th><th>Generic Class</th></tr></thead>
+              <tbody>
+                <tr><td>Works with a specific type</td><td>Can work with different types</td></tr>
+                <tr><td>Less reusable</td><td>Highly reusable</td></tr>
+                <tr><td>May require casting</td><td>Reduces type casting</td></tr>
+                <tr><td>Less type-safe in some designs</td><td>Provides compile-time type safety</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="card-btn" onclick="openModal('generic_classes_demo')">🚀 View Generic Class Code</button>
+        </div>
+
+        <!-- Card 15: Generic Method & Generic Interface -->
+        <div class="card" data-topic="mod4" data-keywords="generic method generic interface printer pair comparison table return type methodName">
+          <div class="card-top">
+            <h3 class="card-title">Generic Methods & Interfaces</h3>
+            <span class="badge badge-hard">High Yield</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> A generic method is like a vending machine slot: it doesn't care whether you insert a $1 coin, a $2 coin, or a token — it inspects and accepts any type on demand.
+          </div>
+          <ul class="card-bullets">
+            <li><b>Generic Method:</b> Has its own type parameter independent of the class!
+              <br>• Syntax: <code>&lt;T&gt; returnType methodName(T value) { ... }</code>
+              <br>• Returning value: <code>public static &lt;T&gt; T getValue(T value) { return value; }</code>
+              <br>• Two parameters: <code>public static &lt;T, U&gt; void display(T first, U second)</code></li>
+            <li><b>Generic Interface:</b> An interface defined with a type parameter:
+              <br>• <code>interface Printer&lt;T&gt; { void print(T value); }</code>
+              <br>• Implemented as: <code>class Demo implements Printer&lt;String&gt;</code> or <code>IntegerPrinter implements Printer&lt;Integer&gt;</code>.
+              <br>• With two parameters: <code>interface Pair&lt;K, V&gt;</code> implemented by <code>Student implements Pair&lt;Integer, String&gt;</code>.</li>
+          </ul>
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Feature</th><th>Generic Class</th><th>Generic Method</th><th>Generic Interface</th></tr></thead>
+              <tbody>
+                <tr><td><b>Parameter belongs to</b></td><td>Class</td><td>Method</td><td>Interface</td></tr>
+                <tr><td><b>Example</b></td><td><code>class Box&lt;T&gt;</code></td><td><code>&lt;T&gt; void display(T x)</code></td><td><code>interface Printer&lt;T&gt;</code></td></tr>
+                <tr><td><b>Scope of T</b></td><td>Entire class</td><td>Only method</td><td>Interface</td></tr>
+                <tr><td><b>Purpose</b></td><td>Store/process different types</td><td>Perform operation on different types</td><td>Define common behavior for different types</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="card-btn" onclick="openModal('generic_methods_interfaces_demo')">🚀 View Method & Interface Code</button>
+        </div>
+
+        <!-- Card 16: Master Collections Selection Matrix -->
+        <div class="card" data-topic="mod4" data-keywords="full comparison table collections arraylist linkedlist hashset hashmap treeset selection guide">
           <div class="card-top">
             <h3 class="card-title">Full Collections Master Table</h3>
             <span class="badge badge-exam">Quick Cheat Sheet</span>
@@ -1680,39 +1818,117 @@
               </thead>
               <tbody>
                 <tr><td><code>ArrayList</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td>Fast $O(1)$</td><td>Searching & random access</td></tr>
-                <tr><td><code>LinkedList</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td>Moderate $O(n)$</td><td>Frequent insert/delete</td></tr>
-                <tr><td><code>HashSet</code></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td><td>One null</td><td>Fast $O(1)$</td><td>Unique elements</td></tr>
-                <tr><td><code>TreeSet</code></td><td><span class="yes-pill">Sorted</span></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td><td>$O(\log n)$</td><td>Unique sorted elements</td></tr>
-                <tr><td><code>HashMap</code></td><td><span class="no-pill">No</span></td><td>Keys: No, Vals: Yes</td><td>1 null key</td><td>Fast $O(1)$</td><td>Key-value storage</td></tr>
+                <tr><td><code>LinkedList</code></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td><span class="yes-pill">Yes</span></td><td>Moderate $O(n)$</td><td>Frequent insert/delete at ends</td></tr>
+                <tr><td><code>HashSet</code></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td><td>One null</td><td>Fast $O(1)$</td><td>Unique elements (Hash bucket)</td></tr>
+                <tr><td><code>TreeSet</code></td><td><span class="yes-pill">Sorted</span></td><td><span class="no-pill">No</span></td><td><span class="no-pill">No</span></td><td>$O(\log n)$</td><td>Unique sorted elements (Red-Black)</td></tr>
+                <tr><td><code>HashMap</code></td><td><span class="no-pill">No</span></td><td>Keys: No, Vals: Yes</td><td>1 null key</td><td>Fast $O(1)$</td><td>Key-value association</td></tr>
               </tbody>
             </table>
           </div>
           <button class="card-btn" onclick="openModal('full_collections_cmp_modal')">🚀 View Master Summary</button>
         </div>
 
-        <!-- Card 15: Core Java Utility Classes -->
-        <div class="card" data-topic="mod4" data-keywords="utility classes objects optional math localdate localtime localdatetime nullpointerexception">
+        <!-- Card 17: Objects Class -->
+        <div class="card" data-topic="mod4" data-keywords="objects utility class java.util.objects equals isnull nonnull hash tostring requirenonnull nullpointerexception">
           <div class="card-top">
-            <h3 class="card-title">Core Java Utility Classes</h3>
-            <span class="badge badge-core">java.util & time</span>
+            <h3 class="card-title">Objects Class (java.util.Objects)</h3>
+            <span class="badge badge-core">Null-Safety</span>
           </div>
           <div class="simple-analogy">
-            <b>🌱 Everyday Analogy:</b> Objects & Optional are your safety helmets against NullPointerExceptions; Math is a static calculator; java.time is a modern immutable clock.
+            <b>🌱 Everyday Analogy:</b> Objects is your personal security guard checking every package before it enters the building, preventing unexpected null surprises!
           </div>
           <ul class="card-bullets">
-            <li><b><code>Objects</code>:</b> Null-safe operations: <code>Objects.equals(a, b)</code>, <code>isNull()</code>, <code>nonNull()</code>, <code>toString(obj, default)</code>.</li>
-            <li><b><code>Optional&lt;T&gt;</code>:</b> Container avoiding NPE: <code>Optional.ofNullable(val)</code>, <code>isPresent()</code>, <code>orElse("default")</code>.</li>
-            <li><b><code>Math</code>:</b> Pure static methods: <code>max()</code>, <code>min()</code>, <code>sqrt()</code>, <code>pow()</code>, <code>abs()</code>, <code>random()</code>.</li>
-            <li><b><code>java.time</code>:</b> <code>LocalDate</code> (Date only), <code>LocalTime</code> (Time only), <code>LocalDateTime</code> (Both). Immutable & thread-safe!</li>
+            <li>Provides static utility methods to perform operations on objects safely (checking null, comparing, hashing, string conversion).</li>
+            <li><b>Common Methods (PDF p.124):</b>
+              <br>• <code>Objects.equals(a, b)</code>: Safely compares two objects (no NPE if a or b is null).
+              <br>• <code>Objects.isNull(obj)</code>: Checks if object is null.
+              <br>• <code>Objects.nonNull(obj)</code>: Checks if object is not null.
+              <br>• <code>Objects.hash(...)</code>: Generates multi-variable hash code.
+              <br>• <code>Objects.toString(obj, defaultVal)</code>: Converts object to string safely.
+              <br>• <code>Objects.requireNonNull(obj)</code>: Checks null; if not null, program continues; if null, throws <code>NullPointerException</code> immediately!</li>
+            <li><b>Advantages:</b> Prevents NullPointerException, safe object comparison, cleaner code, useful in object validation.</li>
           </ul>
-          <button class="card-btn" onclick="openModal('utility_classes_demo')">🚀 View Code & Output</button>
+          <button class="card-btn" onclick="openModal('objects_utility_demo')">🚀 View Objects Code & NPE</button>
         </div>
 
-        <!-- Card 16: Master Utility Classes Table -->
-        <div class="card" data-topic="mod4" data-keywords="utility classes table objects optional math localdate localtime localdatetime comparison">
+        <!-- Card 18: Optional Class -->
+        <div class="card" data-topic="mod4" data-keywords="optional java.util.optional of ofnullable empty ispresent get orelse ifpresent missing values">
+          <div class="card-top">
+            <h3 class="card-title">Optional Class (java.util.Optional)</h3>
+            <span class="badge badge-core">NPE Prevention</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> An Optional is like an Amazon delivery box: you can shake the box and check <code>isPresent()</code> to see if the item arrived before opening it with <code>get()</code>.
+          </div>
+          <ul class="card-bullets">
+            <li>A container object that may or may not contain a value. Helps avoid <code>NullPointerException</code> by explicitly handling missing values.</li>
+            <li><b>Common Methods (PDF p.134):</b>
+              <br>• <code>Optional.of(val)</code>: Creates Optional with non-null value (throws NPE if val is null).
+              <br>• <code>Optional.ofNullable(val)</code>: Safe for null; returns empty Optional if null.
+              <br>• <code>Optional.empty()</code>: Creates an empty Optional.
+              <br>• <code>isPresent()</code>: Checks if value exists.
+              <br>• <code>get()</code>: Returns stored value (throws exception if empty).
+              <br>• <code>orElse(default)</code>: Returns value if present, else returns fallback default.
+              <br>• <code>ifPresent(consumer)</code>: Executes code only when value is present (no output if empty!).</li>
+            <li><b>Advantages:</b> Avoids NullPointerException, improves readability, encourages safe coding practices.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('optional_deep_dive')">🚀 View Optional Code & Output</button>
+        </div>
+
+        <!-- Card 19: Math Class -->
+        <div class="card" data-topic="mod4" data-keywords="math class java.lang.math max min sqrt pow abs random ceil floor round static">
+          <div class="card-top">
+            <h3 class="card-title">Math Class (java.lang.Math)</h3>
+            <span class="badge badge-core">Static Utilities</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Like a scientific calculator on your desk: you don't build a new calculator every time you calculate a square root; you just tap the static buttons!
+          </div>
+          <ul class="card-bullets">
+            <li>Provides methods for performing mathematical calculations. <b>No object creation is required</b> because all methods are <b>static</b> (package: <code>java.lang.Math</code>).</li>
+            <li><b>Common Methods (PDF p.145):</b>
+              <br>• <code>Math.max(a, b)</code> & <code>Math.min(a, b)</code>: Returns maximum / minimum.
+              <br>• <code>Math.sqrt(x)</code>: Square root (e.g. <code>Math.sqrt(49) -&gt; 7.0</code>).
+              <br>• <code>Math.pow(a, b)</code>: Power (e.g. <code>Math.pow(2, 5) -&gt; 32.0</code>).
+              <br>• <code>Math.abs(x)</code>: Absolute value (e.g. <code>Math.abs(-15) -&gt; 15</code>).
+              <br>• <code>Math.random()</code>: Random double between 0.0 and 1.0.
+              <br>• <code>Math.ceil(x)</code>: Rounds up (e.g. <code>5.2 -&gt; 6.0</code>).
+              <br>• <code>Math.floor(x)</code>: Rounds down (e.g. <code>5.9 -&gt; 5.0</code>).
+              <br>• <code>Math.round(x)</code>: Rounds to nearest integer (e.g. <code>5.6 -&gt; 6</code>).</li>
+            <li><b>Advantages:</b> Built-in mathematical functions, faster than manual implementation, easy to use.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('math_datetime_demo')">🚀 View Math Code & Output</button>
+        </div>
+
+        <!-- Card 20: Modern Date & Time API -->
+        <div class="card" data-topic="mod4" data-keywords="localdate localtime localdatetime java.time now plusdays plushours getyear immutable">
+          <div class="card-top">
+            <h3 class="card-title">Date & Time API (java.time)</h3>
+            <span class="badge badge-core">Modern Java 8+</span>
+          </div>
+          <div class="simple-analogy">
+            <b>🌱 Everyday Analogy:</b> Like a tamper-proof digital timestamp: once created, it cannot be mutated or changed accidentally by another thread!
+          </div>
+          <ul class="card-bullets">
+            <li>Modern, immutable, and thread-safe replacement for legacy <code>java.util.Date</code>:</li>
+            <li><b><code>LocalDate</code> (java.time.LocalDate):</b>
+              <br>• Represents a <b>date only</b> (Year-Month-Day) without time.
+              <br>• Methods: <code>LocalDate.now()</code>, <code>plusDays(7)</code>, <code>minusDays(3)</code>, <code>getYear()</code>, <code>getMonth()</code>, <code>getDayOfMonth()</code>.</li>
+            <li><b><code>LocalTime</code> (java.time.LocalTime):</b>
+              <br>• Represents <b>time only</b> (Hour-Minute-Second) without date.
+              <br>• Methods: <code>LocalTime.now()</code>, <code>plusHours(2)</code>.</li>
+            <li><b><code>LocalDateTime</code> (java.time.LocalDateTime):</b>
+              <br>• Represents <b>both date and time together</b>.
+              <br>• Methods: <code>LocalDateTime.now()</code>, <code>plusDays(1)</code>, <code>plusHours(1)</code>.</li>
+          </ul>
+          <button class="card-btn" onclick="openModal('math_datetime_demo')">🚀 View Date-Time Code</button>
+        </div>
+
+        <!-- Card 21: Master Utility Classes Comparison Table -->
+        <div class="card" data-topic="mod4" data-keywords="utility classes table objects optional math localdate localtime localdatetime comparison pdf p162">
           <div class="card-top">
             <h3 class="card-title">Utility Classes Comparison Table</h3>
-            <span class="badge badge-exam">Quick Cheat Sheet</span>
+            <span class="badge badge-exam">PDF Table p.162</span>
           </div>
           <div class="table-container">
             <table>
@@ -1720,7 +1936,7 @@
                 <tr><th>Utility Class</th><th>Package</th><th>Purpose</th><th>Example Method</th></tr>
               </thead>
               <tbody>
-                <tr><td><code>Objects</code></td><td><code>java.util</code></td><td>Null-safe object utilities</td><td><code>Objects.equals(a, b)</code></td></tr>
+                <tr><td><code>Objects</code></td><td><code>java.util</code></td><td>Object utilities & null safety</td><td><code>Objects.equals(a, b)</code></td></tr>
                 <tr><td><code>Optional</code></td><td><code>java.util</code></td><td>Handle null values safely</td><td><code>opt.orElse("Guest")</code></td></tr>
                 <tr><td><code>Math</code></td><td><code>java.lang</code></td><td>Mathematical calculations (all static)</td><td><code>Math.sqrt(49)</code></td></tr>
                 <tr><td><code>LocalDate</code></td><td><code>java.time</code></td><td>Date only (Year-Month-Day)</td><td><code>LocalDate.now()</code></td></tr>
@@ -3050,146 +3266,195 @@ Map: Key-value association, unique keys.`,
         title: "ArrayList Comprehensive Methods Demonstration",
         badge: "Dynamic Array",
         code: `import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
         ArrayList<String> students = new ArrayList<>();
 
-        // 1. add()
+        // 1. add() & add(index, element)
         students.add("Rahul");
         students.add("Priya");
         students.add("Aman");
-        System.out.println("Initial: " + students);
-
-        // 2. add(index, element)
         students.add(1, "Neha"); // Insert at index 1
-        System.out.println("After add(1, Neha): " + students);
+        System.out.println("Students: " + students);
 
-        // 3. get() & set()
-        System.out.println("Index 2 is: " + students.get(2));
-        students.set(2, "Pooja"); // Replaces element at index 2
-        System.out.println("After set(2, Pooja): " + students);
+        // 2. get() & set()
+        System.out.println("Student at index 1: " + students.get(1));
+        students.set(1, "Sneha");
+        System.out.println("After set(1, Sneha): " + students);
 
-        // 4. remove() by object & by index
-        students.remove("Aman");
-        students.remove(0); // removes Rahul
+        // 3. remove(element) & remove(index)
+        students.remove("Sneha"); // by object
+        students.remove(0);        // by index (removes Rahul)
         System.out.println("After removals: " + students);
 
-        // 5. contains() & size()
-        System.out.println("Contains Neha? " + students.contains("Neha"));
-        System.out.println("Size = " + students.size());
+        // 4. indexOf() & lastIndexOf()
+        students.add("Priya"); // add duplicate
+        System.out.println("First indexOf 'Priya': " + students.indexOf("Priya"));
+        System.out.println("Last indexOf 'Priya': " + students.lastIndexOf("Priya"));
+
+        // 5. toArray()
+        String[] arr = students.toArray(new String[0]);
+        System.out.println("Converted to Array length: " + arr.length);
+
+        // 6. Bulk methods: retainAll()
+        ArrayList<String> filter = new ArrayList<>(Arrays.asList("Aman", "Rohan"));
+        students.retainAll(filter); // Keeps only common elements
+        System.out.println("After retainAll: " + students);
+
+        // 7. forEach() traversal
+        students.forEach(name -> System.out.println("Traversing: " + name));
+
+        // 8. sort(null) - sorts in natural order
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(50, 10, 30));
+        numbers.sort(null);
+        System.out.println("Sorted numbers: " + numbers);
     }
 }`,
-        output: `Initial: [Rahul, Priya, Aman]
-After add(1, Neha): [Rahul, Neha, Priya, Aman]
-Index 2 is: Priya
-After set(2, Pooja): [Rahul, Neha, Pooja, Aman]
-After removals: [Neha, Pooja]
-Contains Neha? true
-Size = 2`,
-        twist: "If you have an ArrayList<Integer> and call list.remove(1), Java interprets 1 as an INDEX! To remove the integer value 1, you must call list.remove(Integer.valueOf(1))."
+        output: `Students: [Rahul, Neha, Priya, Aman]
+Student at index 1: Neha
+After set(1, Sneha): [Rahul, Sneha, Priya, Aman]
+After removals: [Sneha, Priya, Aman] -> [Priya, Aman]
+First indexOf 'Priya': 0
+Last indexOf 'Priya': 2
+Converted to Array length: 3
+After retainAll: [Aman]
+Traversing: Aman
+Sorted numbers: [10, 30, 50]`,
+        twist: "Calling numbers.sort(null) uses natural ascending order because null tells the sort method to fall back to the element's Comparable implementation. Also, list.remove(1) removes the item at index 1, NOT the integer 1!"
       },
 
       linkedlist_queue_stack: {
-        title: "LinkedList as a FIFO Queue & LIFO Stack",
-        badge: "Deque Versatility",
+        title: "LinkedList as a List, FIFO Queue & LIFO Stack",
+        badge: "Doubly Linked List",
         code: `import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        // --- 1. AS A FIFO QUEUE (First In, First Out) ---
+        // --- 1. LinkedList as a List (addFirst, addLast, removeFirst, removeLast) ---
+        LinkedList<String> students = new LinkedList<>();
+        students.add("Priya");
+        students.add("Aman");
+        students.addFirst("Rahul"); // adds at beginning
+        students.addLast("Neha");   // adds at end
+        System.out.println("LinkedList: " + students);
+        System.out.println("Access element 1: " + students.get(1));
+        students.removeFirst(); // removes Rahul
+        students.removeLast();  // removes Neha
+        System.out.println("After ends removed: " + students);
+
+        // --- 2. LinkedList as a Queue (FIFO: First In, First Out) ---
         LinkedList<String> queue = new LinkedList<>();
-        queue.offer("A"); // enqueue
+        queue.offer("A"); // adds element
         queue.offer("B");
         queue.offer("C");
         System.out.println("Queue: " + queue);
-        System.out.println("Front peek: " + queue.peek()); // examines head
-        System.out.println("Removed head: " + queue.poll()); // dequeues A
-        System.out.println("Remaining Queue: " + queue);
+        System.out.println("Front (peek): " + queue.peek()); // views first element
+        System.out.println("Removed (poll): " + queue.poll()); // removes first element
+        System.out.println("Queue after poll: " + queue);
 
-        System.out.println("----------------------------");
-
-        // --- 2. AS A LIFO STACK (Last In, First Out) ---
+        // --- 3. LinkedList as a Stack (LIFO: Last In, First Out) ---
         LinkedList<Integer> stack = new LinkedList<>();
-        stack.push(10); // pushes onto top
+        stack.push(10); // adds at beginning (push)
         stack.push(20);
         stack.push(30);
         System.out.println("Stack: " + stack);
-        System.out.println("Popped top: " + stack.pop()); // pops 30
-        System.out.println("Remaining Stack: " + stack);
+        System.out.println("Removed (pop): " + stack.pop()); // removes from beginning
+        System.out.println("Stack after pop: " + stack);
     }
 }`,
-        output: `Queue: [A, B, C]
-Front peek: A
-Removed head: A
-Remaining Queue: [B, C]
-----------------------------
+        output: `LinkedList: [Rahul, Priya, Aman, Neha]
+Access element 1: Priya
+After ends removed: [Priya, Aman]
+Queue: [A, B, C]
+Front: A
+Removed: A
+Queue: [B, C]
 Stack: [30, 20, 10]
-Popped top: 30
-Remaining Stack: [20, 10]`,
-        twist: "In Queue, poll() returns null if the queue is empty, whereas remove() throws NoSuchElementException. In Stack, push() inserts at the very front of the linked list."
+Removed: 30
+Stack: [20, 10]`,
+        twist: "LinkedList uses a doubly linked list internally where each node contains data and two reference pointers (prev & next). For FIFO queue operations prefer offer()/poll() (returns null on empty) over add()/remove() (throws exception on empty)."
       },
 
       list_comparison_modal: {
-        title: "Deep Dive: ArrayList vs LinkedList Performance",
+        title: "Deep Dive: ArrayList vs LinkedList Performance Matrix",
         badge: "Time Complexity",
         code: `/*
-TIME COMPLEXITY COMPARISON:
+========================================================================================
+DIFFERENCE: ARRAYLIST VS LINKEDLIST (PDF SLIDE 42)
+========================================================================================
 
-Operation            ArrayList    LinkedList
-─────────────────────────────────────────────
-get(index)           O(1)         O(n)
-add(element at end)  O(1)*        O(1)
-add(at index 0)      O(n)         O(1) [addFirst]
-remove(index 0)      O(n)         O(1) [removeFirst]
-Memory overhead      Low          High (2 reference pointers per node)
-
-* ArrayList amortized O(1); occasionally O(n) when internal array resizes.
-*/`,
-        output: `Rule of Thumb:
-Use ArrayList by default for 90% of use cases.
-Only use LinkedList when you need frequent insertions/deletions at the start/end (Queue/Deque operations).`,
-        twist: "Despite frequent textbook claims, in modern hardware ArrayList often outperforms LinkedList even for mid-insertions due to CPU cache locality!"
+Feature              | ArrayList                  | LinkedList
+─────────────────────┼────────────────────────────┼─────────────────────────────────────
+Data Structure       | Dynamic Resizable Array    | Doubly Linked List
+Memory Allocation    | Contiguous memory blocks   | Scattered memory blocks (nodes & pointers)
+Element Access (get) | Fast: O(1) time (index)    | Slow: O(n) time (traverse from head/tail)
+Data Insertion/Remove| Slow: O(n) (shifting items)| Fast: O(1) time (pointer rewiring at ends)
+Memory Overhead      | Low (stores data + capacity| High (stores data + 2 pointers per node)
+*/
+public class ListDemo {
+    public static void main(String[] args) {
+        System.out.println("ArrayList best for: Frequent random reads, searching, iterations.");
+        System.out.println("LinkedList best for: Frequent additions/deletions at ends (Queue/Stack).");
+    }
+}`,
+        output: `ArrayList best for: Frequent random reads, searching, iterations.
+LinkedList best for: Frequent additions/deletions at ends (Queue/Stack).`,
+        twist: "Despite LinkedList having O(1) node insertion once located, traversing to a middle index takes O(n). In real-world hardware, ArrayList usually beats LinkedList due to CPU L1/L2 cache locality!"
       },
 
       hashset_operations: {
         title: "HashSet & Mathematical Set Operations (Union, Intersection, Diff)",
         badge: "Set Algebra",
         code: `import java.util.HashSet;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        HashSet<Integer> setA = new HashSet<>();
-        setA.add(10); setA.add(20); setA.add(30);
+        // --- 1. Unique Elements & Hash Bucket Lookup ---
+        // Java calls hashCode() to compute index in internal hash bucket array. Constant time O(1)!
+        HashSet<String> fruits = new HashSet<>();
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Apple"); // Duplicate! Silently rejected
+        System.out.println("Unique fruits: " + fruits);
 
-        HashSet<Integer> setB = new HashSet<>();
-        setB.add(20); setB.add(30); setB.add(40);
+        // --- 2. Mathematical Set Algebra ---
+        HashSet<Integer> A = new HashSet<>(Arrays.asList(10, 20, 30));
+        HashSet<Integer> B = new HashSet<>(Arrays.asList(20, 30, 40));
 
-        // 1. UNION: addAll()
-        HashSet<Integer> union = new HashSet<>(setA);
-        union.addAll(setB);
-        System.out.println("Union (A ∪ B): " + union);
+        // Union: A.addAll(B)
+        HashSet<Integer> union = (HashSet<Integer>) A.clone();
+        union.addAll(B);
+        System.out.println("Union (addAll): " + union);
 
-        // 2. INTERSECTION: retainAll()
-        HashSet<Integer> intersection = new HashSet<>(setA);
-        intersection.retainAll(setB);
-        System.out.println("Intersection (A ∩ B): " + intersection);
+        // Intersection: A.retainAll(B)
+        HashSet<Integer> intersection = (HashSet<Integer>) A.clone();
+        intersection.retainAll(B);
+        System.out.println("Intersection (retainAll): " + intersection);
 
-        // 3. DIFFERENCE: removeAll()
-        HashSet<Integer> difference = new HashSet<>(setA);
-        difference.removeAll(setB);
-        System.out.println("Difference (A - B): " + difference);
+        // Difference: A.removeAll(B)
+        HashSet<Integer> diff = (HashSet<Integer>) A.clone();
+        diff.removeAll(B);
+        System.out.println("Difference (removeAll): " + diff);
 
-        // 4. removeIf() condition
-        union.removeIf(n -> n > 25);
-        System.out.println("After removeIf(n > 25): " + union);
+        // Check Multiple: containsAll()
+        System.out.println("A containsAll [10, 20]: " + A.containsAll(Arrays.asList(10, 20)));
+
+        // Remove Using Condition: removeIf()
+        HashSet<Integer> numbers = new HashSet<>(Arrays.asList(10, 15, 20, 25));
+        numbers.removeIf(n -> n > 20);
+        System.out.println("After removeIf(n > 20): " + numbers);
     }
 }`,
-        output: `Union (A ∪ B): [20, 40, 10, 30]
-Intersection (A ∩ B): [20, 30]
-Difference (A - B): [10]
-After removeIf(n > 25): [20, 10]`,
-        twist: "Notice the print order is arbitrary ([20, 40, 10, 30])! HashSet does NOT maintain insertion order. If you need insertion order, use LinkedHashSet; if sorted order, use TreeSet."
+        output: `Unique fruits: [Apple, Banana]
+Union (addAll): [10, 20, 30, 40]
+Intersection (retainAll): [20, 30]
+Difference (removeAll): [10]
+A containsAll [10, 20]: true
+After removeIf(n > 20): [10, 15, 20]`,
+        twist: "HashSet does not preserve insertion order and allows exactly ONE null value. If you need insertion order, use LinkedHashSet; for sorted order, use TreeSet."
       },
 
       hashmap_methods: {
@@ -3197,41 +3462,52 @@ After removeIf(n > 25): [20, 10]`,
         badge: "Key-Value Pairs",
         code: `import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        HashMap<Integer, String> map = new HashMap<>();
+        HashMap<Integer, String> students = new HashMap<>();
 
         // 1. put() & get()
-        map.put(101, "Rahul");
-        map.put(102, "Priya");
-        map.put(103, "Aman");
-        System.out.println("ID 101: " + map.get(101));
+        students.put(101, "Rahul");
+        students.put(102, "Priya");
+        students.put(103, "Aman");
+        System.out.println("HashMap: " + students);
+        System.out.println("Get 101: " + students.get(101));
 
         // 2. containsKey() & containsValue()
-        System.out.println("Has key 102? " + map.containsKey(102));
+        System.out.println("Contains key 101: " + students.containsKey(101));
+        System.out.println("Contains key 105: " + students.containsKey(105));
+        System.out.println("Contains value 'Priya': " + students.containsValue("Priya"));
 
-        // 3. putIfAbsent() & getOrDefault()
-        map.putIfAbsent(102, "DuplicatePriya"); // Will NOT overwrite
-        System.out.println("104 or default: " + map.getOrDefault(104, "Not Found"));
+        // 3. putIfAbsent(), getOrDefault(), replace()
+        students.putIfAbsent(102, "NewPriya"); // Will NOT overwrite key 102
+        System.out.println("104 or default: " + students.getOrDefault(104, "Not Found"));
+        students.replace(103, "Aman Verma");
+        System.out.println("After replace(103): " + students.get(103));
 
-        // 4. replace()
-        map.replace(103, "Aman Sharma");
+        // 4. keySet() & entrySet() views
+        Set<Integer> keys = students.keySet();
+        System.out.println("Keys Set: " + keys);
 
-        // 5. entrySet() traversal
-        System.out.println("--- Map Contents ---");
-        for (Map.Entry<Integer, String> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + " => " + entry.getValue());
+        System.out.println("--- EntrySet Traversal ---");
+        for (Map.Entry<Integer, String> entry : students.entrySet()) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
         }
     }
 }`,
-        output: `ID 101: Rahul
-Has key 102? true
+        output: `HashMap: {101=Rahul, 102=Priya, 103=Aman}
+Get 101: Rahul
+Contains key 101: true
+Contains key 105: false
+Contains value 'Priya': true
 104 or default: Not Found
---- Map Contents ---
-101 => Rahul
-102 => Priya
-103 => Aman Sharma`,
+After replace(103): Aman Verma
+Keys Set: [101, 102, 103]
+--- EntrySet Traversal ---
+101 = Rahul
+102 = Priya
+103 = Aman Verma`,
         twist: "If you call map.put(key, value) with an existing key, it returns the OLD value and replaces it with the new value. In contrast, putIfAbsent() does nothing if the key is already present."
       },
 
@@ -3270,37 +3546,176 @@ public class Main {
         twist: "Never call collection.remove() while inside a loop; only it.remove() synchronizes the iterator's expected modification count."
       },
 
+      iterator_comprehensive_demo: {
+        title: "Iterator Traversal Across Lists, Sets & Maps",
+        badge: "Universal Iterator",
+        code: `import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // --- 1. Iterator with ArrayList & Safe Removal ---
+        ArrayList<String> students = new ArrayList<>(Arrays.asList("Rahul", "Priya", "Aman"));
+        Iterator<String> listIt = students.iterator();
+        while (listIt.hasNext()) {
+            String name = listIt.next();
+            if (name.equals("Priya")) {
+                listIt.remove(); // Safe removal!
+            }
+        }
+        System.out.println("ArrayList after safe removal: " + students);
+
+        // --- 2. Iterator with HashSet ---
+        HashSet<String> colors = new HashSet<>(Arrays.asList("Red", "Green", "Blue"));
+        Iterator<String> setIt = colors.iterator();
+        System.out.print("HashSet items: ");
+        while (setIt.hasNext()) {
+            System.out.print(setIt.next() + " ");
+        }
+        System.out.println();
+
+        // --- 3. Iterator with HashMap keySet() and values() ---
+        HashMap<Integer, String> map = new HashMap<>();
+        map.put(1, "Apple");
+        map.put(2, "Banana");
+        map.put(3, "Mango");
+
+        Iterator<Integer> keyIt = map.keySet().iterator();
+        System.out.print("Map Keys: ");
+        while (keyIt.hasNext()) {
+            System.out.print(keyIt.next() + " ");
+        }
+        System.out.println();
+
+        Iterator<String> valIt = map.values().iterator();
+        System.out.print("Map Values: ");
+        while (valIt.hasNext()) {
+            System.out.print(valIt.next() + " ");
+        }
+        System.out.println();
+    }
+}`,
+        output: `ArrayList after safe removal: [Rahul, Aman]
+HashSet items: Red Green Blue 
+Map Keys: 1 2 3 
+Map Values: Apple Banana Mango`,
+        twist: "Map does not implement Iterable directly, so you cannot write map.iterator(). Instead, invoke map.keySet().iterator(), map.values().iterator(), or map.entrySet().iterator()!"
+      },
+
       comparator_demo: {
-        title: "Comparator & Modern Functional Sorting Rules",
+        title: "Comparator & Built-in Functional Sorting Rules",
         badge: "Custom Sorting",
         code: `import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> nums = new ArrayList<>(Arrays.asList(30, 10, 50, 20));
+        // 1. Basic compare() with lambda
+        Comparator<Integer> c = (a, b) -> a - b;
+        System.out.println("c.compare(10, 20): " + c.compare(10, 20)); // -10
 
-        // 1. Natural Ascending Order
-        nums.sort(Comparator.naturalOrder());
-        System.out.println("Ascending: " + nums);
+        // 2. naturalOrder() and reverseOrder()
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(30, 10, 20));
+        numbers.sort(Comparator.naturalOrder());
+        System.out.println("Ascending (naturalOrder): " + numbers);
 
-        // 2. Reverse Descending Order
-        nums.sort(Comparator.reverseOrder());
-        System.out.println("Descending: " + nums);
+        numbers.sort(Comparator.reverseOrder());
+        System.out.println("Descending (reverseOrder): " + numbers);
 
-        // 3. Handling nulls safely with nullsFirst / nullsLast
+        // 3. reversed()
+        Comparator<Integer> asc = Comparator.naturalOrder();
+        numbers.sort(asc.reversed());
+        System.out.println("Reversed asc: " + numbers);
+
+        // 4. nullsFirst() and nullsLast()
         ArrayList<String> names = new ArrayList<>(Arrays.asList("Rahul", null, "Aman"));
         names.sort(Comparator.nullsFirst(Comparator.naturalOrder()));
-        System.out.println("Nulls first: " + names);
+        System.out.println("nullsFirst: " + names);
 
         names.sort(Comparator.nullsLast(Comparator.naturalOrder()));
-        System.out.println("Nulls last: " + names);
+        System.out.println("nullsLast: " + names);
+
+        // 5. Collections.sort()
+        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(45, 10, 30));
+        Collections.sort(list);
+        System.out.println("Collections.sort: " + list);
+        Collections.sort(list, Collections.reverseOrder());
+        System.out.println("Collections.sort reverse: " + list);
     }
 }`,
-        output: `Ascending: [10, 20, 30, 50]
-Descending: [50, 30, 20, 10]
-Nulls first: [null, Aman, Rahul]
-Nulls last: [Aman, Rahul, null]`,
-        twist: "Collections.sort(list) modifies the list in place and requires elements to implement Comparable, while list.sort(Comparator) allows arbitrary dynamic sorting criteria on the fly."
+        output: `c.compare(10, 20): -10
+Ascending (naturalOrder): [10, 20, 30]
+Descending (reverseOrder): [30, 20, 10]
+Reversed asc: [30, 20, 10]
+nullsFirst: [null, Aman, Rahul]
+nullsLast: [Aman, Rahul, null]
+Collections.sort: [10, 30, 45]
+Collections.sort reverse: [45, 30, 10]`,
+        twist: "The List interface has a default method 'default void sort(Comparator<? super E> c)'. Passing null to list.sort(null) falls back to the natural ordering of elements."
+      },
+
+      comparator_student_demo: {
+        title: "Comparing User-Defined Class Objects (3 Techniques)",
+        badge: "PDF Slides 89-90",
+        code: `import java.util.*;
+
+// User defined class
+class Student {
+    int rollNo;
+    String name;
+    double marks;
+
+    Student(int rollNo, String name, double marks) {
+        this.rollNo = rollNo;
+        this.name = name;
+        this.marks = marks;
+    }
+
+    public double getMarks() { return marks; }
+
+    @Override
+    public String toString() {
+        return rollNo + " " + name + " " + marks;
+    }
+}
+
+// Technique 1: Dedicated Comparator Class
+class MarksComparator implements Comparator<Student> {
+    @Override
+    public int compare(Student s1, Student s2) {
+        return Double.compare(s1.marks, s2.marks);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student(101, "Rahul", 85.5));
+        students.add(new Student(102, "Priya", 92.0));
+        students.add(new Student(103, "Amit", 78.5));
+
+        // Technique 1: Collections.sort() with Custom Comparator
+        Collections.sort(students, new MarksComparator());
+        System.out.println("--- Sorted by Marks (Custom Class) ---");
+        for (Student s : students) System.out.println(s);
+
+        // Technique 2: Lambda Expression
+        Comparator<Student> c = (s1, s2) -> Double.compare(s1.marks, s2.marks);
+        students.sort(c);
+
+        // Technique 3: Method Reference
+        students.sort(Comparator.comparing(Student::getMarks));
+        System.out.println("--- Sorted by Marks (Comparator.comparing) ---");
+        students.forEach(s -> System.out.println(s));
+    }
+}`,
+        output: `--- Sorted by Marks (Custom Class) ---
+103 Amit 78.5
+101 Rahul 85.5
+102 Priya 92.0
+--- Sorted by Marks (Comparator.comparing) ---
+103 Amit 78.5
+101 Rahul 85.5
+102 Priya 92.0`,
+        twist: "Comparator.comparing(Student::getMarks) automatically uses autoboxing to compare primitive double values via Double.compare(), keeping your sorting logic clean and one-line."
       },
 
       generics_demo: {
@@ -3313,22 +3728,300 @@ public class Main {
         // --- 1. WITHOUT GENERICS (Dangerous Raw Type) ---
         ArrayList rawList = new ArrayList();
         rawList.add("Rahul");
-        rawList.add(100); // Compiles! But dangerous
-        // String s = (String) rawList.get(1); // RUNTIME ERROR: ClassCastException!
+        rawList.add("Priya");
+        rawList.add(100); // Allowed! But dangerous
+        System.out.println("Raw List contains mixed: " + rawList);
+
+        // What problem can this cause?
+        // String name = (String) rawList.get(2); // RUNTIME ERROR: ClassCastException: Integer cannot be cast to String!
 
         // --- 2. WITH GENERICS (Compile-time Type Safety) ---
-        ArrayList<String> safeList = new ArrayList<>();
-        safeList.add("Rahul");
-        safeList.add("Priya");
-        // safeList.add(100); // COMPILE ERROR: incompatible types!
+        ArrayList<String> names = new ArrayList<>();
+        names.add("Rahul");
+        names.add("Priya");
+        names.add("Aman");
+        // names.add(100); // COMPILE ERROR: Integer -> Not allowed! Type safety enforced!
 
-        // No explicit cast required:
-        String name = safeList.get(0);
-        System.out.println("Safe retrieved: " + name);
+        // Benefit: No explicit casting required:
+        String firstName = names.get(0); // Java knows it returns String
+        System.out.println("Retrieved safely without cast: " + firstName);
+        System.out.println("Names list: " + names);
     }
 }`,
-        output: `Safe retrieved: Rahul`,
-        twist: "Generics in Java use 'Type Erasure': generic type parameters are erased at runtime and replaced with Object or bounds for backward compatibility with older Java versions."
+        output: `Raw List contains mixed: [Rahul, Priya, 100]
+Retrieved safely without cast: Rahul
+Names list: [Rahul, Priya, Aman]`,
+        twist: "Three primary reasons for Generics: 1. Type Safety (errors caught at compile-time), 2. No unnecessary type casting, 3. Code reusability across data types."
+      },
+
+      generic_classes_demo: {
+        title: "Generic Classes with Single & Two Type Parameters",
+        badge: "PDF Slides 101-107",
+        code: `// Generic Class with Single Type Parameter <T>
+class Box<T> {
+    T value;
+
+    Box(T value) {
+        this.value = value;
+    }
+
+    void display() {
+        System.out.println("Value = " + value);
+    }
+}
+
+// Generic Class with Two Type Parameters <K, V>
+class Pair<K, V> {
+    K key;
+    V value;
+
+    Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    void display() {
+        System.out.println("Key = " + key + ", Value = " + value);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // 1. One Generic Class handles multiple types!
+        Box<Integer> b1 = new Box<>(100);
+        Box<String> b2 = new Box<>("Hello");
+        b1.display();
+        b2.display();
+
+        // 2. Generic Class with two type parameters
+        Pair<Integer, String> p1 = new Pair<>(101, "Rahul");
+        p1.display();
+    }
+}`,
+        output: `Value = 100
+Value = Hello
+Key = 101, Value = Rahul`,
+        twist: "Standard Type Parameter naming conventions in Java: T for Type, E for Element (Collections), K for Key, V for Value, and N for Number."
+      },
+
+      generic_methods_interfaces_demo: {
+        title: "Generic Methods & Generic Interfaces",
+        badge: "PDF Slides 108-116",
+        code: `// Generic Interface with Type Parameter <T>
+interface Printer<T> {
+    void print(T value);
+}
+
+// Implementing Generic Interface
+class StringPrinter implements Printer<String> {
+    public void print(String value) {
+        System.out.println("Printer String: " + value);
+    }
+}
+
+class IntegerPrinter implements Printer<Integer> {
+    public void print(Integer value) {
+        System.out.println("Number = " + value);
+    }
+}
+
+public class Main {
+    // 1. Generic Method with Single Parameter <T>
+    public static <T> void display(T value) {
+        System.out.println("Display: " + value);
+    }
+
+    // 2. Generic Method Returning a Value <T>
+    public static <T> T getValue(T value) {
+        return value;
+    }
+
+    // 3. Generic Method with Two Parameters <T, U>
+    public static <T, U> void showTwo(T first, U second) {
+        System.out.println("First = " + first + ", Second = " + second);
+    }
+
+    public static void main(String[] args) {
+        // Testing Generic Methods
+        display(100);
+        display("Hello");
+        display(25.5);
+        display('A');
+
+        int num = getValue(10);
+        String text = getValue("Java");
+        System.out.println("getValue: " + num + " & " + text);
+
+        showTwo(101, "Rahul");
+        showTwo("Age", 25);
+
+        // Testing Generic Interfaces
+        Printer<String> sp = new StringPrinter();
+        sp.print("Hello Java");
+        Printer<Integer> ip = new IntegerPrinter();
+        ip.print(100);
+    }
+}`,
+        output: `Display: 100
+Display: Hello
+Display: 25.5
+Display: A
+getValue: 10 & Java
+First = 101, Second = Rahul
+First = Age, Second = 25
+Printer String: Hello Java
+Number = 100`,
+        twist: "A generic method has its own type parameter `<T>` before the return type, independent of whether the enclosing class is generic or normal!"
+      },
+
+      objects_utility_demo: {
+        title: "Objects Class Utilities & Null Validation",
+        badge: "java.util.Objects",
+        code: `import java.util.Objects;
+
+public class Main {
+    public static void main(String[] args) {
+        String s1 = "Java";
+        String s2 = "Java";
+        String s3 = null;
+
+        // 1. Objects.equals(a, b) - null-safe equality check
+        System.out.println("Objects.equals(s1, s2): " + Objects.equals(s1, s2)); // true
+        System.out.println("Objects.equals(s1, s3): " + Objects.equals(s1, s3)); // false (no NPE!)
+
+        // 2. Objects.isNull() and nonNull()
+        System.out.println("Objects.isNull(s3): " + Objects.isNull(s3));       // true
+        System.out.println("Objects.nonNull(s1): " + Objects.nonNull(s1));     // true
+
+        // 3. Objects.hash() - multi-variable hash code generator
+        int hash = Objects.hash("Rahul", 20);
+        System.out.println("Objects.hash result: " + hash);
+
+        // 4. Objects.toString() with fallback default
+        System.out.println("Objects.toString(s3, default): " + Objects.toString(s3, "Default Value"));
+
+        // 5. Objects.requireNonNull() - Fail-fast validation
+        String name = "Rahul";
+        Objects.requireNonNull(name);
+        System.out.println("Name = " + name);
+
+        try {
+            String bad = null;
+            Objects.requireNonNull(bad);
+        } catch (NullPointerException e) {
+            System.out.println("Demonstrated: requireNonNull(null) threw NullPointerException!");
+        }
+    }
+}`,
+        output: `Objects.equals(s1, s2): true
+Objects.equals(s1, s3): false
+Objects.isNull(s3): true
+Objects.nonNull(s1): true
+Objects.hash result: -1854580347
+Objects.toString(s3, default): Default Value
+Name = Rahul
+Demonstrated: requireNonNull(null) threw NullPointerException!`,
+        twist: "Use Objects.requireNonNull(param, 'errorMessage') in class constructors to practice Defensive Programming, ensuring illegal null arguments are rejected immediately at construction time."
+      },
+
+      optional_deep_dive: {
+        title: "Optional Container & NPE Defensive Mechanics",
+        badge: "java.util.Optional",
+        code: `import java.util.Optional;
+
+public class Main {
+    public static void main(String[] args) {
+        // 1. Optional.of() - For non-null values
+        Optional<String> nameOpt = Optional.of("Rahul");
+        System.out.println("Optional.of: " + nameOpt);
+        System.out.println("nameOpt.get(): " + nameOpt.get());
+
+        // 2. Optional.ofNullable() - Safe for null or non-null
+        String candidate = null;
+        Optional<String> value = Optional.ofNullable(candidate);
+        System.out.println("orElse fallback: " + value.orElse("Guest"));
+
+        // 3. isPresent() & get()
+        if (value.isPresent()) {
+            System.out.println(value.get());
+        } else {
+            System.out.println("No Value Present");
+        }
+
+        // 4. ifPresent() - Executes Consumer only when value is present
+        nameOpt.ifPresent(v -> System.out.println("Name = " + v));
+
+        // When empty, ifPresent() produces NO output!
+        Optional<String> emptyName = Optional.empty();
+        emptyName.ifPresent(v -> System.out.println("Name = " + v));
+        System.out.println("Empty ifPresent passed silently without errors!");
+    }
+}`,
+        output: `Optional.of: Optional[Rahul]
+nameOpt.get(): Rahul
+orElse fallback: Guest
+No Value Present
+Name = Rahul
+Empty ifPresent passed silently without errors!`,
+        twist: "Calling Optional.of(null) immediately throws NullPointerException! If the input may possibly be null, always use Optional.ofNullable(val)."
+      },
+
+      math_datetime_demo: {
+        title: "Math Class & Modern java.time API Suite",
+        badge: "Math & java.time",
+        code: `import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+
+public class Main {
+    public static void main(String[] args) {
+        // --- 1. Math Class (java.lang.Math - All Static Methods) ---
+        int a = 15;
+        int b = 25;
+        double x = 5.8;
+
+        System.out.println("Maximum: " + Math.max(a, b));
+        System.out.println("Minimum: " + Math.min(a, b));
+        System.out.println("Square Root of 81: " + Math.sqrt(81));
+        System.out.println("2 Power 5: " + Math.pow(2, 5));
+        System.out.println("Absolute of -40: " + Math.abs(-40));
+        System.out.println("Random Number: " + Math.random());
+        System.out.println("Ceil of 5.8: " + Math.ceil(x));   // 6.0
+        System.out.println("Floor of 5.8: " + Math.floor(x)); // 5.0
+        System.out.println("Round of 5.8: " + Math.round(x)); // 6
+
+        // --- 2. Modern java.time Classes (Immutable & Thread-Safe) ---
+        LocalDate today = LocalDate.now();
+        System.out.println("Today (LocalDate): " + today);
+        System.out.println("Next Week: " + today.plusDays(7));
+        System.out.println("Year: " + today.getYear());
+
+        LocalTime time = LocalTime.now();
+        System.out.println("Current Time (LocalTime): " + time);
+        System.out.println("After 2 Hours: " + time.plusHours(2));
+
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("Current Date & Time: " + now);
+        System.out.println("Tomorrow: " + now.plusDays(1));
+    }
+}`,
+        output: `Maximum: 25
+Minimum: 15
+Square Root of 81: 9.0
+2 Power 5: 32.0
+Absolute of -40: 40
+Random Number: 0.543217
+Ceil of 5.8: 6.0
+Floor of 5.8: 5.0
+Round of 5.8: 6
+Today (LocalDate): 2026-09-23
+Next Week: 2026-09-30
+Year: 2026
+Current Time (LocalTime): 15:15:00
+After 2 Hours: 17:15:00
+Current Date & Time: 2026-09-23T15:15:00
+Tomorrow: 2026-09-24T15:15:00`,
+        twist: "Math methods are static, meaning no instantiation is needed or permitted (the constructor of Math is private!). java.time classes are immutable: methods like plusDays() return a new instance without modifying the original."
       },
 
       utility_classes_demo: {
@@ -3517,10 +4210,10 @@ TreeMap      | Key-Sort | Keys: No    | No null keys | O(log n)        | Key-val
 
       full_utils_cmp_modal: {
         title: "Java Core Utility Classes Architectural Matrix",
-        badge: "Utility Cheatsheet",
+        badge: "PDF Slide 162",
         code: `/*
 ========================================================================================
-JAVA CORE UTILITY CLASSES: SUMMARY & BEST PRACTICES
+JAVA CORE UTILITY CLASSES: SUMMARY & BEST PRACTICES (PDF SLIDE 162)
 ========================================================================================
 
 Utility Class       | Package     | Instantiation? | Key Superpower
@@ -3837,6 +4530,7 @@ Caught Custom Exception: User is under-age: 15`,
     }
 
     // Modal Control Functions
+    // Modal Control Functions
     function openModal(exampleKey) {
       const data = examplesData[exampleKey];
       if (!data) return;
@@ -3851,6 +4545,9 @@ Caught Custom Exception: User is under-age: 15`,
         filename = "build.gradle";
         lang = "Gradle";
       }
+
+      const modal = document.querySelector("#modalOverlay .modal");
+      if (modal) modal.classList.remove("modal-flowchart");
 
       const modalTitle = document.getElementById("modalTitle");
       const modalBody = document.getElementById("modalBody");
@@ -3890,8 +4587,32 @@ Caught Custom Exception: User is under-age: 15`,
       document.body.style.overflow = "hidden"; // Prevent background scroll
     }
 
+    function openFlowchartModal() {
+      const modal = document.querySelector("#modalOverlay .modal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalBody = document.getElementById("modalBody");
+
+      if (modal) modal.classList.add("modal-flowchart");
+      modalTitle.innerHTML = `<span>🗺️ Interactive Collections Framework Flowchart</span> <span class="badge badge-core">Live Interactive App</span>`;
+
+      modalBody.innerHTML = `
+        <div style="font-size:0.85rem; color:#94a3b8; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.1);">
+          Complete visual hierarchy with interactive node inspection, time complexities &amp; method explorer.
+        </div>
+        <div style="flex:1; min-height:72vh; width:100%; border-radius:8px; overflow:hidden; border:1px solid #334155; margin-top:8px;">
+          <iframe src="./Java%20Collections%20Framework%20%E2%80%94%20Flowchart.html" style="width:100%; height:100%; min-height:72vh; border:none; background:#0f1117;" title="Java Collections Framework Flowchart"></iframe>
+        </div>
+      `;
+
+      const overlay = document.getElementById("modalOverlay");
+      overlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
     function closeModal() {
       const overlay = document.getElementById("modalOverlay");
+      const modal = document.querySelector("#modalOverlay .modal");
+      if (modal) modal.classList.remove("modal-flowchart");
       overlay.classList.remove("active");
       document.body.style.overflow = "auto";
     }
